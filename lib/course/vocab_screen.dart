@@ -6,7 +6,6 @@ import '../ui/theme.dart';
 import '../ui/widgets.dart';
 import 'course.dart';
 
-/// Vocabulario del curso por temas, con filtro por nivel y búsqueda.
 class VocabScreen extends StatefulWidget {
   const VocabScreen({super.key});
   @override

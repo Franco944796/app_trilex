@@ -55,21 +55,18 @@ class _TrilexAppState extends State<TrilexApp> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  /// El sistema pasó a modo claro u oscuro: importa solo con el tema en «Automático».
   @override
   void didChangePlatformBrightness() {
     if (themePref.choice == 'auto') _retheme();
   }
 
-  /// Cambió el tema: se vuelve a dibujar la app (build fija la paleta de Tx) y todas las
-  /// pantallas abiertas, que leen sus colores de Tx.
+  /// Las pantallas leen sus colores de Tx sin depender del Theme, así que hay que redibujarlas.
   void _retheme() {
     setState(() {});
     _relabel();
   }
 
-  /// Cambió el idioma (o el tema): se vuelven a dibujar todas las pantallas abiertas (también
-  /// las que están debajo en la navegación) para que tomen los textos y colores nuevos.
+  /// Redibuja también las pantallas que quedaron debajo en la navegación.
   void _relabel() {
     void mark(Element e) {
       e.markNeedsBuild();
@@ -107,7 +104,6 @@ class _TrilexAppState extends State<TrilexApp> with WidgetsBindingObserver {
   }
 }
 
-/// Pantalla principal con tres secciones: curso, lectura y ajustes.
 class Shell extends StatefulWidget {
   const Shell({super.key});
   @override

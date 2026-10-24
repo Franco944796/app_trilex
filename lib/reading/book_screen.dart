@@ -8,7 +8,6 @@ import 'reader_screen.dart';
 import 'reading.dart';
 import 'reading_home.dart';
 
-/// Ficha de un libro: sinopsis, seguir leyendo, descargar el PDF y lista de capítulos.
 class BookScreen extends StatefulWidget {
   const BookScreen({super.key, required this.id});
   final String id;

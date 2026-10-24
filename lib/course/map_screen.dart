@@ -12,7 +12,6 @@ import 'placement_screen.dart';
 import 'review_screen.dart';
 import 'vocab_screen.dart';
 
-/// Mapa del curso: estado, herramientas, siguiente lección y niveles → unidades → lecciones.
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
   @override
@@ -20,7 +19,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  String? _open; // nivel desplegado (por defecto, el actual)
+  String? _open;
 
   Future<void> _go(Widget page) async {
     await Navigator.of(context).push(MaterialPageRoute(builder: (_) => page));

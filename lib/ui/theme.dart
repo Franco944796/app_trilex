@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Paleta de un tema: los mismos colores que la web (shared-topic.css y lector.css).
 class TxPalette {
   const TxPalette({
     required this.ink,
@@ -47,17 +46,13 @@ class TxPalette {
   /// Texto sobre fondo [ink] (botón principal, número de ejercicio, pestaña activa).
   final Color onInk, onInkMuted;
 
-  /// Texto sobre [rust] o [blue].
   final Color onAccent;
 
   /// Tarjeta destacada oscura («Siguiente lección», barra de selección del lector).
   final Color feature, featureLine, onFeature, onFeatureStrong, onFeatureMuted, featureAccent;
 
-  /// Botón claro sobre la tarjeta destacada.
   final Color lightBtn, lightBtnText;
 
-  /// Fondo de las barras de progreso, borde de lo terminado, texto del lector, fondo de las
-  /// notas y marca del primer toque al subrayar un tramo.
   final Color track, doneLine, readerText, noteBg, rangeStart;
 
   /// Colores de los subrayados del lector: [fondo, borde].
@@ -108,7 +103,6 @@ const _light = TxPalette(
   },
 );
 
-/// Tema oscuro grafito: fondo #16181c, tarjetas #1e2127, texto #e6e8ec, acento azul #8fa9f0.
 const _dark = TxPalette(
   ink: Color(0xFFE6E8EC),
   text: Color(0xFFCFD3DA),
@@ -153,11 +147,8 @@ const _dark = TxPalette(
   },
 );
 
-/// Colores y tipografía del diseño de la web.
-///
-/// Los colores dependen del tema en uso: [use] lo fija main.dart cada vez que se dibuja la app
-/// (y al cambiar de tema se vuelven a dibujar todas las pantallas), así cada pantalla lee
-/// `Tx.ink`, `Tx.muted`… sin tener que pedir el tema al contexto.
+/// Los colores son getters de la paleta activa, que main.dart fija con [use] antes de dibujar.
+/// Por eso no pueden ir en expresiones `const`.
 class Tx {
   static TxPalette _p = _light;
 

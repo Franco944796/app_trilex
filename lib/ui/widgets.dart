@@ -4,9 +4,6 @@ import '../core/services.dart';
 import '../core/util.dart';
 import 'theme.dart';
 
-/// Piezas del diseño editorial (las mismas de la web).
-
-/// Rótulo en mayúsculas monoespaciadas.
 class Kicker extends StatelessWidget {
   const Kicker(this.text, {super.key, this.color});
   final String text;
@@ -15,7 +12,6 @@ class Kicker extends StatelessWidget {
   Widget build(BuildContext context) => Text(text.toUpperCase(), style: Tx.kicker.copyWith(color: color ?? Tx.muted));
 }
 
-/// Cabecera de pantalla: rótulo, título grande, texto breve y una raya gruesa debajo.
 class PageHeader extends StatelessWidget {
   const PageHeader({super.key, required this.kicker, required this.title, this.lede = '', this.sub = ''});
   final String kicker, title, lede, sub;
@@ -40,7 +36,6 @@ class PageHeader extends StatelessWidget {
       );
 }
 
-/// Panel de color suave con bordes redondeados.
 class Panel extends StatelessWidget {
   const Panel({super.key, required this.child, this.color, this.padding = const EdgeInsets.all(18)});
   final Widget child;
@@ -55,7 +50,6 @@ class Panel extends StatelessWidget {
       );
 }
 
-/// Tarjeta (blanca en el tema claro) con borde fino.
 class CardBox extends StatelessWidget {
   const CardBox({super.key, required this.child, this.padding = const EdgeInsets.all(16), this.borderColor});
   final Widget child;
@@ -74,7 +68,6 @@ class CardBox extends StatelessWidget {
       );
 }
 
-/// Barra de avance fina.
 class ProgressLine extends StatelessWidget {
   const ProgressLine(this.value, {super.key, this.color});
   final double value;
@@ -91,7 +84,6 @@ class ProgressLine extends StatelessWidget {
       );
 }
 
-/// Bloque con un rótulo y un texto (como «PUNTO DE PARTIDA» en el diseño).
 class NoteBlock extends StatelessWidget {
   const NoteBlock({super.key, required this.label, required this.text});
   final String label, text;
@@ -105,7 +97,6 @@ class NoteBlock extends StatelessWidget {
       );
 }
 
-/// Título de una sección: «01 · TEXTO Y VOCABULARIO».
 class SectionTitle extends StatelessWidget {
   const SectionTitle(this.text, {super.key, this.title = '', this.lede = ''});
   final String text, title, lede;
@@ -126,7 +117,6 @@ class SectionTitle extends StatelessWidget {
       );
 }
 
-/// Panel de puntaje de la práctica: «PUNTAJE 7 / 29 · Respondidas: 9 de 29 · Reiniciar».
 class ScorePanel extends StatelessWidget {
   const ScorePanel({super.key, required this.score, required this.total, required this.answered, this.onRestart});
   final double score;
@@ -163,7 +153,6 @@ class ScorePanel extends StatelessWidget {
       );
 }
 
-/// Botón pequeño para escuchar un texto en inglés.
 class SayButton extends StatelessWidget {
   const SayButton(this.text, {super.key, this.slow = false, this.label});
   final String text;
@@ -181,7 +170,6 @@ class SayButton extends StatelessWidget {
       );
 }
 
-/// Número de ejercicio en un círculo negro.
 class NumberDot extends StatelessWidget {
   const NumberDot(this.n, {super.key});
   final int n;
@@ -210,7 +198,6 @@ class PageList extends StatelessWidget {
       );
 }
 
-/// Burbuja de color de un subrayado: fondo suave y barra a la izquierda.
 class MarkBubble extends StatelessWidget {
   const MarkBubble({super.key, required this.color, required this.child, this.padding = const EdgeInsets.all(12)});
   final String color;
@@ -234,7 +221,6 @@ class MarkBubble extends StatelessWidget {
   }
 }
 
-/// Muestra un error de carga con un botón para reintentar.
 class LoadError extends StatelessWidget {
   const LoadError(this.error, {super.key});
   final Object error;

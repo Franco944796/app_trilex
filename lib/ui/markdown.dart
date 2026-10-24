@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'theme.dart';
 
-/// Markdown mínimo de las explicaciones (igual que la web): tablas, listas, **negrita** y *cursiva*.
 class MiniMarkdown extends StatelessWidget {
   const MiniMarkdown(this.text, {super.key});
   final String text;
 
-  /// Texto con **negrita** y *cursiva*.
   static List<InlineSpan> inline(String s, [TextStyle base = const TextStyle()]) {
     final out = <InlineSpan>[];
     final re = RegExp(r'\*\*(.+?)\*\*|\*(.+?)\*');

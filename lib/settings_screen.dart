@@ -8,7 +8,6 @@ import 'course/course.dart';
 import 'ui/theme.dart';
 import 'ui/widgets.dart';
 
-/// Ajustes: idioma, tema, meta diaria, recordatorio, actualización del contenido y borrar datos.
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
   @override
@@ -103,7 +102,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           onChanged: (v) async {
             if (v == null) return;
             await i18n.setLang(v);
-            await course.loadPacks(); // traducciones del contenido del curso en el idioma nuevo
+            await course.loadPacks();
             i18n.refresh();
             await scheduleReminder();
           },

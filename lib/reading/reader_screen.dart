@@ -8,7 +8,6 @@ import '../ui/theme.dart';
 import '../ui/widgets.dart';
 import 'reading.dart';
 
-/// Datos de lo que se lee: una lectura graduada o un capítulo de un libro.
 class _Doc {
   _Doc({
     required this.id,
@@ -35,8 +34,6 @@ class _Doc {
   final void Function(double score) onScore;
 }
 
-/// Lector: texto con palabras que se tocan para ver su significado, subrayados de colores con
-/// notas, audio, palabras clave, preguntas de comprensión y tarea (en las lecturas graduadas).
 class ReaderScreen extends StatefulWidget {
   const ReaderScreen.text(this.id, {super.key}) : chapterN = null;
   const ReaderScreen.chapter(this.id, int n, {super.key}) : chapterN = n;
@@ -52,8 +49,8 @@ class _ReaderScreenState extends State<ReaderScreen> {
   final scroll = ScrollController();
   final paraKeys = <GlobalKey>[];
   bool keywords = false;
-  int? speaking; // párrafo que se lee en voz alta
-  ({int p, int s})? rangeStart; // inicio de un fragmento que se está eligiendo
+  int? speaking;
+  ({int p, int s})? rangeStart;
   final draft = TextEditingController();
   Map<String, String> glossTr = {};
 
@@ -164,7 +161,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
     return st;
   }
 
-  // ---------- volver a donde se dejó de leer (libros) ----------
   void _restorePosition() {
     final f = ((_bookState()['pos'] as Map)['${widget.chapterN}'] as num?)?.toDouble();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -185,7 +181,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
     progress.save();
   }
 
-  // ---------- notas y subrayados ----------
   Map? get notesDoc => progress.notes[doc!.id] as Map?;
   List<Json> get marks => jsonList(notesDoc?['marks']);
 
@@ -203,7 +198,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
 
   String _text(int p) => str(doc!.blocks[p]['text']);
 
-  /// Crea un subrayado con los tramos indicados y, si [openNote], abre las notas para escribir.
   void _addMark(List<Map<String, int>> ranges, String color, {bool openNote = false}) {
     final quote = [for (final r in ranges) _text(r['p']!).substring(r['s']!, r['e']!)].join(' ').replaceAll(RegExp(r'\s+'), ' ').trim();
     final m = {
@@ -220,7 +214,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
     if (openNote) _openNotes(focus: m['id'] as String);
   }
 
-  /// Oración que contiene el tramo [s, e) del párrafo p.
   Map<String, int> _sentence(int p, int s, int e) {
     final t = _text(p);
     var a = s, b = e;
@@ -236,7 +229,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
     return {'p': p, 's': a, 'e': b};
   }
 
-  /// Tramos entre dos palabras (pueden estar en párrafos distintos).
   List<Map<String, int>> _span(({int p, int s}) a, ({int p, int s, int e}) b) {
     var x = a, y = b;
     if (b.p < a.p || (b.p == a.p && b.s < a.s)) {
@@ -442,7 +434,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
     if (mounted) setState(() {});
   }
 
-  // ---------- audio párrafo a párrafo ----------
   void _play() {
     if (speaking != null) {
       speech.stop();
@@ -466,7 +457,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
     });
   }
 
-  // ---------- vista ----------
   @override
   Widget build(BuildContext context) {
     final d = doc;
@@ -630,8 +620,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
   }
 }
 
-/// Un párrafo: cada palabra se puede tocar; los subrayados se pintan con su color y las
-/// palabras clave (si se pidió) se subrayan en azul.
 class _Paragraph extends StatefulWidget {
   const _Paragraph({
     required this.index,
@@ -695,7 +683,6 @@ class _ParagraphState extends State<_Paragraph> {
 
   @override
   Widget build(BuildContext context) {
-    // tramos de los subrayados de este párrafo: [inicio, fin, color]
     final ranges = <(int, int, String)>[];
     for (final m in widget.marks) {
       for (final r in jsonList(m['ranges'])) {
@@ -737,7 +724,6 @@ class _ParagraphState extends State<_Paragraph> {
   }
 }
 
-/// Fila de los 4 colores para subrayar.
 class _ColorRow extends StatelessWidget {
   const _ColorRow({required this.onPick, this.selected});
   final void Function(String color) onPick;
@@ -764,7 +750,6 @@ class _ColorRow extends StatelessWidget {
       ]);
 }
 
-/// Panel de notas de un texto: notas generales y una burbuja de color por subrayado.
 class _NotesSheet extends StatefulWidget {
   const _NotesSheet({required this.controller, required this.notes, required this.onGo, required this.onChanged, this.focus});
   final ScrollController controller;
@@ -884,7 +869,6 @@ class _NotesSheetState extends State<_NotesSheet> {
   }
 }
 
-/// Preguntas de comprensión en tarjetas, con corrección inmediata y panel de puntaje.
 class _Quiz extends StatefulWidget {
   const _Quiz({required this.doc});
   final _Doc doc;

@@ -1,12 +1,11 @@
 import '../core/services.dart';
 import '../core/util.dart';
 
-/// Datos del curso (content/en/path.json), reglas de desbloqueo y traducciones del contenido
-/// (content/en/i18n/<idioma>/<nivel>.json). Es la misma lógica que la web (ingles/trilex.js).
+/// Misma lógica que ingles/trilex.js: cualquier cambio en las reglas va en los dos lados.
 class Course {
-  List<Json> levels = []; // todos los niveles de path.json
-  List<Json> ready = []; // niveles con lecciones publicadas
-  List<Json> flat = []; // lecciones publicadas en orden, con 'cefr'
+  List<Json> levels = [];
+  List<Json> ready = [];
+  List<Json> flat = [];
 
   Future<void> load() async {
     final p = await content.obj('path.json');
@@ -32,7 +31,6 @@ class Course {
     return null;
   }
 
-  // ---------- desbloqueo ----------
   bool free(String cefr) => strList(progress.placement?['passed']).contains(cefr);
   bool isDone(String id) => progress.done[id] != null;
   double scoreOf(String id) => ((progress.done[id] as Map?)?['score'] as num?)?.toDouble() ?? 0;
@@ -67,8 +65,7 @@ class Course {
     ];
   }
 
-  // ---------- traducciones del contenido ----------
-  final _packs = <String, Json>{}; // nivel → pack del idioma actual
+  final _packs = <String, Json>{};
   String _packLang = '';
 
   Future<void> loadPacks() async {
@@ -100,14 +97,12 @@ class Course {
   String? ovUnit(String id) => (_pack(id)?['units'] as Map?)?[id] as String?;
   String? ovVocab(String id) => (_pack(id)?['vocab'] as Map?)?[id] as String?;
 
-  /// Título traducido de una unidad o lección ('' si no hay o si es igual al inglés).
   String subTitle(String id, String es, String target) {
     if (i18n.isEs) return es;
     final t = id.contains('-l') ? str(ovLesson(id)?['title']) : (ovUnit(id) ?? '');
     return t.isNotEmpty && t != target ? t : '';
   }
 
-  /// Textos en español de los ejercicios → traducción ("ex" de los packs).
   String exTr(String s) {
     if (s.isEmpty) return s;
     for (final p in _packs.values) {
@@ -151,7 +146,6 @@ class Course {
     return x;
   }
 
-  /// Significado de una palabra del vocabulario en el idioma elegido.
   String meaning(Json w) {
     final es = str(w['translation_es'] ?? w['es']);
     if (i18n.isEs) return es;
@@ -160,7 +154,6 @@ class Course {
 
   bool allTranslated(List<Json> g) => i18n.isEs || g.every((w) => ovVocab(str(w['id'])) != null);
 
-  /// Copia de la lección con los textos traducidos (si existen).
   Json localize(Json lesson) {
     if (i18n.isEs) return lesson;
     final o = ovLesson(str(lesson['id']));
@@ -216,5 +209,4 @@ class Course {
         };
 }
 
-/// Instancia única del curso (se carga al abrir la app).
 final course = Course();

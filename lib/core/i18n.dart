@@ -5,9 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Textos de la interfaz en 8 idiomas. Son los mismos de la web (assets/i18n/ui.json, generado
-/// por tools/app_sync.py a partir de ingles/trilex-i18n*.js) más los propios de la app
-/// (assets/i18n/app.json). Cada clave: [en, es, fr, de, it, pt, ru, zh].
+/// assets/i18n/ui.json lo genera tools/app_sync.py desde la web: no editarlo a mano.
+/// Cada clave: [en, es, fr, de, it, pt, ru, zh].
 class I18n extends ChangeNotifier {
   static const langs = ['en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'zh'];
   static const names = {
@@ -48,7 +47,6 @@ class I18n extends ChangeNotifier {
     lang = langs.contains(saved) ? saved! : (langs.contains(sys) ? sys : 'en');
   }
 
-  /// Texto de una clave con variables {n}, {l}…
   String t(String key, [Map<String, Object?> vars = const {}]) {
     final row = _keys[key];
     var s = row == null ? key : (row[_ix].isEmpty ? row[0] : row[_ix]);
@@ -60,7 +58,6 @@ class I18n extends ChangeNotifier {
 
   List<List<String>> get faq => _faq[lang] ?? _faq['es'] ?? const [];
 
-  /// Vuelve a dibujar la interfaz (por ejemplo, después de cargar contenido nuevo).
   void refresh() => notifyListeners();
 
   Future<void> setLang(String l) async {

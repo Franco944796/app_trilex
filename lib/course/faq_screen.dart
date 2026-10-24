@@ -4,7 +4,6 @@ import '../core/services.dart';
 import '../ui/theme.dart';
 import '../ui/widgets.dart';
 
-/// Preguntas frecuentes (las mismas de la web, en el idioma elegido).
 class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});
   @override

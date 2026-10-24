@@ -8,8 +8,6 @@ import 'course.dart';
 import 'lesson_screen.dart';
 import 'practice.dart';
 
-/// Examen final de un nivel: misma cuadrícula de ejercicios, sin dar las respuestas.
-/// Al terminar muestra el resultado, los temas para repasar y las tareas opcionales.
 class ExamScreen extends StatefulWidget {
   const ExamScreen({super.key, required this.cefr});
   final String cefr;
@@ -58,7 +56,6 @@ class _ExamScreenState extends State<ExamScreen> {
     final before = progress.exams[widget.cefr] as Map?;
     progress.exams[widget.cefr] = {'pct': p, 'passed': ok || before?['passed'] == true, 'at': DateTime.now().millisecondsSinceEpoch};
     progress.save();
-    // temas para repasar, con los más fallados primero
     final weak = <String, ({int n, Json r})>{};
     final exs = jsonList(e['exercises']);
     for (var i = 0; i < exs.length; i++) {
@@ -133,7 +130,7 @@ class _ExamScreenState extends State<ExamScreen> {
                 exercises: jsonList(e['exercises']),
                 exam: true,
                 onProgress: (s, a) {
-                  if (a == 0 && result != null) setState(() => result = null); // reiniciado
+                  if (a == 0 && result != null) setState(() => result = null);
                 },
                 onFinished: (sc, n, res) => _finish(e, sc, n, res),
               ),

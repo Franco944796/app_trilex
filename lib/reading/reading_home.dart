@@ -11,7 +11,6 @@ import 'reader_screen.dart';
 import 'reading.dart';
 import 'words_notes.dart';
 
-/// Autoaprendizaje: lecturas por nivel, libros completos, mis palabras y mis notas.
 class ReadingHome extends StatelessWidget {
   const ReadingHome({super.key});
 
@@ -42,13 +41,11 @@ class ReadingHome extends StatelessWidget {
       );
 }
 
-/// Abre un PDF de un libro en el navegador o el visor del teléfono.
 Future<void> openBookPdf(String id) =>
     launchUrl(Uri.parse('${Content.baseUrl}reading/books/$id/$id.pdf'), mode: LaunchMode.externalApplication);
 
 String pdfSize(num kb) => kb >= 1000 ? '${(kb / 1024).toStringAsFixed(1)} MB' : '$kb KB';
 
-/// Lecturas graduadas por nivel.
 class TextsTab extends StatefulWidget {
   const TextsTab({super.key});
   @override
@@ -133,7 +130,6 @@ Widget _badge(String t) => Container(
       child: Text(t, style: const TextStyle(fontFamily: Tx.mono, fontSize: 11)),
     );
 
-/// Libros completos.
 class BooksTab extends StatefulWidget {
   const BooksTab({super.key});
   @override

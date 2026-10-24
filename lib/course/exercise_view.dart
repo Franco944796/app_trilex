@@ -8,9 +8,6 @@ import '../ui/theme.dart';
 import '../ui/widgets.dart';
 import 'course.dart';
 
-/// Un ejercicio del curso (todos los tipos de la web). Llama a [onDone] con el puntaje (0–1)
-/// cuando se responde.
-///
 /// [exam]: muestra el tema a repasar, nunca la respuesta · [optional]: autoevaluación sin nota ·
 /// [quiet]: sin corrección visible (prueba de nivel) · [dontKnow]: agrega «No lo sé».
 class ExerciseView extends StatefulWidget {
@@ -39,27 +36,26 @@ class _ExerciseViewState extends State<ExerciseView> {
   List<String> get answers => [for (final a in (e['answer'] as List? ?? const [])) '$a'];
 
   bool done = false;
-  String? head; // primera línea del comentario (en negrita)
-  final extra = <Widget>[]; // líneas siguientes del comentario
+  String? head;
+  final extra = <Widget>[];
   String fbKind = 'wait'; // ok | bad | half | self
 
-  // estado de cada tipo
-  late List<String> options; // opción múltiple / verdadero-falso
+  late List<String> options;
   int? picked;
   final input = TextEditingController();
-  List<int> pool = [], tray = []; // ordenar palabras (índices de tokens)
-  late List<String> rightSide; // unir pares
+  List<int> pool = [], tray = [];
+  late List<String> rightSide;
   int? selLeft;
-  final matched = <int>{}; // índices de la izquierda ya unidos
-  int? flashBad; // índice que parpadea en rojo
+  final matched = <int>{};
+  int? flashBad;
   int mistakes = 0;
-  late List<Json> items; // clasificar
+  late List<Json> items;
   int? selItem;
   final placed = <int, String>{};
   String? flashCat;
-  String warn = ''; // escritura
+  String warn = '';
   final checks = <int>{};
-  final role = <int, int>{}; // rol: turno → opción elegida
+  final role = <int, int>{};
   final roleOrder = <int, List<int>>{};
   int roleGood = 0;
   Timer? _flash;
@@ -90,7 +86,6 @@ class _ExerciseViewState extends State<ExerciseView> {
 
   String _fb(String x) => x.replaceFirst(RegExp(r'^¡Correcto!'), tr('correctEx')).replaceFirst(RegExp(r'^Revisa esto:'), tr('reviewThis'));
 
-  /// Tema que hay que repasar para una pregunta del examen (sin la respuesta).
   String _reviewText() {
     final r = e['review'];
     if (r is! Map) return tr('reviewTheory');
@@ -135,7 +130,6 @@ class _ExerciseViewState extends State<ExerciseView> {
         ])),
       );
 
-  // ---------------------------------------------------------------- tipos de ejercicio
   Widget _choice() {
     final listening = type == 'listening';
     final good = type == 'true_false' ? [e['answer'] is List && (e['answer'] as List).first == true ? tr('trueW') : tr('falseW')] : answers;
@@ -493,7 +487,7 @@ class _ExerciseViewState extends State<ExerciseView> {
             child: Text(choices[k]),
           ),
       ]));
-      if (chosen == null) break; // los turnos siguientes aparecen al responder
+      if (chosen == null) break;
       out.add(Container(
         margin: const EdgeInsets.only(top: 6),
         padding: const EdgeInsets.only(left: 10),
@@ -504,7 +498,6 @@ class _ExerciseViewState extends State<ExerciseView> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: out);
   }
 
-  // ---------------------------------------------------------------- vista
   @override
   Widget build(BuildContext context) {
     Widget body;
@@ -595,7 +588,6 @@ class _ExerciseViewState extends State<ExerciseView> {
   }
 }
 
-/// Lista de control de la escritura (se marca, no se guarda).
 class _CheckList extends StatefulWidget {
   const _CheckList({required this.items});
   final List<String> items;
@@ -619,7 +611,6 @@ class _CheckListState extends State<_CheckList> {
       ]);
 }
 
-/// Texto o diálogo de entrada de una lección (con audio, salvo en [plain]).
 class InputText extends StatelessWidget {
   const InputText({super.key, required this.input, this.plain = false});
   final Json input;

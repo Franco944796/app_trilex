@@ -7,7 +7,6 @@ import '../ui/widgets.dart';
 import 'reading.dart';
 import 'reading_home.dart';
 
-/// Mis palabras: las que se guardaron mientras se leía, con su significado en el idioma actual.
 class WordsTab extends StatefulWidget {
   const WordsTab({super.key});
   @override
@@ -79,7 +78,6 @@ class _WordsTabState extends State<WordsTab> {
       );
 }
 
-/// Mis notas: subrayados y notas de todos los textos, agrupados por texto.
 class NotesTab extends StatefulWidget {
   const NotesTab({super.key});
   @override

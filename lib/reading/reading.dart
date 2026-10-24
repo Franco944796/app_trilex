@@ -1,25 +1,21 @@
 import '../core/services.dart';
 import '../core/util.dart';
 
-/// Resultado de buscar una palabra del lector.
 class WordInfo {
   WordInfo({required this.word, required this.base, this.tr, this.es = '', this.def, this.src = '', this.fallback = false});
   final String word, base, es, src; // src: 'glosario' | 'curso'
   final String? tr; // significado en el idioma elegido (null = no está)
-  final String? def; // definición breve en inglés sencillo
-  final bool fallback; // no hay traducción en el idioma elegido: se muestra el español
+  final String? def;
+  final bool fallback;
 }
 
-/// Autoaprendizaje: índice de lecturas y libros, y diccionario del lector.
-///
-/// Diccionario: 1) glosario del texto abierto (español); 2) vocabulario del curso (español);
-/// para los demás idiomas, reading/i18n/<idioma>.json {gloss, vocab}, y en.json como
-/// definición en inglés sencillo (igual que la web).
+/// Orden de búsqueda igual que la web: glosario del texto, luego vocabulario del curso; otros
+/// idiomas desde reading/i18n/<idioma>.json y en.json como definición en inglés sencillo.
 class Reading {
   Json? _index;
-  Map<String, String>? _voc; // lema → español
+  Map<String, String>? _voc;
   final _dict = <String, Json>{};
-  Map<String, String> gloss = {}; // glosario del texto abierto: palabra → español
+  Map<String, String> gloss = {};
 
   Future<Json> index() async => _index ??= await content.obj('reading/index.json');
 
@@ -50,7 +46,6 @@ class Reading {
     return _dict[lang] = d;
   }
 
-  /// Usa el glosario de un texto para las búsquedas siguientes.
   void setGlossary(List<Json> g) {
     gloss = {};
     for (final e in g) {
@@ -61,7 +56,6 @@ class Reading {
     }
   }
 
-  /// Formas base probables (plural, pasado, -ing, comparativos…).
   static List<String> forms(String w) {
     final o = <String>[w];
     void add(String x) {
@@ -122,7 +116,6 @@ class Reading {
     return WordInfo(word: w, base: w);
   }
 
-  /// Significado de una palabra del glosario en el idioma elegido (lista de palabras clave).
   Future<String> glossMeaning(Json g) async {
     if (i18n.isEs) return str(g['es']);
     final d = await dict(i18n.lang);

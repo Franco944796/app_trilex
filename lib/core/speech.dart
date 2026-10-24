@@ -1,6 +1,5 @@
 import 'package:flutter_tts/flutter_tts.dart';
 
-/// Audio en inglés británico con la voz del teléfono (como la web con la Web Speech API).
 class Speech {
   final _tts = FlutterTts();
   void Function()? _onDone;

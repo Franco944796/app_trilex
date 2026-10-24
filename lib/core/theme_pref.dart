@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Tema elegido en Ajustes: automático (sigue al sistema), claro u oscuro. Se guarda en el
-/// dispositivo con la clave 'trilexTheme', con los mismos valores que la web.
 class ThemePref extends ChangeNotifier {
   static const key = 'trilexTheme';
   static const choices = ['auto', 'light', 'dark'];

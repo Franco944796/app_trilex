@@ -7,21 +7,16 @@ import 'package:path_provider/path_provider.dart';
 
 import 'util.dart';
 
-/// Contenido del curso y de las lecturas: los mismos JSON que la web (content/en).
-///
-/// Viene dentro de la app (assets/content/en) y se puede actualizar desde la web: [update]
-/// compara content/en/manifest.json del sitio con el de la app y descarga solo los archivos que
-/// cambiaron a la carpeta de datos de la app. Al leer, la copia descargada tiene prioridad.
 class Content {
   /// Sitio publicado (GitHub Pages). Cambiarlo aquí si la web se muda.
   static const siteUrl = 'https://franco944796.github.io/beta-idiomas/';
   static const baseUrl = '${siteUrl}content/en/';
 
-  late Directory _dir; // carpeta con los archivos descargados
+  late Directory _dir;
   Map<String, String> _bundled = {}; // manifest de la app: {ruta: hash}
-  String _bundledVersion = ''; // versión del contenido que trae la app
-  Map<String, String> _remote = {}; // último manifest descargado de la web
-  Set<String> _downloaded = {}; // archivos que hay que leer de la copia descargada
+  String _bundledVersion = '';
+  Map<String, String> _remote = {};
+  Set<String> _downloaded = {};
   String version = '';
   final _cache = <String, dynamic>{};
 
@@ -49,7 +44,6 @@ class Content {
     }
   }
 
-  /// Lee un JSON (ruta relativa a content/en), con los textos de varias líneas ya unidos.
   Future<dynamic> json(String path) async {
     final hit = _cache[path];
     if (hit != null) return hit;
@@ -75,7 +69,6 @@ class Content {
     final m = jsonDecode(utf8.decode(res.bodyBytes)) as Json;
     if (str(m['version']) == version) return 0;
     final files = (m['files'] as Map).cast<String, String>();
-    // hash del archivo que la app usa hoy: el descargado o el que trae la app
     String? have(String p) => _downloaded.contains(p) ? _remote[p] : _bundled[p];
     final todo = [for (final e in files.entries) if (have(e.key) != e.value) e.key];
     final got = {for (final p in _downloaded) if (files[p] != null && have(p) == files[p]) p};

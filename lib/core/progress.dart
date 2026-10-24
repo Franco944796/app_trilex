@@ -67,7 +67,6 @@ class Progress extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ---------- accesos cómodos (los mapas se crean si faltan) ----------
   Json _map(Json parent, String k) {
     final v = parent[k];
     if (v is Map<String, dynamic>) return v;
@@ -97,7 +96,6 @@ class Progress extends ChangeNotifier {
   double get textSize => (reading['size'] as num?)?.toDouble() ?? 1.0;
   double get rate => (reading['rate'] as num?)?.toDouble() ?? 0.9;
 
-  // ---------- constancia: minutos activos por día ----------
   int _lastAct = 0, _lastSave = 0;
 
   /// Suma el tiempo entre interacciones (las pausas de más de 2 minutos no cuentan).

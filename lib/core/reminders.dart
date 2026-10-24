@@ -4,7 +4,6 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
-/// Recordatorio diario para cumplir la meta de estudio (notificación local, sin servidor).
 class Reminders {
   final _plugin = FlutterLocalNotificationsPlugin();
   bool _ready = false;
@@ -28,7 +27,6 @@ class Reminders {
     }
   }
 
-  /// Pide permiso para mostrar notificaciones. Devuelve false si el usuario lo niega.
   Future<bool> askPermission() async {
     if (!_ready) return false;
     final android = _plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
@@ -38,7 +36,6 @@ class Reminders {
     return (a ?? true) && (i ?? true);
   }
 
-  /// Programa el aviso todos los días a la hora indicada (minutos desde las 0:00).
   Future<void> schedule(int minutes, String title, String body) async {
     if (!_ready) return;
     await _plugin.cancel(0);

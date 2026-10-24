@@ -9,10 +9,9 @@ import 'course.dart';
 import 'exercise_view.dart';
 import 'practice.dart';
 
-/// Una lección en una sola pantalla: texto y vocabulario, explicación y ejercicios.
 class LessonScreen extends StatefulWidget {
   const LessonScreen({super.key, required this.lesson});
-  final Json lesson; // entrada de path.json (con 'cefr' y 'file')
+  final Json lesson;
   @override
   State<LessonScreen> createState() => _LessonScreenState();
 }
@@ -26,7 +25,7 @@ class _LessonScreenState extends State<LessonScreen> {
   double score = 0;
   int answered = 0;
   Widget? result;
-  Json? _local; // lección traducida al idioma actual (se calcula una vez por idioma)
+  Json? _local;
   String _localLang = '';
 
   Json get localized {
@@ -243,7 +242,7 @@ class _LessonScreenState extends State<LessonScreen> {
         onProgress: (s, a) => setState(() {
           score = s;
           answered = a;
-          if (a == 0) result = null; // se reinició desde el panel de puntaje
+          if (a == 0) result = null;
         }),
         onFinished: (s, n, _) => _finish(L, s, n),
       ),

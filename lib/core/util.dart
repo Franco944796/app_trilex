@@ -1,13 +1,9 @@
 import 'dart:math';
 
-/// Utilidades compartidas: conversión de JSON dinámico, normalización de respuestas y formato.
-
 typedef Json = Map<String, dynamic>;
 
-/// Lista de objetos JSON (vacía si no hay nada).
 List<Json> jsonList(dynamic x) => x is List ? x.whereType<Map>().map((m) => m.cast<String, dynamic>()).toList() : <Json>[];
 
-/// Lista de cadenas (vacía si no hay nada).
 List<String> strList(dynamic x) => x is List ? x.map((e) => '$e').toList() : <String>[];
 
 String str(dynamic x) => x == null ? '' : '$x';
@@ -42,7 +38,6 @@ List<T> shuffled<T>(List<T> a) {
 String pad2(int n) => n.toString().padLeft(2, '0');
 String pct(num x) => '${(x * 100).round()} %';
 
-/// Puntaje con un decimal como máximo (7, 7.5).
 String fmtScore(num x) {
   final r = (x * 10).round() / 10;
   return r == r.roundToDouble() ? r.toInt().toString() : r.toString();
@@ -65,10 +60,8 @@ String normWord(String s) => s
     .replaceAll(RegExp(r'\s+'), ' ')
     .trim();
 
-/// Une las piezas de un ejercicio de ordenar palabras (sin espacio antes de la puntuación).
 String sentence(List<String> tokens) => tokens.join(' ').replaceAllMapped(RegExp(r' ([.,?!;:])'), (m) => m[1]!);
 
-/// Número de día desde 1970 (para el repaso espaciado).
 int dayNumber([DateTime? d]) => (d ?? DateTime.now()).millisecondsSinceEpoch ~/ 86400000;
 
 String dayKey(DateTime d) => '${d.year}-${pad2(d.month)}-${pad2(d.day)}';

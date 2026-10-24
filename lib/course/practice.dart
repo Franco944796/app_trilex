@@ -5,8 +5,6 @@ import '../ui/theme.dart';
 import '../ui/widgets.dart';
 import 'exercise_view.dart';
 
-/// Ejercicios en tarjetas con corrección inmediata y panel de puntaje (lecciones y examen).
-/// Al responder todos llama a [onFinished] con el puntaje total y el de cada ejercicio.
 class Practice extends StatefulWidget {
   const Practice({
     super.key,
@@ -30,7 +28,7 @@ class Practice extends StatefulWidget {
 class PracticeState extends State<Practice> {
   static const wide = {'matching', 'categorize', 'roleplay', 'writing', 'pronunciation'};
   late List<double?> results;
-  int round = 0; // cambia al reiniciar, para dibujar los ejercicios de nuevo
+  int round = 0;
 
   @override
   void initState() {
