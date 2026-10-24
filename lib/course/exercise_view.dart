@@ -491,7 +491,7 @@ class _ExerciseViewState extends State<ExerciseView> {
       out.add(Container(
         margin: const EdgeInsets.only(top: 6),
         padding: const EdgeInsets.only(left: 10),
-        decoration: const BoxDecoration(border: Border(left: BorderSide(color: Tx.line2, width: 2))),
+        decoration: BoxDecoration(border: Border(left: BorderSide(color: Tx.line2, width: 2))),
         child: Text(str(t['why_es']), style: TextStyle(fontSize: 13, color: Tx.muted)),
       ));
     }

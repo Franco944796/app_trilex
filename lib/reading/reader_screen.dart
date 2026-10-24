@@ -710,7 +710,7 @@ class _ParagraphState extends State<_Paragraph> {
         text: widget.text.substring(t.s, t.e),
         recognizer: taps[i],
         style: TextStyle(
-          backgroundColor: start ? Tx.rangeStart : (color != null ? Tx.marks[color]?[0] : null),
+          backgroundColor: start ? Tx.rangeStart : (color != null ? Tx.marks[color]?.first : null),
           decoration: key ? TextDecoration.underline : null,
           decorationColor: Tx.blue,
           decorationThickness: 2,
