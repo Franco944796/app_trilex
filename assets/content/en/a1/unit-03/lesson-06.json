@@ -1,0 +1,468 @@
+{
+  "id": "en-a1-u03-l06",
+  "language": "en",
+  "level": "A1",
+  "unit": 3,
+  "order": 6,
+  "kind": "checkpoint",
+  "version": 1,
+  "title": {
+    "target": "Checkpoint 3",
+    "es": "Repaso y checkpoint 3"
+  },
+  "objective": "Al terminar demuestras que puedes hablar y describir a tu familia en inglés.",
+  "est_minutes": 23,
+  "skills": [
+    "grammar",
+    "listening",
+    "speaking",
+    "vocab",
+    "writing"
+  ],
+  "warmup": {
+    "prompt_es": "Cierre de la unidad: presenta a tu familia con todo lo que aprendiste."
+  },
+  "input": {
+    "type": "review",
+    "recap_es": "Repasa: miembros de la familia, posesivos (my, his, her…), 's, have got y adjetivos para describir personas.",
+    "glossary": []
+  },
+  "explanation": {
+    "md_es": [
+      "**Repaso rápido**",
+      "",
+      "- *This is my mother / father / brother…*",
+      "- *my · your · his · her · our · their*",
+      "- *Anna's brother* (dueño + 's)",
+      "- *I've got … · She's got … · Have you got any …?*",
+      "- *a tall woman · They are tall*"
+    ],
+    "common_mistakes_es": [],
+    "false_friends": []
+  },
+  "exercises": [
+    {
+      "id": "en-a1-u03-l06-ex01",
+      "type": "matching",
+      "skill": "vocab",
+      "difficulty": 1,
+      "tags": [
+        "family"
+      ],
+      "est_seconds": 40,
+      "prompt": "Une cada palabra con su significado.",
+      "pairs": [
+        {
+          "left": "grandmother",
+          "right": "abuela"
+        },
+        {
+          "left": "son",
+          "right": "hijo"
+        },
+        {
+          "left": "wife",
+          "right": "esposa"
+        },
+        {
+          "left": "parents",
+          "right": "padres"
+        },
+        {
+          "left": "sister",
+          "right": "hermana"
+        },
+        {
+          "left": "husband",
+          "right": "esposo"
+        }
+      ],
+      "feedback": {
+        "correct": "¡Correcto! Repasa el vocabulario de familia.",
+        "incorrect": "Revisa esto: Repasa el vocabulario de familia."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-ex02",
+      "type": "fill_blank",
+      "skill": "grammar",
+      "difficulty": 1,
+      "tags": [
+        "possessives"
+      ],
+      "est_seconds": 25,
+      "prompt": "This is my brother. ___ name is Ben.",
+      "answer": [
+        "His"
+      ],
+      "feedback": {
+        "correct": "¡Correcto! El dueño es un hombre: his.",
+        "incorrect": "Revisa esto: El dueño es un hombre: his."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-rv01",
+      "type": "fill_blank",
+      "skill": "grammar",
+      "difficulty": 1,
+      "tags": [
+        "to-be"
+      ],
+      "est_seconds": 25,
+      "prompt": "Anna and I are teachers. ___ are from London.",
+      "answer": [
+        "We"
+      ],
+      "feedback": {
+        "correct": "¡Correcto! 'Anna and I' = we.",
+        "incorrect": "Revisa esto: 'Anna and I' = we."
+      },
+      "review_of": "en-a1-u02-l06-ex04"
+    },
+    {
+      "id": "en-a1-u03-l06-rv02",
+      "type": "listening",
+      "skill": "listening",
+      "difficulty": 2,
+      "tags": [
+        "numbers",
+        "age"
+      ],
+      "est_seconds": 40,
+      "prompt": "¿Qué edad tiene la persona?",
+      "options": [
+        "13",
+        "14",
+        "16",
+        "18"
+      ],
+      "answer": [
+        "16"
+      ],
+      "audio_text": "I'm sixteen years old.",
+      "feedback": {
+        "correct": "¡Correcto! 'sixteen' = 16; el acento está en -teen.",
+        "incorrect": "Revisa esto: 'sixteen' = 16; el acento está en -teen."
+      },
+      "audio_script_id": "en-a1-u03-l06-rv02-a",
+      "review_of": "en-a1-u01-l05-ex07"
+    },
+    {
+      "id": "en-a1-u03-l06-rv03",
+      "type": "dictation",
+      "skill": "listening",
+      "difficulty": 2,
+      "tags": [
+        "numbers"
+      ],
+      "est_seconds": 45,
+      "prompt": "Escucha y escribe el número (en letras o en cifras).",
+      "audio_text": "fifteen",
+      "answer": [
+        "fifteen",
+        "15"
+      ],
+      "feedback": {
+        "correct": "¡Correcto! fifteen = 15 (-teen).",
+        "incorrect": "Revisa esto: fifteen = 15 (-teen)."
+      },
+      "audio_script_id": "en-a1-u03-l06-rv03-a",
+      "review_of": "en-a1-u01-l03-ex05"
+    },
+    {
+      "id": "en-a1-u03-l06-ex03",
+      "type": "fill_blank",
+      "skill": "grammar",
+      "difficulty": 1,
+      "tags": [
+        "possessives"
+      ],
+      "est_seconds": 25,
+      "prompt": "Anna and Tom are my friends. ___ names are Anna and Tom.",
+      "answer": [
+        "Their"
+      ],
+      "feedback": {
+        "correct": "¡Correcto! Para 'they': their.",
+        "incorrect": "Revisa esto: Para 'they': their."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-ex04",
+      "type": "multiple_choice",
+      "skill": "vocab",
+      "difficulty": 1,
+      "tags": [
+        "possessive-s"
+      ],
+      "est_seconds": 20,
+      "prompt": "'La hermana de Tom' en inglés:",
+      "options": [
+        "Tom's sister",
+        "The Tom sister",
+        "Sister of Tom's",
+        "Toms sister"
+      ],
+      "answer": [
+        "Tom's sister"
+      ],
+      "feedback": {
+        "correct": "¡Correcto! Dueño + 's + persona.",
+        "incorrect": "Revisa esto: Dueño + 's + persona."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-ex05",
+      "type": "fill_blank",
+      "skill": "grammar",
+      "difficulty": 1,
+      "tags": [
+        "have-got"
+      ],
+      "est_seconds": 25,
+      "prompt": "She ___ got a brother.",
+      "answer": [
+        "has",
+        "'s"
+      ],
+      "feedback": {
+        "correct": "¡Correcto! Con she: has got (she's got).",
+        "incorrect": "Revisa esto: Con she: has got (she's got)."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-ex06",
+      "type": "error_correction",
+      "skill": "grammar",
+      "difficulty": 2,
+      "tags": [
+        "adjectives"
+      ],
+      "est_seconds": 35,
+      "prompt": "Hay un error. Escribe la frase correcta.",
+      "text": "He is a man tall.",
+      "answer": [
+        "He is a tall man.",
+        "He's a tall man."
+      ],
+      "feedback": {
+        "correct": "¡Correcto! El adjetivo va antes del sustantivo.",
+        "incorrect": "Revisa esto: El adjetivo va antes del sustantivo."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-ex07",
+      "type": "word_order",
+      "skill": "grammar",
+      "difficulty": 2,
+      "tags": [
+        "have-got",
+        "questions"
+      ],
+      "est_seconds": 30,
+      "prompt": "Ordena las palabras para formar la frase.",
+      "tokens": [
+        "got",
+        "any",
+        "sisters",
+        "?",
+        "Have",
+        "you"
+      ],
+      "answer": [
+        "Have",
+        "you",
+        "got",
+        "any",
+        "sisters",
+        "?"
+      ],
+      "feedback": {
+        "correct": "¡Correcto! Pregunta con have got.",
+        "incorrect": "Revisa esto: Pregunta con have got."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-ex08",
+      "type": "listening",
+      "skill": "listening",
+      "difficulty": 2,
+      "tags": [
+        "family"
+      ],
+      "est_seconds": 40,
+      "prompt": "¿Quién es Ben?",
+      "options": [
+        "Laura's brother",
+        "Laura's father",
+        "Laura's husband",
+        "Laura's son"
+      ],
+      "answer": [
+        "Laura's brother"
+      ],
+      "audio_text": "This is Ben. He's Laura's brother. He's tall and funny.",
+      "feedback": {
+        "correct": "¡Correcto! Ben es 'Laura's brother'.",
+        "incorrect": "Revisa esto: Ben es 'Laura's brother'."
+      },
+      "audio_script_id": "en-a1-u03-l06-ex08-a"
+    },
+    {
+      "id": "en-a1-u03-l06-rv04",
+      "type": "error_correction",
+      "skill": "grammar",
+      "difficulty": 2,
+      "tags": [
+        "articles"
+      ],
+      "est_seconds": 35,
+      "prompt": "Hay un error. Escribe la frase correcta.",
+      "text": "I'm teacher.",
+      "answer": [
+        "I'm a teacher.",
+        "I am a teacher."
+      ],
+      "feedback": {
+        "correct": "¡Correcto! En inglés el artículo es obligatorio.",
+        "incorrect": "Revisa esto: En inglés el artículo es obligatorio."
+      },
+      "review_of": "en-a1-u02-l05-ex04"
+    },
+    {
+      "id": "en-a1-u03-l06-ex09",
+      "type": "true_false",
+      "skill": "vocab",
+      "difficulty": 1,
+      "tags": [
+        "family"
+      ],
+      "est_seconds": 15,
+      "prompt": "'Parents' significa 'parientes'.",
+      "answer": [
+        false
+      ],
+      "feedback": {
+        "correct": "¡Correcto! 'Parents' = padres; 'parientes' = relatives.",
+        "incorrect": "Revisa esto: 'Parents' = padres; 'parientes' = relatives."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-ex10",
+      "type": "writing",
+      "skill": "writing",
+      "difficulty": 3,
+      "tags": [
+        "family",
+        "adjectives"
+      ],
+      "est_seconds": 180,
+      "prompt": "Describe a tu familia (real o inventada) en 4 frases: quiénes son, cómo se llaman y cómo son.",
+      "min_words": 15,
+      "self_check_es": [
+        "¿Usaste I've got o This is my…?",
+        "¿Usaste posesivos (my, her, his)?",
+        "¿Usaste adjetivos antes del sustantivo o después de to be?"
+      ],
+      "model_answer": "I've got one sister and one brother. My sister's name is Ana. She's tall and funny. My brother is quiet.",
+      "feedback": {
+        "correct": "¡Correcto! Compara tu texto con el modelo y la lista de control.",
+        "incorrect": "Revisa esto: Compara tu texto con el modelo y la lista de control."
+      }
+    },
+    {
+      "id": "en-a1-u03-l06-rv05",
+      "type": "translation",
+      "skill": "writing",
+      "difficulty": 2,
+      "tags": [
+        "age"
+      ],
+      "est_seconds": 35,
+      "direction": "es-en",
+      "prompt": "Tengo 18 años.",
+      "answer": [
+        "I'm 18.",
+        "I am 18.",
+        "I'm eighteen.",
+        "I am eighteen.",
+        "I'm 18 years old.",
+        "I am 18 years old.",
+        "I'm eighteen years old.",
+        "I am eighteen years old."
+      ],
+      "feedback": {
+        "correct": "¡Correcto! Edad = to be + número.",
+        "incorrect": "Revisa esto: Edad = to be + número."
+      },
+      "review_of": "en-a1-u01-l05-ex06"
+    },
+    {
+      "id": "en-a1-u03-l06-ex11",
+      "type": "roleplay",
+      "skill": "speaking",
+      "difficulty": 2,
+      "tags": [
+        "family",
+        "have-got"
+      ],
+      "est_seconds": 90,
+      "situation_es": "Muestras una foto de tu familia a un amigo.",
+      "turns": [
+        {
+          "speaker": "Tom",
+          "text": "Who's that?"
+        },
+        {
+          "speaker": "You",
+          "choices": [
+            "That's my mother. Her name is Sue.",
+            "That's my mother. His name is Sue.",
+            "That my mother is."
+          ],
+          "best": 0,
+          "why_es": "Madre = mujer: her name."
+        },
+        {
+          "speaker": "Tom",
+          "text": "Have you got any brothers or sisters?"
+        },
+        {
+          "speaker": "You",
+          "choices": [
+            "Yes, I've got one brother.",
+            "Yes, I'm one brother.",
+            "Yes, I have got brother one."
+          ],
+          "best": 0,
+          "why_es": "Tener = have got."
+        }
+      ],
+      "feedback": {
+        "correct": "¡Correcto! Practica diciendo en voz alta tu parte.",
+        "incorrect": "Revisa esto: Practica diciendo en voz alta tu parte."
+      }
+    }
+  ],
+  "summary": {
+    "key_phrases": [
+      "This is my … Her / His name is …",
+      "I've got … / Have you got …?",
+      "Anna's brother",
+      "a tall woman"
+    ]
+  },
+  "srs_items": [
+    {
+      "type": "grammar",
+      "id": "en-possessive-adjectives"
+    },
+    {
+      "type": "grammar",
+      "id": "en-have-got"
+    }
+  ],
+  "checkpoint": {
+    "pass_score": 0.7
+  }
+}

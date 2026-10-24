@@ -1,0 +1,3466 @@
+{
+ "langs": [
+  "en",
+  "es",
+  "fr",
+  "de",
+  "it",
+  "pt",
+  "ru",
+  "zh"
+ ],
+ "keys": {
+  "backSelf": [
+   "← Self-Learning",
+   "← Autoaprendizaje",
+   "← Autoformation",
+   "← Selbstlernen",
+   "← Autoapprendimento",
+   "← Autoaprendizagem",
+   "← Самостоятельное обучение",
+   "← 自主学习"
+  ],
+  "backCourse": [
+   "← Course",
+   "← Curso",
+   "← Cours",
+   "← Kurs",
+   "← Corso",
+   "← Curso",
+   "← Курс",
+   "← 课程"
+  ],
+  "readTitle": [
+   "Reading in English",
+   "Lectura en inglés",
+   "Lecture en anglais",
+   "Lesen auf Englisch",
+   "Lettura in inglese",
+   "Leitura em inglês",
+   "Чтение на английском",
+   "英语阅读"
+  ],
+  "courseTitle": [
+   "Guided English course",
+   "Curso guiado de inglés",
+   "Cours d'anglais guidé",
+   "Geführter Englischkurs",
+   "Corso guidato di inglese",
+   "Curso guiado de inglês",
+   "Курс английского с наставником",
+   "英语引导课程"
+  ],
+  "loading": [
+   "Loading…",
+   "Cargando…",
+   "Chargement…",
+   "Wird geladen…",
+   "Caricamento…",
+   "Carregando…",
+   "Загрузка…",
+   "加载中…"
+  ],
+  "loadError": [
+   "The content could not be loaded ({e}).",
+   "No se pudo cargar el contenido ({e}).",
+   "Impossible de charger le contenu ({e}).",
+   "Der Inhalt konnte nicht geladen werden ({e}).",
+   "Impossibile caricare il contenuto ({e}).",
+   "Não foi possível carregar o conteúdo ({e}).",
+   "Не удалось загрузить содержимое ({e}).",
+   "无法加载内容（{e}）。"
+  ],
+  "back": [
+   "Back",
+   "Volver",
+   "Retour",
+   "Zurück",
+   "Indietro",
+   "Voltar",
+   "Назад",
+   "返回"
+  ],
+  "close": [
+   "Close",
+   "Cerrar",
+   "Fermer",
+   "Schließen",
+   "Chiudi",
+   "Fechar",
+   "Закрыть",
+   "关闭"
+  ],
+  "delete": [
+   "Delete",
+   "Borrar",
+   "Supprimer",
+   "Löschen",
+   "Elimina",
+   "Apagar",
+   "Удалить",
+   "删除"
+  ],
+  "listen": [
+   "Listen",
+   "Escuchar",
+   "Écouter",
+   "Anhören",
+   "Ascolta",
+   "Ouvir",
+   "Слушать",
+   "听"
+  ],
+  "prev": [
+   "← Previous",
+   "← Anterior",
+   "← Précédent",
+   "← Zurück",
+   "← Precedente",
+   "← Anterior",
+   "← Назад",
+   "← 上一个"
+  ],
+  "next": [
+   "Next →",
+   "Siguiente →",
+   "Suivant →",
+   "Weiter →",
+   "Successivo →",
+   "Próximo →",
+   "Далее →",
+   "下一个 →"
+  ],
+  "trueW": [
+   "True",
+   "Verdadero",
+   "Vrai",
+   "Richtig",
+   "Vero",
+   "Verdadeiro",
+   "Верно",
+   "正确"
+  ],
+  "falseW": [
+   "False",
+   "Falso",
+   "Faux",
+   "Falsch",
+   "Falso",
+   "Falso",
+   "Неверно",
+   "错误"
+  ],
+  "check": [
+   "Check",
+   "Comprobar",
+   "Vérifier",
+   "Prüfen",
+   "Verifica",
+   "Verificar",
+   "Проверить",
+   "检查"
+  ],
+  "answerLabel": [
+   "Answer",
+   "Respuesta",
+   "Réponse",
+   "Antwort",
+   "Risposta",
+   "Resposta",
+   "Ответ",
+   "答案"
+  ],
+  "correct": [
+   "Correct.",
+   "Correcto.",
+   "Correct.",
+   "Richtig.",
+   "Corretto.",
+   "Correto.",
+   "Верно.",
+   "正确。"
+  ],
+  "answerIs": [
+   "Answer:",
+   "Respuesta:",
+   "Réponse :",
+   "Antwort:",
+   "Risposta:",
+   "Resposta:",
+   "Ответ:",
+   "答案："
+  ],
+  "lv_A1": [
+   "Beginner",
+   "Principiante",
+   "Débutant",
+   "Anfänger",
+   "Principiante",
+   "Iniciante",
+   "Начальный",
+   "入门"
+  ],
+  "lv_A2": [
+   "Elementary",
+   "Elemental",
+   "Élémentaire",
+   "Grundstufe",
+   "Elementare",
+   "Elementar",
+   "Элементарный",
+   "初级"
+  ],
+  "lv_B1": [
+   "Intermediate",
+   "Intermedio",
+   "Intermédiaire",
+   "Mittelstufe",
+   "Intermedio",
+   "Intermediário",
+   "Средний",
+   "中级"
+  ],
+  "lv_B2": [
+   "Upper intermediate",
+   "Intermedio alto",
+   "Intermédiaire supérieur",
+   "Obere Mittelstufe",
+   "Intermedio superiore",
+   "Intermediário superior",
+   "Выше среднего",
+   "中高级"
+  ],
+  "tabTexts": [
+   "Graded readings",
+   "Lecturas por nivel",
+   "Lectures par niveau",
+   "Texte nach Niveau",
+   "Letture per livello",
+   "Leituras por nível",
+   "Тексты по уровням",
+   "分级阅读"
+  ],
+  "tabBooks": [
+   "Full books",
+   "Libros completos",
+   "Livres complets",
+   "Ganze Bücher",
+   "Libri completi",
+   "Livros completos",
+   "Книги целиком",
+   "整本书"
+  ],
+  "tabWords": [
+   "My words",
+   "Mis palabras",
+   "Mes mots",
+   "Meine Wörter",
+   "Le mie parole",
+   "Minhas palavras",
+   "Мои слова",
+   "我的单词"
+  ],
+  "introTexts": [
+   "Original texts written for each level. Read, tap any word to see what it means, listen to the audio and answer the comprehension questions. Your best score is saved.",
+   "Textos originales escritos para cada nivel. Lee, toca cualquier palabra para ver su significado, escucha el audio y responde las preguntas de comprensión. Tu mejor nota queda guardada.",
+   "Des textes originaux écrits pour chaque niveau. Lisez, touchez un mot pour voir sa signification, écoutez l'audio et répondez aux questions de compréhension. Votre meilleur score est enregistré.",
+   "Originaltexte für jedes Niveau. Lesen Sie, tippen Sie auf ein Wort, um seine Bedeutung zu sehen, hören Sie das Audio und beantworten Sie die Verständnisfragen. Ihr bestes Ergebnis wird gespeichert.",
+   "Testi originali scritti per ogni livello. Leggi, tocca una parola per vederne il significato, ascolta l'audio e rispondi alle domande di comprensione. Il tuo miglior punteggio viene salvato.",
+   "Textos originais escritos para cada nível. Leia, toque em qualquer palavra para ver o significado, ouça o áudio e responda às perguntas de compreensão. Sua melhor nota fica salva.",
+   "Оригинальные тексты для каждого уровня. Читайте, нажмите на любое слово, чтобы увидеть его значение, слушайте аудио и отвечайте на вопросы. Ваш лучший результат сохраняется.",
+   "为每个级别编写的原创短文。阅读时点按任意单词查看释义，收听音频并回答理解题。你的最好成绩会被保存。"
+  ],
+  "introBooks": [
+   "Full books in their original version (public domain). Each chapter has a glossary, audio and comprehension questions. The level is a guide: these are unadapted texts, so it is normal not to understand every word. Tap the ones you need.",
+   "Libros completos en su versión original (dominio público). Cada capítulo trae glosario, audio y preguntas de comprensión. El nivel es orientativo: son textos sin adaptar, así que es normal no entender todas las palabras. Toca las que necesites.",
+   "Des livres complets en version originale (domaine public). Chaque chapitre a un glossaire, un audio et des questions de compréhension. Le niveau est indicatif : ce sont des textes non adaptés, il est normal de ne pas comprendre tous les mots. Touchez ceux dont vous avez besoin.",
+   "Ganze Bücher im Original (gemeinfrei). Jedes Kapitel hat ein Glossar, Audio und Verständnisfragen. Das Niveau ist eine Orientierung: Die Texte sind nicht vereinfacht, es ist normal, nicht jedes Wort zu verstehen. Tippen Sie auf die Wörter, die Sie brauchen.",
+   "Libri completi in versione originale (pubblico dominio). Ogni capitolo ha glossario, audio e domande di comprensione. Il livello è indicativo: sono testi non adattati, quindi è normale non capire tutte le parole. Tocca quelle che ti servono.",
+   "Livros completos na versão original (domínio público). Cada capítulo tem glossário, áudio e perguntas de compreensão. O nível é uma referência: são textos sem adaptação, então é normal não entender todas as palavras. Toque nas que precisar.",
+   "Полные книги в оригинале (общественное достояние). В каждой главе есть глоссарий, аудио и вопросы. Уровень ориентировочный: тексты не адаптированы, поэтому нормально понимать не все слова. Нажимайте на нужные.",
+   "公版原著整本书。每章都有词汇表、音频和理解题。级别仅供参考：这些是未经改写的原文，看不懂每个词是正常的，需要时点按即可。"
+  ],
+  "wordsN": [
+   "{n} words",
+   "{n} palabras",
+   "{n} mots",
+   "{n} Wörter",
+   "{n} parole",
+   "{n} palavras",
+   "слов: {n}",
+   "{n} 词"
+  ],
+  "minN": [
+   "{n} min",
+   "{n} min",
+   "{n} min",
+   "{n} Min.",
+   "{n} min",
+   "{n} min",
+   "{n} мин",
+   "{n} 分钟"
+  ],
+  "questionsN": [
+   "{n} questions",
+   "{n} preguntas",
+   "{n} questions",
+   "{n} Fragen",
+   "{n} domande",
+   "{n} perguntas",
+   "вопросов: {n}",
+   "{n} 道题"
+  ],
+  "bestScore": [
+   "best score",
+   "mejor nota",
+   "meilleur score",
+   "bestes Ergebnis",
+   "miglior punteggio",
+   "melhor nota",
+   "лучший результат",
+   "最好成绩"
+  ],
+  "readGo": [
+   "Read →",
+   "Leer →",
+   "Lire →",
+   "Lesen →",
+   "Leggi →",
+   "Ler →",
+   "Читать →",
+   "阅读 →"
+  ],
+  "chaptersN": [
+   "{n} chapters",
+   "{n} capítulos",
+   "{n} chapitres",
+   "{n} Kapitel",
+   "{n} capitoli",
+   "{n} capítulos",
+   "глав: {n}",
+   "{n} 章"
+  ],
+  "hoursN": [
+   "~{n} h",
+   "~{n} h",
+   "~{n} h",
+   "~{n} Std.",
+   "~{n} h",
+   "~{n} h",
+   "~{n} ч",
+   "约 {n} 小时"
+  ],
+  "chDone": [
+   "{d} of {n} chapters",
+   "{d} de {n} capítulos",
+   "{d} chapitres sur {n}",
+   "{d} von {n} Kapiteln",
+   "{d} di {n} capitoli",
+   "{d} de {n} capítulos",
+   "{d} из {n} глав",
+   "{n} 章中已读 {d} 章"
+  ],
+  "continueAt": [
+   " · continue at {n}",
+   " · seguir en el {n}",
+   " · reprendre au {n}",
+   " · weiter bei {n}",
+   " · riprendi dal {n}",
+   " · continuar no {n}",
+   " · продолжить с {n}",
+   " · 从第 {n} 章继续"
+  ],
+  "notStarted": [
+   "Not started",
+   "Sin empezar",
+   "Pas commencé",
+   "Nicht begonnen",
+   "Non iniziato",
+   "Não iniciado",
+   "Не начато",
+   "未开始"
+  ],
+  "hoursReading": [
+   "~{n} h of reading",
+   "~{n} h de lectura",
+   "~{n} h de lecture",
+   "~{n} Std. Lesezeit",
+   "~{n} h di lettura",
+   "~{n} h de leitura",
+   "~{n} ч чтения",
+   "约 {n} 小时阅读"
+  ],
+  "continueReading": [
+   "Continue reading (ch. {n})",
+   "Seguir leyendo (cap. {n})",
+   "Continuer la lecture (ch. {n})",
+   "Weiterlesen (Kap. {n})",
+   "Continua a leggere (cap. {n})",
+   "Continuar lendo (cap. {n})",
+   "Продолжить (гл. {n})",
+   "继续阅读（第 {n} 章）"
+  ],
+  "startReading": [
+   "Start reading",
+   "Empezar a leer",
+   "Commencer à lire",
+   "Lesen beginnen",
+   "Inizia a leggere",
+   "Começar a ler",
+   "Начать читать",
+   "开始阅读"
+  ],
+  "chapters": [
+   "Chapters",
+   "Capítulos",
+   "Chapitres",
+   "Kapitel",
+   "Capitoli",
+   "Capítulos",
+   "Главы",
+   "章节"
+  ],
+  "chapterOf": [
+   "chapter {n} of {m}",
+   "capítulo {n} de {m}",
+   "chapitre {n} sur {m}",
+   "Kapitel {n} von {m}",
+   "capitolo {n} di {m}",
+   "capítulo {n} de {m}",
+   "глава {n} из {m}",
+   "第 {n} 章，共 {m} 章"
+  ],
+  "pdSource": [
+   "Original public-domain text, unadapted.",
+   "Texto original de dominio público, sin adaptar.",
+   "Texte original du domaine public, non adapté.",
+   "Gemeinfreier Originaltext, nicht vereinfacht.",
+   "Testo originale di pubblico dominio, non adattato.",
+   "Texto original de domínio público, sem adaptação.",
+   "Оригинальный текст (общественное достояние), без адаптации.",
+   "公版原文，未经改写。"
+  ],
+  "playAudio": [
+   "Listen",
+   "Escuchar",
+   "Écouter",
+   "Anhören",
+   "Ascolta",
+   "Ouvir",
+   "Слушать",
+   "收听"
+  ],
+  "stopAudio": [
+   "Stop",
+   "Detener",
+   "Arrêter",
+   "Stopp",
+   "Ferma",
+   "Parar",
+   "Стоп",
+   "停止"
+  ],
+  "speed": [
+   "Speed",
+   "Velocidad",
+   "Vitesse",
+   "Geschwindigkeit",
+   "Velocità",
+   "Velocidade",
+   "Скорость",
+   "语速"
+  ],
+  "speedNormal": [
+   "Normal",
+   "Normal",
+   "Normal",
+   "Normal",
+   "Normale",
+   "Normal",
+   "Обычно",
+   "正常"
+  ],
+  "speedSlow": [
+   "Slow",
+   "Lento",
+   "Lent",
+   "Langsam",
+   "Lento",
+   "Lento",
+   "Медленно",
+   "慢速"
+  ],
+  "speedFast": [
+   "Fast",
+   "Rápido",
+   "Rapide",
+   "Schnell",
+   "Veloce",
+   "Rápido",
+   "Быстро",
+   "快速"
+  ],
+  "smaller": [
+   "Smaller text",
+   "Letra más chica",
+   "Texte plus petit",
+   "Kleinere Schrift",
+   "Testo più piccolo",
+   "Letra menor",
+   "Мельче",
+   "缩小字体"
+  ],
+  "bigger": [
+   "Bigger text",
+   "Letra más grande",
+   "Texte plus grand",
+   "Größere Schrift",
+   "Testo più grande",
+   "Letra maior",
+   "Крупнее",
+   "放大字体"
+  ],
+  "highlight": [
+   "Highlight key words",
+   "Resaltar palabras clave",
+   "Surligner les mots clés",
+   "Schlüsselwörter markieren",
+   "Evidenzia parole chiave",
+   "Destacar palavras-chave",
+   "Выделить ключевые слова",
+   "高亮关键词"
+  ],
+  "keywords": [
+   "Key words ({n})",
+   "Palabras clave ({n})",
+   "Mots clés ({n})",
+   "Schlüsselwörter ({n})",
+   "Parole chiave ({n})",
+   "Palavras-chave ({n})",
+   "Ключевые слова ({n})",
+   "关键词（{n}）"
+  ],
+  "tapTip": [
+   "Tap any word to see its meaning and save it.",
+   "Toca cualquier palabra para ver su significado y guardarla.",
+   "Touchez un mot pour voir sa signification et l’enregistrer.",
+   "Tippen Sie auf ein Wort, um die Bedeutung zu sehen und es zu speichern.",
+   "Tocca una parola per vederne il significato e salvarla.",
+   "Toque em qualquer palavra para ver o significado e salvá-la.",
+   "Нажмите на слово, чтобы увидеть значение и сохранить его.",
+   "点按任意单词查看释义并保存。"
+  ],
+  "resumed": [
+   "You are back where you stopped reading.",
+   "Volviste a donde dejaste de leer.",
+   "Vous reprenez là où vous vous étiez arrêté.",
+   "Sie sind dort, wo Sie aufgehört haben.",
+   "Sei tornato dove avevi smesso di leggere.",
+   "Você voltou para onde parou de ler.",
+   "Вы вернулись туда, где остановились.",
+   "已回到上次阅读的位置。"
+  ],
+  "afterReading": [
+   "After reading (optional)",
+   "Después de leer (opcional)",
+   "Après la lecture (facultatif)",
+   "Nach dem Lesen (optional)",
+   "Dopo la lettura (facoltativo)",
+   "Depois de ler (opcional)",
+   "После чтения (по желанию)",
+   "读后练习（可选）"
+  ],
+  "writeHere": [
+   "Write here in English…",
+   "Escribe aquí en inglés…",
+   "Écrivez ici en anglais…",
+   "Schreiben Sie hier auf Englisch…",
+   "Scrivi qui in inglese…",
+   "Escreva aqui em inglês…",
+   "Пишите здесь по-английски…",
+   "在这里用英语写作…"
+  ],
+  "draftNote": [
+   "Saved automatically in this browser. Not graded: compare it with the text and check the key words.",
+   "Se guarda automáticamente en este navegador. No lleva nota: compáralo con el texto y revisa las palabras clave.",
+   "Enregistré automatiquement dans ce navigateur. Non noté : comparez avec le texte et vérifiez les mots clés.",
+   "Wird automatisch in diesem Browser gespeichert. Keine Bewertung: Vergleichen Sie mit dem Text und prüfen Sie die Schlüsselwörter.",
+   "Salvato automaticamente in questo browser. Senza voto: confrontalo con il testo e controlla le parole chiave.",
+   "Salvo automaticamente neste navegador. Sem nota: compare com o texto e revise as palavras-chave.",
+   "Сохраняется автоматически в этом браузере. Без оценки: сравните с текстом и проверьте ключевые слова.",
+   "自动保存在此浏览器中。不计分：请与原文对照并检查关键词。"
+  ],
+  "wordCount": [
+   "{n} words.",
+   "{n} palabras.",
+   "{n} mots.",
+   "{n} Wörter.",
+   "{n} parole.",
+   "{n} palavras.",
+   "Слов: {n}.",
+   "{n} 词。"
+  ],
+  "finishedQ": [
+   "Finished?",
+   "¿Terminaste?",
+   "Terminé ?",
+   "Fertig?",
+   "Finito?",
+   "Terminou?",
+   "Закончили?",
+   "读完了吗？"
+  ],
+  "markRead": [
+   "Mark as read",
+   "Marcar como leído",
+   "Marquer comme lu",
+   "Als gelesen markieren",
+   "Segna come letto",
+   "Marcar como lido",
+   "Отметить как прочитанное",
+   "标记为已读"
+  ],
+  "markedRead": [
+   "✅ Marked as read.",
+   "✅ Marcado como leído.",
+   "✅ Marqué comme lu.",
+   "✅ Als gelesen markiert.",
+   "✅ Segnato come letto.",
+   "✅ Marcado como lido.",
+   "✅ Отмечено как прочитанное.",
+   "✅ 已标记为已读。"
+  ],
+  "compQ": [
+   "Comprehension questions",
+   "Preguntas de comprensión",
+   "Questions de compréhension",
+   "Verständnisfragen",
+   "Domande di comprensione",
+   "Perguntas de compreensão",
+   "Вопросы на понимание",
+   "理解题"
+  ],
+  "qNote": [
+   "Answer after reading. You can go back to the text at any time.",
+   "Responde después de leer. Puedes volver al texto cuando quieras.",
+   "Répondez après la lecture. Vous pouvez revenir au texte à tout moment.",
+   "Antworten Sie nach dem Lesen. Sie können jederzeit zum Text zurückkehren.",
+   "Rispondi dopo aver letto. Puoi tornare al testo quando vuoi.",
+   "Responda depois de ler. Você pode voltar ao texto quando quiser.",
+   "Отвечайте после чтения. Можно вернуться к тексту в любой момент.",
+   "请在阅读后作答，可随时回看原文。"
+  ],
+  "qLangNote": [
+   "Questions and explanations are in Spanish or English.",
+   "Las preguntas y explicaciones están en español o en inglés.",
+   "Les questions et explications sont en espagnol ou en anglais.",
+   "Fragen und Erklärungen sind auf Spanisch oder Englisch.",
+   "Domande e spiegazioni sono in spagnolo o in inglese.",
+   "As perguntas e explicações estão em espanhol ou inglês.",
+   "Вопросы и пояснения на испанском или английском.",
+   "题目和解析为西班牙语或英语。"
+  ],
+  "yourBest": [
+   "Your best score: {s}.",
+   "Tu mejor nota: {s}.",
+   "Votre meilleur score : {s}.",
+   "Ihr bestes Ergebnis: {s}.",
+   "Il tuo miglior punteggio: {s}.",
+   "Sua melhor nota: {s}.",
+   "Ваш лучший результат: {s}.",
+   "你的最好成绩：{s}。"
+  ],
+  "msgPerfect": [
+   "Perfect! You understood the whole text. 🏆",
+   "¡Perfecto! Entendiste todo el texto. 🏆",
+   "Parfait ! Vous avez tout compris. 🏆",
+   "Perfekt! Sie haben den ganzen Text verstanden. 🏆",
+   "Perfetto! Hai capito tutto il testo. 🏆",
+   "Perfeito! Você entendeu o texto todo. 🏆",
+   "Отлично! Вы поняли весь текст. 🏆",
+   "满分！你完全读懂了。🏆"
+  ],
+  "msgGood": [
+   "Very good! Great comprehension. 🎉",
+   "¡Muy bien! Buena comprensión. 🎉",
+   "Très bien ! Bonne compréhension. 🎉",
+   "Sehr gut! Gutes Verständnis. 🎉",
+   "Molto bene! Ottima comprensione. 🎉",
+   "Muito bem! Boa compreensão. 🎉",
+   "Очень хорошо! Хорошее понимание. 🎉",
+   "很好！理解得不错。🎉"
+  ],
+  "msgOk": [
+   "Good. Re-read the parts of the questions you missed.",
+   "Bien. Relee las partes de las preguntas que fallaste.",
+   "Bien. Relisez les passages des questions ratées.",
+   "Gut. Lesen Sie die Stellen der falschen Antworten noch einmal.",
+   "Bene. Rileggi le parti delle domande sbagliate.",
+   "Bom. Releia as partes das perguntas que errou.",
+   "Неплохо. Перечитайте места, где ошиблись.",
+   "不错。请重读答错题目对应的段落。"
+  ],
+  "msgLow": [
+   "This text was hard: read it again with the glossary and try once more.",
+   "Este texto te costó: vuelve a leerlo con el glosario y prueba otra vez.",
+   "Ce texte était difficile : relisez-le avec le glossaire et réessayez.",
+   "Dieser Text war schwer: Lesen Sie ihn mit dem Glossar noch einmal und versuchen Sie es erneut.",
+   "Questo testo era difficile: rileggilo con il glossario e riprova.",
+   "Este texto foi difícil: leia de novo com o glossário e tente outra vez.",
+   "Текст был трудным: перечитайте его с глоссарием и попробуйте снова.",
+   "这篇有点难：借助词汇表再读一遍，然后重试。"
+  ],
+  "popGloss": [
+   "text glossary",
+   "glosario del texto",
+   "glossaire du texte",
+   "Textglossar",
+   "glossario del testo",
+   "glossário do texto",
+   "глоссарий текста",
+   "本文词汇表"
+  ],
+  "popCourse": [
+   "course vocabulary",
+   "vocabulario del curso",
+   "vocabulaire du cours",
+   "Kurswortschatz",
+   "vocabolario del corso",
+   "vocabulário do curso",
+   "словарь курса",
+   "课程词汇"
+  ],
+  "inSpanish": [
+   "in Spanish",
+   "en español",
+   "en espagnol",
+   "auf Spanisch",
+   "in spagnolo",
+   "em espanhol",
+   "по-испански",
+   "西班牙语"
+  ],
+  "popNotFound": [
+   "Not in the glossary. Look it up in a dictionary:",
+   "No está en el glosario. Búscala en un diccionario:",
+   "Absent du glossaire. Cherchez-le dans un dictionnaire :",
+   "Nicht im Glossar. Schlagen Sie im Wörterbuch nach:",
+   "Non è nel glossario. Cercala in un dizionario:",
+   "Não está no glossário. Procure em um dicionário:",
+   "Нет в глоссарии. Посмотрите в словаре:",
+   "词汇表中没有，请查词典："
+  ],
+  "dictionary": [
+   "Dictionary:",
+   "Diccionario:",
+   "Dictionnaire :",
+   "Wörterbuch:",
+   "Dizionario:",
+   "Dicionário:",
+   "Словарь:",
+   "词典："
+  ],
+  "saveWord": [
+   "Save to my words",
+   "Guardar en mis palabras",
+   "Ajouter à mes mots",
+   "Zu meinen Wörtern",
+   "Salva nelle mie parole",
+   "Salvar nas minhas palavras",
+   "В мои слова",
+   "存入我的单词"
+  ],
+  "savedWord": [
+   "In my words",
+   "En mis palabras",
+   "Dans mes mots",
+   "In meinen Wörtern",
+   "Nelle mie parole",
+   "Nas minhas palavras",
+   "В моих словах",
+   "已存入"
+  ],
+  "myWordsTitle": [
+   "My words",
+   "Mis palabras",
+   "Mes mots",
+   "Meine Wörter",
+   "Le mie parole",
+   "Minhas palavras",
+   "Мои слова",
+   "我的单词"
+  ],
+  "myWordsNote": [
+   "Words you saved while reading ({n}). Listen to them, review them and delete them when you know them.",
+   "Palabras que guardaste mientras leías ({n}). Escúchalas, repásalas y bórralas cuando ya las sepas.",
+   "Mots enregistrés pendant la lecture ({n}). Écoutez-les, révisez-les et supprimez-les quand vous les connaissez.",
+   "Beim Lesen gespeicherte Wörter ({n}). Hören, wiederholen und löschen Sie sie, wenn Sie sie kennen.",
+   "Parole salvate durante la lettura ({n}). Ascoltale, ripassale ed eliminale quando le sai.",
+   "Palavras salvas durante a leitura ({n}). Ouça, revise e apague quando já souber.",
+   "Слова, сохранённые при чтении ({n}). Слушайте, повторяйте и удаляйте выученные.",
+   "阅读时保存的单词（{n} 个）。可以收听、复习，学会后删除。"
+  ],
+  "noWords": [
+   "You have not saved any words yet. While you read, tap a word and choose “Save to my words”.",
+   "Todavía no guardaste palabras. Mientras lees, toca una palabra y elige «Guardar en mis palabras».",
+   "Vous n'avez encore enregistré aucun mot. Pendant la lecture, touchez un mot et choisissez « Ajouter à mes mots ».",
+   "Noch keine Wörter gespeichert. Tippen Sie beim Lesen auf ein Wort und wählen Sie „Zu meinen Wörtern“.",
+   "Non hai ancora salvato parole. Mentre leggi, tocca una parola e scegli «Salva nelle mie parole».",
+   "Você ainda não salvou palavras. Enquanto lê, toque em uma palavra e escolha “Salvar nas minhas palavras”.",
+   "Вы ещё не сохранили слова. Во время чтения нажмите на слово и выберите «В мои слова».",
+   "你还没有保存单词。阅读时点按单词并选择“存入我的单词”。"
+  ],
+  "readingsLv": [
+   "{l} readings",
+   "Lecturas {l}",
+   "Lectures {l}",
+   "Texte {l}",
+   "Letture {l}",
+   "Leituras {l}",
+   "Тексты {l}",
+   "{l} 阅读"
+  ],
+  "chaptersBack": [
+   "Chapters",
+   "Capítulos",
+   "Chapitres",
+   "Kapitel",
+   "Capitoli",
+   "Capítulos",
+   "Главы",
+   "章节"
+  ],
+  "selfK": [
+   "Self-learning",
+   "Autoaprendizaje",
+   "Autoformation",
+   "Selbstlernen",
+   "Autoapprendimento",
+   "Autoaprendizagem",
+   "Самостоятельное обучение",
+   "自主学习"
+  ],
+  "tabNotes": [
+   "My notes",
+   "Mis notas",
+   "Mes notes",
+   "Meine Notizen",
+   "Le mie note",
+   "Minhas notas",
+   "Мои заметки",
+   "我的笔记"
+  ],
+  "notesN": [
+   "{n} highlights",
+   "{n} subrayados",
+   "{n} surlignages",
+   "{n} Markierungen",
+   "{n} evidenziazioni",
+   "{n} destaques",
+   "выделений: {n}",
+   "{n} 处标注"
+  ],
+  "notesH": [
+   "Notes",
+   "Notas",
+   "Notes",
+   "Notizen",
+   "Note",
+   "Notas",
+   "Заметки",
+   "笔记"
+  ],
+  "notesGeneral": [
+   "Notes on this text",
+   "Notas del texto",
+   "Notes sur ce texte",
+   "Notizen zum Text",
+   "Note sul testo",
+   "Notas do texto",
+   "Заметки к тексту",
+   "本文笔记"
+  ],
+  "notesGeneralPh": [
+   "Write your notes about this text…",
+   "Escribe aquí tus notas sobre este texto…",
+   "Écrivez vos notes sur ce texte…",
+   "Schreiben Sie Ihre Notizen zu diesem Text…",
+   "Scrivi qui le tue note su questo testo…",
+   "Escreva aqui suas notas sobre este texto…",
+   "Пишите здесь заметки к этому тексту…",
+   "在这里写下你对本文的笔记……"
+  ],
+  "markHint": [
+   "Select a word or sentence to highlight it and add a note.",
+   "Selecciona una palabra u oración para subrayarla y agregar una aclaración.",
+   "Sélectionnez un mot ou une phrase pour le surligner et ajouter une note.",
+   "Markieren Sie ein Wort oder einen Satz, um ihn hervorzuheben und eine Notiz hinzuzufügen.",
+   "Seleziona una parola o una frase per evidenziarla e aggiungere una nota.",
+   "Selecione uma palavra ou frase para destacá-la e adicionar uma nota.",
+   "Выделите слово или предложение, чтобы отметить его и добавить заметку.",
+   "选中一个词或一句话即可标注并添加笔记。"
+  ],
+  "notePh": [
+   "Add a note…",
+   "Agrega una aclaración…",
+   "Ajoutez une note…",
+   "Notiz hinzufügen…",
+   "Aggiungi una nota…",
+   "Adicione uma nota…",
+   "Добавьте заметку…",
+   "添加笔记……"
+  ],
+  "goToText": [
+   "Show in the text",
+   "Ver en el texto",
+   "Voir dans le texte",
+   "Im Text zeigen",
+   "Mostra nel testo",
+   "Ver no texto",
+   "Показать в тексте",
+   "在文中查看"
+  ],
+  "markW": [
+   "Highlight",
+   "Subrayar",
+   "Surligner",
+   "Markieren",
+   "Evidenzia",
+   "Destacar",
+   "Выделить",
+   "标注"
+  ],
+  "noteAdd": [
+   "Note",
+   "Nota",
+   "Note",
+   "Notiz",
+   "Nota",
+   "Nota",
+   "Заметка",
+   "笔记"
+  ],
+  "translateW": [
+   "Translate",
+   "Traducir",
+   "Traduire",
+   "Übersetzen",
+   "Traduci",
+   "Traduzir",
+   "Перевести",
+   "翻译"
+  ],
+  "defEn": [
+   "Meaning",
+   "En inglés sencillo",
+   "En anglais simple",
+   "Auf einfachem Englisch",
+   "In inglese semplice",
+   "Em inglês simples",
+   "Простыми словами по-английски",
+   "简明英语释义"
+  ],
+  "summaryK": [
+   "Summary",
+   "Resumen",
+   "Résumé",
+   "Zusammenfassung",
+   "Riassunto",
+   "Resumo",
+   "Краткое содержание",
+   "概要"
+  ],
+  "myNotesTitle": [
+   "My notes",
+   "Mis notas",
+   "Mes notes",
+   "Meine Notizen",
+   "Le mie note",
+   "Minhas notas",
+   "Мои заметки",
+   "我的笔记"
+  ],
+  "myNotesNote": [
+   "Your highlights and notes from every text. Tap one to go back to the text.",
+   "Tus subrayados y notas de todos los textos. Toca uno para volver al texto.",
+   "Vos surlignages et notes de tous les textes. Touchez-en un pour revenir au texte.",
+   "Ihre Markierungen und Notizen aus allen Texten. Tippen Sie darauf, um zum Text zurückzukehren.",
+   "Le tue evidenziazioni e note di tutti i testi. Toccane una per tornare al testo.",
+   "Seus destaques e notas de todos os textos. Toque em um para voltar ao texto.",
+   "Ваши выделения и заметки из всех текстов. Нажмите, чтобы вернуться к тексту.",
+   "你在所有文章中的标注和笔记。点击即可回到原文。"
+  ],
+  "noNotes": [
+   "You have no notes yet. While reading, select a word or sentence and choose a colour to highlight it.",
+   "Todavía no tienes notas. Mientras lees, selecciona una palabra u oración y elige un color para subrayarla.",
+   "Vous n’avez pas encore de notes. En lisant, sélectionnez un mot ou une phrase et choisissez une couleur pour le surligner.",
+   "Sie haben noch keine Notizen. Markieren Sie beim Lesen ein Wort oder einen Satz und wählen Sie eine Farbe.",
+   "Non hai ancora note. Mentre leggi, seleziona una parola o una frase e scegli un colore per evidenziarla.",
+   "Você ainda não tem notas. Enquanto lê, selecione uma palavra ou frase e escolha uma cor para destacá-la.",
+   "Заметок пока нет. Во время чтения выделите слово или предложение и выберите цвет.",
+   "还没有笔记。阅读时选中一个词或一句话，再选择颜色即可标注。"
+  ],
+  "downloadPdf": [
+   "Download PDF",
+   "Descargar PDF",
+   "Télécharger le PDF",
+   "PDF herunterladen",
+   "Scarica il PDF",
+   "Baixar PDF",
+   "Скачать PDF",
+   "下载 PDF"
+  ],
+  "pdfNote": [
+   "The PDF contains the whole book and a glossary for each chapter, ready to read offline or print.",
+   "El PDF trae el libro completo y el glosario de cada capítulo, para leer sin conexión o imprimir.",
+   "Le PDF contient le livre complet et le glossaire de chaque chapitre, à lire hors ligne ou à imprimer.",
+   "Das PDF enthält das ganze Buch und ein Glossar zu jedem Kapitel – zum Offline-Lesen oder Drucken.",
+   "Il PDF contiene il libro completo e il glossario di ogni capitolo, da leggere offline o stampare.",
+   "O PDF traz o livro completo e o glossário de cada capítulo, para ler offline ou imprimir.",
+   "В PDF — вся книга и глоссарий к каждой главе: можно читать офлайн или распечатать.",
+   "PDF 包含整本书及各章词汇表，可离线阅读或打印。"
+  ],
+  "openArrow": [
+   "Open →",
+   "Abrir →",
+   "Ouvrir →",
+   "Öffnen →",
+   "Apri →",
+   "Abrir →",
+   "Открыть →",
+   "打开 →"
+  ],
+  "scoreH": [
+   "Score",
+   "Puntaje",
+   "Score",
+   "Punkte",
+   "Punteggio",
+   "Pontuação",
+   "Баллы",
+   "得分"
+  ],
+  "answeredNofM": [
+   "Answered: {a} of {n}",
+   "Respondidas: {a} de {n}",
+   "Répondues : {a} sur {n}",
+   "Beantwortet: {a} von {n}",
+   "Risposte: {a} su {n}",
+   "Respondidas: {a} de {n}",
+   "Отвечено: {a} из {n}",
+   "已答：{a} / {n}"
+  ],
+  "restart": [
+   "Restart",
+   "Reiniciar",
+   "Recommencer",
+   "Neu starten",
+   "Ricomincia",
+   "Reiniciar",
+   "Заново",
+   "重新开始"
+  ],
+  "answerToSee": [
+   "Answer to see the explanation.",
+   "Responde para ver la explicación.",
+   "Répondez pour voir l’explication.",
+   "Antworten Sie, um die Erklärung zu sehen.",
+   "Rispondi per vedere la spiegazione.",
+   "Responda para ver a explicação.",
+   "Ответьте, чтобы увидеть объяснение.",
+   "作答后显示讲解。"
+  ],
+  "resultH": [
+   "Result",
+   "Resultado",
+   "Résultat",
+   "Ergebnis",
+   "Risultato",
+   "Resultado",
+   "Результат",
+   "结果"
+  ],
+  "vocabH": [
+   "Vocabulary",
+   "Vocabulario",
+   "Vocabulaire",
+   "Wortschatz",
+   "Vocabolario",
+   "Vocabulário",
+   "Словарь",
+   "词汇"
+  ],
+  "colWord": [
+   "Word",
+   "Palabra",
+   "Mot",
+   "Wort",
+   "Parola",
+   "Palavra",
+   "Слово",
+   "单词"
+  ],
+  "colIPA": [
+   "IPA",
+   "IPA",
+   "API",
+   "IPA",
+   "IPA",
+   "AFI",
+   "МФА",
+   "音标"
+  ],
+  "colMeaning": [
+   "Meaning (Spanish)",
+   "Significado",
+   "Sens (espagnol)",
+   "Bedeutung (Spanisch)",
+   "Significato (spagnolo)",
+   "Significado (espanhol)",
+   "Значение (исп.)",
+   "释义（西语）"
+  ],
+  "colMeaningTr": [
+   "Meaning",
+   "Significado",
+   "Sens",
+   "Bedeutung",
+   "Significato",
+   "Significado",
+   "Значение",
+   "释义"
+  ],
+  "colExample": [
+   "Example",
+   "Ejemplo",
+   "Exemple",
+   "Beispiel",
+   "Esempio",
+   "Exemplo",
+   "Пример",
+   "例句"
+  ],
+  "colLevel": [
+   "Level",
+   "Nivel",
+   "Niveau",
+   "Niveau",
+   "Livello",
+   "Nível",
+   "Уровень",
+   "级别"
+  ],
+  "reviewTheory": [
+   "review the theory of this topic in the course.",
+   "repasa la teoría de este tema en el curso.",
+   "révisez la théorie de ce thème dans le cours.",
+   "wiederholen Sie die Theorie zu diesem Thema im Kurs.",
+   "ripassa la teoria di questo argomento nel corso.",
+   "revise a teoria deste tema no curso.",
+   "повторите теорию по этой теме в курсе.",
+   "请复习课程中该主题的讲解。"
+  ],
+  "unitLesson": [
+   "Unit {u}, lesson {l}",
+   "Unidad {u}, lección {l}",
+   "Unité {u}, leçon {l}",
+   "Einheit {u}, Lektion {l}",
+   "Unità {u}, lezione {l}",
+   "Unidade {u}, lição {l}",
+   "Раздел {u}, урок {l}",
+   "第 {u} 单元，第 {l} 课"
+  ],
+  "seeText": [
+   "See the text",
+   "Ver el texto",
+   "Voir le texte",
+   "Text anzeigen",
+   "Vedi il testo",
+   "Ver o texto",
+   "Показать текст",
+   "查看原文"
+  ],
+  "correctEx": [
+   "Correct!",
+   "¡Correcto!",
+   "Correct !",
+   "Richtig!",
+   "Corretto!",
+   "Correto!",
+   "Верно!",
+   "正确！"
+  ],
+  "reviewThis": [
+   "Review this:",
+   "Revisa esto:",
+   "À revoir :",
+   "Wiederholen Sie:",
+   "Ripassa:",
+   "Revise isto:",
+   "Повторите:",
+   "请复习："
+  ],
+  "continue": [
+   "Continue",
+   "Continuar",
+   "Continuer",
+   "Weiter",
+   "Continua",
+   "Continuar",
+   "Далее",
+   "继续"
+  ],
+  "dontKnow": [
+   "I don't know",
+   "No lo sé",
+   "Je ne sais pas",
+   "Ich weiß es nicht",
+   "Non lo so",
+   "Não sei",
+   "Не знаю",
+   "我不知道"
+  ],
+  "transcript": [
+   "Transcript:",
+   "Transcripción:",
+   "Transcription :",
+   "Transkript:",
+   "Trascrizione:",
+   "Transcrição:",
+   "Текст аудио:",
+   "听力原文："
+  ],
+  "yourAnswer": [
+   "Your answer",
+   "Tu respuesta",
+   "Votre réponse",
+   "Ihre Antwort",
+   "La tua risposta",
+   "Sua resposta",
+   "Ваш ответ",
+   "你的答案"
+  ],
+  "correctOrder": [
+   "Correct order:",
+   "Orden correcto:",
+   "Ordre correct :",
+   "Richtige Reihenfolge:",
+   "Ordine corretto:",
+   "Ordem correta:",
+   "Правильный порядок:",
+   "正确顺序："
+  ],
+  "mistakes": [
+   "Mistakes:",
+   "Errores:",
+   "Erreurs :",
+   "Fehler:",
+   "Errori:",
+   "Erros:",
+   "Ошибки:",
+   "错误："
+  ],
+  "tapCategory": [
+   "Tap a word and then its category.",
+   "Toca una palabra y luego su categoría.",
+   "Touchez un mot puis sa catégorie.",
+   "Tippen Sie auf ein Wort und dann auf seine Kategorie.",
+   "Tocca una parola e poi la sua categoria.",
+   "Toque uma palavra e depois sua categoria.",
+   "Нажмите на слово, затем на его категорию.",
+   "先点单词，再点它的类别。"
+  ],
+  "recordMe": [
+   "🎙 Record me",
+   "🎙 Grabarme",
+   "🎙 M’enregistrer",
+   "🎙 Aufnehmen",
+   "🎙 Registrami",
+   "🎙 Gravar-me",
+   "🎙 Записать себя",
+   "🎙 录音"
+  ],
+  "yourRecording": [
+   "Your recording",
+   "Tu grabación",
+   "Votre enregistrement",
+   "Ihre Aufnahme",
+   "La tua registrazione",
+   "Sua gravação",
+   "Ваша запись",
+   "你的录音"
+  ],
+  "noMic": [
+   "🎙 No microphone permission",
+   "🎙 Sin permiso de micrófono",
+   "🎙 Pas d’accès au micro",
+   "🎙 Keine Mikrofonfreigabe",
+   "🎙 Nessun permesso microfono",
+   "🎙 Sem permissão de microfone",
+   "🎙 Нет доступа к микрофону",
+   "🎙 无麦克风权限"
+  ],
+  "recordAgain": [
+   "🎙 Record again",
+   "🎙 Grabar de nuevo",
+   "🎙 Recommencer",
+   "🎙 Neu aufnehmen",
+   "🎙 Registra di nuovo",
+   "🎙 Gravar de novo",
+   "🎙 Записать снова",
+   "🎙 重新录音"
+  ],
+  "stop": [
+   "⏹ Stop",
+   "⏹ Detener",
+   "⏹ Arrêter",
+   "⏹ Stopp",
+   "⏹ Ferma",
+   "⏹ Parar",
+   "⏹ Стоп",
+   "⏹ 停止"
+  ],
+  "pronTip": [
+   "Listen to the model 🔊, record yourself 🎙 and compare. Your recording stays on your device: it is not sent anywhere.",
+   "Escucha el modelo 🔊, grábate 🎙 y compara. Tu grabación se queda en tu dispositivo: no se envía a ningún sitio.",
+   "Écoutez le modèle 🔊, enregistrez-vous 🎙 et comparez. L’enregistrement reste sur votre appareil.",
+   "Hören Sie das Modell 🔊, nehmen Sie sich auf 🎙 und vergleichen Sie. Die Aufnahme bleibt auf Ihrem Gerät.",
+   "Ascolta il modello 🔊, registrati 🎙 e confronta. La registrazione resta sul tuo dispositivo.",
+   "Ouça o modelo 🔊, grave-se 🎙 e compare. A gravação fica no seu dispositivo.",
+   "Послушайте образец 🔊, запишите себя 🎙 и сравните. Запись остаётся на вашем устройстве.",
+   "先听示范 🔊，再录下自己 🎙 进行比较。录音只保存在你的设备上。"
+  ],
+  "pronTipNoRec": [
+   "Listen to the model 🔊 and repeat it aloud several times.",
+   "Escucha el modelo 🔊 y repite en voz alta varias veces.",
+   "Écoutez le modèle 🔊 et répétez à voix haute plusieurs fois.",
+   "Hören Sie das Modell 🔊 und sprechen Sie es mehrmals laut nach.",
+   "Ascolta il modello 🔊 e ripeti ad alta voce più volte.",
+   "Ouça o modelo 🔊 e repita em voz alta várias vezes.",
+   "Послушайте образец 🔊 и повторите вслух несколько раз.",
+   "听示范 🔊 并大声重复几遍。"
+  ],
+  "practised": [
+   "I practised it",
+   "Ya lo practiqué",
+   "C’est fait",
+   "Geübt",
+   "Fatto",
+   "Já pratiquei",
+   "Я потренировался",
+   "我练过了"
+  ],
+  "yourText": [
+   "Your text",
+   "Tu texto",
+   "Votre texte",
+   "Ihr Text",
+   "Il tuo testo",
+   "Seu texto",
+   "Ваш текст",
+   "你的文字"
+  ],
+  "minWords": [
+   "At least {n} words in English",
+   "Mínimo {n} palabras en inglés",
+   "Au moins {n} mots en anglais",
+   "Mindestens {n} Wörter auf Englisch",
+   "Almeno {n} parole in inglese",
+   "Mínimo de {n} palavras em inglês",
+   "Минимум {n} слов по-английски",
+   "至少 {n} 个英文单词"
+  ],
+  "writeMore": [
+   "Write at least {n} words in English with your own sentences (you have {w}{rep}).",
+   "Escribe al menos {n} palabras en inglés con frases propias (llevas {w}{rep}).",
+   "Écrivez au moins {n} mots en anglais avec vos propres phrases (vous en avez {w}{rep}).",
+   "Schreiben Sie mindestens {n} Wörter auf Englisch in eigenen Sätzen (bisher {w}{rep}).",
+   "Scrivi almeno {n} parole in inglese con frasi tue (ne hai {w}{rep}).",
+   "Escreva pelo menos {n} palavras em inglês com frases próprias (você tem {w}{rep}).",
+   "Напишите минимум {n} слов по-английски своими фразами (сейчас {w}{rep}).",
+   "请用自己的句子写至少 {n} 个英文单词（目前 {w} 个{rep}）。"
+  ],
+  "tooRepeated": [
+   " and they repeat too much",
+   " y se repiten demasiado",
+   " et ils se répètent trop",
+   ", zu viele Wiederholungen",
+   " e si ripetono troppo",
+   " e se repetem demais",
+   ", слишком много повторов",
+   "，重复太多"
+  ],
+  "modelCompare": [
+   "Model to compare:",
+   "Modelo para comparar:",
+   "Modèle pour comparer :",
+   "Modell zum Vergleich:",
+   "Modello da confrontare:",
+   "Modelo para comparar:",
+   "Образец для сравнения:",
+   "参考范文："
+  ],
+  "checkText": [
+   "Check your text:",
+   "Revisa tu texto:",
+   "Vérifiez votre texte :",
+   "Prüfen Sie Ihren Text:",
+   "Controlla il tuo testo:",
+   "Revise seu texto:",
+   "Проверьте свой текст:",
+   "检查你的文字："
+  ],
+  "compareModel": [
+   "Compare with the model",
+   "Comparar con el modelo",
+   "Comparer avec le modèle",
+   "Mit dem Modell vergleichen",
+   "Confronta con il modello",
+   "Comparar com o modelo",
+   "Сравнить с образцом",
+   "与范文比较"
+  ],
+  "you": [
+   "You:",
+   "Tú:",
+   "Vous :",
+   "Sie:",
+   "Tu:",
+   "Você:",
+   "Вы:",
+   "你："
+  ],
+  "exitMap": [
+   "Back to the map",
+   "Salir al mapa",
+   "Retour à la carte",
+   "Zurück zur Karte",
+   "Torna alla mappa",
+   "Voltar ao mapa",
+   "Вернуться к карте",
+   "返回地图"
+  ],
+  "exitConfirm": [
+   "Back to the map? You will lose your progress in this activity.",
+   "¿Salir al mapa? Se pierde el avance de esta actividad.",
+   "Retourner à la carte ? Vous perdrez la progression de cette activité.",
+   "Zurück zur Karte? Der Fortschritt dieser Aktivität geht verloren.",
+   "Tornare alla mappa? Perderai i progressi di questa attività.",
+   "Voltar ao mapa? Você perderá o progresso desta atividade.",
+   "Вернуться к карте? Прогресс этого задания будет потерян.",
+   "返回地图？本活动的进度将丢失。"
+  ],
+  "unitN": [
+   "Unit {n}",
+   "Unidad {n}",
+   "Unité {n}",
+   "Einheit {n}",
+   "Unità {n}",
+   "Unidade {n}",
+   "Раздел {n}",
+   "第 {n} 单元"
+  ],
+  "lessonN": [
+   "Lesson {n}",
+   "Lección {n}",
+   "Leçon {n}",
+   "Lektion {n}",
+   "Lezione {n}",
+   "Lição {n}",
+   "Урок {n}",
+   "第 {n} 课"
+  ],
+  "streakTitle": [
+   "Days in a row meeting your goal",
+   "Días seguidos cumpliendo tu meta",
+   "Jours d’affilée avec objectif atteint",
+   "Tage in Folge mit erreichtem Ziel",
+   "Giorni di fila con l’obiettivo raggiunto",
+   "Dias seguidos cumprindo sua meta",
+   "Дней подряд с выполненной целью",
+   "连续达成目标的天数"
+  ],
+  "day1": [
+   "day",
+   "día",
+   "jour",
+   "Tag",
+   "giorno",
+   "dia",
+   "день",
+   "天"
+  ],
+  "days": [
+   "days",
+   "días",
+   "jours",
+   "Tage",
+   "giorni",
+   "dias",
+   "дн.",
+   "天"
+  ],
+  "goalTitle": [
+   "Daily goal",
+   "Meta diaria",
+   "Objectif quotidien",
+   "Tagesziel",
+   "Obiettivo giornaliero",
+   "Meta diária",
+   "Цель на день",
+   "每日目标"
+  ],
+  "placementT": [
+   "Placement test",
+   "Prueba de nivel",
+   "Test de niveau",
+   "Einstufungstest",
+   "Test di livello",
+   "Teste de nível",
+   "Тест на уровень",
+   "分级测试"
+  ],
+  "reviewT": [
+   "Review",
+   "Repaso",
+   "Révision",
+   "Wiederholung",
+   "Ripasso",
+   "Revisão",
+   "Повторение",
+   "复习"
+  ],
+  "pendingN": [
+   "{n} words to review",
+   "{n} palabras pendientes",
+   "{n} mots à revoir",
+   "{n} Wörter offen",
+   "{n} parole da ripassare",
+   "{n} palavras pendentes",
+   "слов к повторению: {n}",
+   "待复习 {n} 个单词"
+  ],
+  "nothingDue": [
+   "Nothing due today",
+   "Nada pendiente hoy",
+   "Rien à revoir aujourd’hui",
+   "Heute nichts offen",
+   "Niente da ripassare oggi",
+   "Nada pendente hoje",
+   "Сегодня ничего нет",
+   "今天没有待复习"
+  ],
+  "vocabT": [
+   "Vocabulary",
+   "Vocabulario",
+   "Vocabulaire",
+   "Wortschatz",
+   "Vocabolario",
+   "Vocabulário",
+   "Словарь",
+   "词汇"
+  ],
+  "helpT": [
+   "Help",
+   "Ayuda",
+   "Aide",
+   "Hilfe",
+   "Aiuto",
+   "Ajuda",
+   "Помощь",
+   "帮助"
+  ],
+  "levelX": [
+   "Level {l} · {n}",
+   "Nivel {l} · {n}",
+   "Niveau {l} · {n}",
+   "Niveau {l} · {n}",
+   "Livello {l} · {n}",
+   "Nível {l} · {n}",
+   "Уровень {l} · {n}",
+   "{l} 级 · {n}"
+  ],
+  "lessonsOf": [
+   "{d} of {t} lessons",
+   "{d} de {t} lecciones",
+   "{d} leçons sur {t}",
+   "{d} von {t} Lektionen",
+   "{d} di {t} lezioni",
+   "{d} de {t} lições",
+   "{d} из {t} уроков",
+   "{t} 课中已完成 {d} 课"
+  ],
+  "examPassedS": [
+   " · exam passed",
+   " · examen aprobado",
+   " · examen réussi",
+   " · Prüfung bestanden",
+   " · esame superato",
+   " · exame aprovado",
+   " · экзамен сдан",
+   " · 考试已通过"
+  ],
+  "passedPlacement": [
+   " · passed in the placement test",
+   " · superado en la prueba de nivel",
+   " · réussi au test de niveau",
+   " · im Einstufungstest bestanden",
+   " · superato nel test di livello",
+   " · aprovado no teste de nível",
+   " · пройден в тесте на уровень",
+   " · 已在分级测试中通过"
+  ],
+  "stagesNote": [
+   "Units are published in stages: {n} of {t} lessons available.",
+   "Las unidades se publican por etapas: {n} de {t} lecciones disponibles.",
+   "Les unités sont publiées par étapes : {n} leçons sur {t} disponibles.",
+   "Einheiten erscheinen schrittweise: {n} von {t} Lektionen verfügbar.",
+   "Le unità sono pubblicate a tappe: {n} di {t} lezioni disponibili.",
+   "As unidades são publicadas em etapas: {n} de {t} lições disponíveis.",
+   "Разделы публикуются поэтапно: доступно {n} из {t} уроков.",
+   "单元分阶段发布：已开放 {t} 课中的 {n} 课。"
+  ],
+  "printUnit": [
+   "Print unit (PDF)",
+   "Imprimir unidad (PDF)",
+   "Imprimer l’unité (PDF)",
+   "Einheit drucken (PDF)",
+   "Stampa unità (PDF)",
+   "Imprimir unidade (PDF)",
+   "Распечатать раздел (PDF)",
+   "打印单元（PDF）"
+  ],
+  "printUnitN": [
+   "Print unit {n} (PDF)",
+   "Imprimir unidad {n} (PDF)",
+   "Imprimer l’unité {n} (PDF)",
+   "Einheit {n} drucken (PDF)",
+   "Stampa unità {n} (PDF)",
+   "Imprimir unidade {n} (PDF)",
+   "Распечатать раздел {n} (PDF)",
+   "打印第 {n} 单元（PDF）"
+  ],
+  "passedPct": [
+   "✓ Passed {p} %",
+   "✓ Aprobado {p} %",
+   "✓ Réussi {p} %",
+   "✓ Bestanden {p} %",
+   "✓ Superato {p} %",
+   "✓ Aprovado {p} %",
+   "✓ Сдан {p} %",
+   "✓ 已通过 {p} %"
+  ],
+  "lastTry": [
+   "Last attempt {p} %",
+   "Último intento {p} %",
+   "Dernier essai {p} %",
+   "Letzter Versuch {p} %",
+   "Ultimo tentativo {p} %",
+   "Última tentativa {p} %",
+   "Последняя попытка {p} %",
+   "上次尝试 {p} %"
+  ],
+  "examWhenLevel": [
+   "Opens when the whole level is available",
+   "Se habilita cuando esté todo el nivel",
+   "Disponible quand tout le niveau sera publié",
+   "Verfügbar, sobald das ganze Niveau da ist",
+   "Si attiva quando tutto il livello è disponibile",
+   "Disponível quando todo o nível estiver pronto",
+   "Откроется, когда будет готов весь уровень",
+   "整个级别上线后开放"
+  ],
+  "examQs": [
+   "{n} questions · pass with 75 %",
+   "{n} preguntas · aprueba con 75 %",
+   "{n} questions · réussite à 75 %",
+   "{n} Fragen · bestanden ab 75 %",
+   "{n} domande · si supera con il 75 %",
+   "{n} perguntas · aprova com 75 %",
+   "{n} вопросов · проходной балл 75 %",
+   "{n} 道题 · 75 % 及格"
+  ],
+  "completeN": [
+   "Complete the {n} lessons",
+   "Completa las {n} lecciones",
+   "Terminez les {n} leçons",
+   "Schließen Sie die {n} Lektionen ab",
+   "Completa le {n} lezioni",
+   "Conclua as {n} lições",
+   "Пройдите {n} уроков",
+   "完成全部 {n} 课"
+  ],
+  "finalExam": [
+   "Final exam {l}",
+   "Examen final {l}",
+   "Examen final {l}",
+   "Abschlussprüfung {l}",
+   "Esame finale {l}",
+   "Exame final {l}",
+   "Итоговый экзамен {l}",
+   "{l} 结业考试"
+  ],
+  "examSheet": [
+   "Exam sheet",
+   "Hoja del examen",
+   "Feuille d’examen",
+   "Prüfungsbogen",
+   "Foglio d’esame",
+   "Folha do exame",
+   "Лист экзамена",
+   "试卷"
+  ],
+  "comingSoon": [
+   "Coming soon: new units on the way",
+   "Próximamente: nuevas unidades en camino",
+   "Bientôt : nouvelles unités en préparation",
+   "Demnächst: neue Einheiten unterwegs",
+   "In arrivo: nuove unità",
+   "Em breve: novas unidades a caminho",
+   "Скоро: новые разделы",
+   "即将推出：新单元"
+  ],
+  "testMode": [
+   "Test mode: unlock everything",
+   "Modo prueba: desbloquear todo",
+   "Mode test : tout débloquer",
+   "Testmodus: alles freischalten",
+   "Modalità prova: sblocca tutto",
+   "Modo teste: desbloquear tudo",
+   "Тестовый режим: открыть всё",
+   "测试模式：全部解锁"
+  ],
+  "resetProgress": [
+   "Delete progress",
+   "Borrar progreso",
+   "Effacer la progression",
+   "Fortschritt löschen",
+   "Cancella progressi",
+   "Apagar progresso",
+   "Удалить прогресс",
+   "清除进度"
+  ],
+  "resetConfirm": [
+   "Delete all your progress in this browser?",
+   "¿Borrar todo tu progreso en este navegador?",
+   "Effacer toute votre progression dans ce navigateur ?",
+   "Gesamten Fortschritt in diesem Browser löschen?",
+   "Cancellare tutti i progressi in questo browser?",
+   "Apagar todo o seu progresso neste navegador?",
+   "Удалить весь прогресс в этом браузере?",
+   "清除此浏览器中的全部进度？"
+  ],
+  "minExercises": [
+   "≈ {m} min · {n} exercises",
+   "≈ {m} min · {n} ejercicios",
+   "≈ {m} min · {n} exercices",
+   "≈ {m} Min. · {n} Übungen",
+   "≈ {m} min · {n} esercizi",
+   "≈ {m} min · {n} exercícios",
+   "≈ {m} мин · упражнений: {n}",
+   "约 {m} 分钟 · {n} 道练习"
+  ],
+  "start": [
+   "Start",
+   "Empezar",
+   "Commencer",
+   "Starten",
+   "Inizia",
+   "Começar",
+   "Начать",
+   "开始"
+  ],
+  "print": [
+   "🖨 Print",
+   "🖨 Imprimir",
+   "🖨 Imprimer",
+   "🖨 Drucken",
+   "🖨 Stampa",
+   "🖨 Imprimir",
+   "🖨 Печать",
+   "🖨 打印"
+  ],
+  "commonMistakes": [
+   "Common mistakes",
+   "Errores comunes",
+   "Erreurs fréquentes",
+   "Häufige Fehler",
+   "Errori comuni",
+   "Erros comuns",
+   "Типичные ошибки",
+   "常见错误"
+  ],
+  "falseFriends": [
+   "False friends (Spanish)",
+   "Falsos amigos",
+   "Faux amis (espagnol)",
+   "Falsche Freunde (Spanisch)",
+   "Falsi amici (spagnolo)",
+   "Falsos amigos (espanhol)",
+   "Ложные друзья (исп.)",
+   "假朋友（西语）"
+  ],
+  "ffLine": [
+   "is not «{f}», it means «{r}».",
+   "no es «{f}», es «{r}».",
+   "ne veut pas dire « {f} », mais « {r} ».",
+   "heißt nicht „{f}“, sondern „{r}“.",
+   "non è «{f}», è «{r}».",
+   "não é «{f}», é «{r}».",
+   "это не «{f}», а «{r}».",
+   "不是“{f}”，而是“{r}”。"
+  ],
+  "perfect": [
+   "Perfect!",
+   "¡Perfecto!",
+   "Parfait !",
+   "Perfekt!",
+   "Perfetto!",
+   "Perfeito!",
+   "Идеально!",
+   "完美！"
+  ],
+  "veryGood": [
+   "Very good!",
+   "¡Muy bien!",
+   "Très bien !",
+   "Sehr gut!",
+   "Molto bene!",
+   "Muito bem!",
+   "Очень хорошо!",
+   "非常好！"
+  ],
+  "lessonPassed": [
+   "Lesson passed!",
+   "¡Lección superada!",
+   "Leçon réussie !",
+   "Lektion bestanden!",
+   "Lezione superata!",
+   "Lição concluída!",
+   "Урок пройден!",
+   "本课通过！"
+  ],
+  "almost": [
+   "Almost… you need {p} % to move on.",
+   "Casi… necesitas {p} % para avanzar.",
+   "Presque… il faut {p} % pour avancer.",
+   "Fast… Sie brauchen {p} %, um weiterzukommen.",
+   "Quasi… ti serve il {p} % per andare avanti.",
+   "Quase… você precisa de {p} % para avançar.",
+   "Почти… нужно {p} %, чтобы идти дальше.",
+   "差一点……需要 {p} % 才能继续。"
+  ],
+  "tryAgain": [
+   "Review the explanation and try again: every attempt counts.",
+   "Repasa la explicación e inténtalo otra vez: cada intento suma.",
+   "Relisez l’explication et réessayez : chaque essai compte.",
+   "Lesen Sie die Erklärung noch einmal und versuchen Sie es erneut.",
+   "Ripassa la spiegazione e riprova: ogni tentativo conta.",
+   "Revise a explicação e tente de novo: cada tentativa conta.",
+   "Перечитайте объяснение и попробуйте снова.",
+   "复习讲解后再试一次：每次尝试都有收获。"
+  ],
+  "keyPhrases": [
+   "Key phrases",
+   "Frases clave",
+   "Phrases clés",
+   "Schlüsselsätze",
+   "Frasi chiave",
+   "Frases-chave",
+   "Ключевые фразы",
+   "重点句子"
+  ],
+  "unitCompleted": [
+   "Unit {n} completed!",
+   "¡Unidad {n} completada!",
+   "Unité {n} terminée !",
+   "Einheit {n} abgeschlossen!",
+   "Unità {n} completata!",
+   "Unidade {n} concluída!",
+   "Раздел {n} пройден!",
+   "第 {n} 单元完成！"
+  ],
+  "examUnlocked": [
+   "The {l} final exam is now unlocked!",
+   "¡Se desbloqueó el examen final de {l}!",
+   "L’examen final {l} est débloqué !",
+   "Die Abschlussprüfung {l} ist freigeschaltet!",
+   "L’esame finale {l} è sbloccato!",
+   "O exame final de {l} foi desbloqueado!",
+   "Итоговый экзамен {l} открыт!",
+   "{l} 结业考试已解锁！"
+  ],
+  "vocabByTopic": [
+   "Vocabulary by topic",
+   "Vocabulario por temas",
+   "Vocabulaire par thèmes",
+   "Wortschatz nach Themen",
+   "Vocabolario per argomenti",
+   "Vocabulário por temas",
+   "Словарь по темам",
+   "主题词汇"
+  ],
+  "wordsCount": [
+   "{n} words",
+   "{n} palabras",
+   "{n} mots",
+   "{n} Wörter",
+   "{n} parole",
+   "{n} palavras",
+   "слов: {n}",
+   "{n} 个单词"
+  ],
+  "all": [
+   "All",
+   "Todos",
+   "Tous",
+   "Alle",
+   "Tutti",
+   "Todos",
+   "Все",
+   "全部"
+  ],
+  "search": [
+   "Search",
+   "Buscar",
+   "Rechercher",
+   "Suchen",
+   "Cerca",
+   "Buscar",
+   "Поиск",
+   "搜索"
+  ],
+  "searchPh": [
+   "word or meaning",
+   "palabra o significado",
+   "mot ou sens",
+   "Wort oder Bedeutung",
+   "parola o significato",
+   "palavra ou significado",
+   "слово или значение",
+   "单词或释义"
+  ],
+  "searchAria": [
+   "Search for a word",
+   "Buscar palabra",
+   "Rechercher un mot",
+   "Wort suchen",
+   "Cerca una parola",
+   "Buscar palavra",
+   "Найти слово",
+   "搜索单词"
+  ],
+  "noResults": [
+   "No results.",
+   "Sin resultados.",
+   "Aucun résultat.",
+   "Keine Ergebnisse.",
+   "Nessun risultato.",
+   "Sem resultados.",
+   "Ничего не найдено.",
+   "没有结果。"
+  ],
+  "others": [
+   "Others",
+   "Otros",
+   "Autres",
+   "Andere",
+   "Altro",
+   "Outros",
+   "Другое",
+   "其他"
+  ],
+  "reviewDone": [
+   "Review finished",
+   "Repaso terminado",
+   "Révision terminée",
+   "Wiederholung beendet",
+   "Ripasso terminato",
+   "Revisão concluída",
+   "Повторение завершено",
+   "复习完成"
+  ],
+  "gotNofM": [
+   "You got {o} of {n} right.",
+   "Acertaste {o} de {n}.",
+   "Vous avez trouvé {o} sur {n}.",
+   "Sie hatten {o} von {n} richtig.",
+   "Hai indovinato {o} su {n}.",
+   "Você acertou {o} de {n}.",
+   "Верно: {o} из {n}.",
+   "{n} 个中答对 {o} 个。"
+  ],
+  "showAnswer": [
+   "Show answer",
+   "Mostrar respuesta",
+   "Afficher la réponse",
+   "Antwort zeigen",
+   "Mostra risposta",
+   "Mostrar resposta",
+   "Показать ответ",
+   "显示答案"
+  ],
+  "didntKnow": [
+   "I didn't know it",
+   "No la sabía",
+   "Je ne savais pas",
+   "Wusste ich nicht",
+   "Non la sapevo",
+   "Não sabia",
+   "Не знал",
+   "不会"
+  ],
+  "knewIt": [
+   "I knew it",
+   "La sabía",
+   "Je savais",
+   "Wusste ich",
+   "La sapevo",
+   "Sabia",
+   "Знал",
+   "会"
+  ],
+  "examTitle": [
+   "{l} final exam",
+   "Examen final de {l}",
+   "Examen final {l}",
+   "Abschlussprüfung {l}",
+   "Esame finale {l}",
+   "Exame final de {l}",
+   "Итоговый экзамен {l}",
+   "{l} 结业考试"
+  ],
+  "generalReview": [
+   "General review",
+   "Repaso general",
+   "Révision générale",
+   "Allgemeine Wiederholung",
+   "Ripasso generale",
+   "Revisão geral",
+   "Общее повторение",
+   "综合复习"
+  ],
+  "examPassedMsg": [
+   "Passed! {l} completed.",
+   "¡Aprobado! {l} completado.",
+   "Réussi ! {l} terminé.",
+   "Bestanden! {l} abgeschlossen.",
+   "Superato! {l} completato.",
+   "Aprovado! {l} concluído.",
+   "Сдано! Уровень {l} пройден.",
+   "通过！{l} 级完成。"
+  ],
+  "examNeed": [
+   "You need {n} correct answers. Review the weak topics and try again.",
+   "Necesitas {n} aciertos. Repasa los temas débiles e inténtalo de nuevo.",
+   "Il faut {n} bonnes réponses. Révisez les points faibles et réessayez.",
+   "Sie brauchen {n} richtige Antworten. Wiederholen Sie die schwachen Themen und versuchen Sie es erneut.",
+   "Servono {n} risposte giuste. Ripassa gli argomenti deboli e riprova.",
+   "Você precisa de {n} acertos. Revise os temas fracos e tente de novo.",
+   "Нужно {n} верных ответов. Повторите слабые темы и попробуйте снова.",
+   "需要答对 {n} 题。复习薄弱主题后再试。"
+  ],
+  "topicsReview": [
+   "Topics to review",
+   "Temas para repasar",
+   "Thèmes à revoir",
+   "Themen zum Wiederholen",
+   "Argomenti da ripassare",
+   "Temas para revisar",
+   "Темы для повторения",
+   "需复习的主题"
+  ],
+  "question1": [
+   "question",
+   "pregunta",
+   "question",
+   "Frage",
+   "domanda",
+   "pergunta",
+   "вопрос",
+   "题"
+  ],
+  "questionsW": [
+   "questions",
+   "preguntas",
+   "questions",
+   "Fragen",
+   "domande",
+   "perguntas",
+   "вопр.",
+   "题"
+  ],
+  "goLesson": [
+   "Go to the lesson",
+   "Ir a la lección",
+   "Aller à la leçon",
+   "Zur Lektion",
+   "Vai alla lezione",
+   "Ir à lição",
+   "К уроку",
+   "去学习本课"
+  ],
+  "examInstr": [
+   "{n} questions covering the {u} units of {l}. You need 75 % ({k} correct answers) to pass the level. The two final tasks (writing and role-play) are optional and self-assessed: they do not count towards your score.",
+   "{n} preguntas que cubren las {u} unidades de {l}. Necesitas el 75 % ({k} aciertos) para superar el nivel. Las dos tareas finales (escritura y rol) son opcionales y se autoevalúan: no cuentan en la nota.",
+   "{n} questions sur les {u} unités du niveau {l}. Il faut 75 % ({k} bonnes réponses) pour réussir. Les deux tâches finales (écriture et jeu de rôle) sont facultatives et auto-évaluées : elles ne comptent pas.",
+   "{n} Fragen zu den {u} Einheiten von {l}. Zum Bestehen brauchen Sie 75 % ({k} richtige Antworten). Die zwei Abschlussaufgaben (Schreiben und Rollenspiel) sind freiwillig und zählen nicht.",
+   "{n} domande sulle {u} unità di {l}. Serve il 75 % ({k} risposte giuste) per superare il livello. Le due attività finali (scrittura e gioco di ruolo) sono facoltative e non contano nel voto.",
+   "{n} perguntas sobre as {u} unidades de {l}. Você precisa de 75 % ({k} acertos) para passar de nível. As duas tarefas finais (escrita e role-play) são opcionais e não contam na nota.",
+   "{n} вопросов по {u} разделам уровня {l}. Для сдачи нужно 75 % ({k} верных ответов). Два последних задания (письмо и ролевая игра) необязательны и не влияют на оценку.",
+   "共 {n} 题，覆盖 {l} 级的 {u} 个单元。需答对 75 %（{k} 题）才能通过。最后两项任务（写作和角色扮演）为选做、自评，不计分。"
+  ],
+  "optTasks": [
+   "Optional tasks (not graded)",
+   "Tareas opcionales (sin nota)",
+   "Tâches facultatives (non notées)",
+   "Freiwillige Aufgaben (ohne Note)",
+   "Attività facoltative (senza voto)",
+   "Tarefas opcionais (sem nota)",
+   "Доп. задания (без оценки)",
+   "选做任务（不计分）"
+  ],
+  "plStartA1": [
+   "You didn’t reach {p} % in A1, so it’s best to start from the beginning.",
+   "No llegaste al {p} % en A1, así que lo mejor es empezar por el principio.",
+   "Vous n’avez pas atteint {p} % en A1 : mieux vaut commencer par le début.",
+   "Sie haben in A1 keine {p} % erreicht, also beginnen Sie am besten von vorn.",
+   "Non hai raggiunto il {p} % in A1, quindi conviene iniziare dal principio.",
+   "Você não chegou a {p} % no A1, então o melhor é começar do início.",
+   "В A1 вы не набрали {p} %, поэтому лучше начать с начала.",
+   "你在 A1 未达到 {p} %，建议从头开始。"
+  ],
+  "plTop": [
+   "You passed level {l}, the highest this course covers.",
+   "Superaste el nivel {l}, el más alto que cubre este curso.",
+   "Vous avez réussi le niveau {l}, le plus haut de ce cours.",
+   "Sie haben Niveau {l} bestanden, das höchste dieses Kurses.",
+   "Hai superato il livello {l}, il più alto di questo corso.",
+   "Você passou do nível {l}, o mais alto do curso.",
+   "Вы прошли уровень {l} — самый высокий в курсе.",
+   "你已通过 {l} 级，即本课程的最高级别。"
+  ],
+  "plUpTo": [
+   "You passed up to {l}. In {f} you scored {p} %{near}.",
+   "Superaste hasta {l}. En {f} acertaste {p} %{near}.",
+   "Vous avez réussi jusqu’à {l}. En {f}, vous avez obtenu {p} %{near}.",
+   "Sie haben bis {l} bestanden. In {f} hatten Sie {p} %{near}.",
+   "Hai superato fino a {l}. In {f} hai ottenuto il {p} %{near}.",
+   "Você passou até {l}. No {f} acertou {p} %{near}.",
+   "Вы прошли до {l}. В {f} у вас {p} %{near}.",
+   "你通过到 {l} 级。{f} 级得分 {p} %{near}。"
+  ],
+  "plNear": [
+   ": you are close, that’s your next goal",
+   ": estás cerca, ese es tu siguiente objetivo",
+   " : vous êtes proche, c’est votre prochain objectif",
+   ": Sie sind nah dran, das ist Ihr nächstes Ziel",
+   ": sei vicino, è il tuo prossimo obiettivo",
+   ": você está perto, esse é seu próximo objetivo",
+   ": вы близко — это ваша следующая цель",
+   "：已很接近，这是你的下一个目标"
+  ],
+  "plYourLevel": [
+   "Your estimated level is <b>{l}</b>.",
+   "Tu nivel estimado es <b>{l}</b>.",
+   "Votre niveau estimé est <b>{l}</b>.",
+   "Ihr geschätztes Niveau ist <b>{l}</b>.",
+   "Il tuo livello stimato è <b>{l}</b>.",
+   "Seu nível estimado é <b>{l}</b>.",
+   "Ваш примерный уровень — <b>{l}</b>.",
+   "你的估计级别是 <b>{l}</b>。"
+  ],
+  "plStartPoint": [
+   "Your starting point is <b>A1</b>.",
+   "Tu punto de partida es <b>A1</b>.",
+   "Votre point de départ est <b>A1</b>.",
+   "Ihr Startpunkt ist <b>A1</b>.",
+   "Il tuo punto di partenza è <b>A1</b>.",
+   "Seu ponto de partida é <b>A1</b>.",
+   "Ваша отправная точка — <b>A1</b>.",
+   "你的起点是 <b>A1</b>。"
+  ],
+  "plCorrect": [
+   "Correct",
+   "Aciertos",
+   "Bonnes réponses",
+   "Richtig",
+   "Corrette",
+   "Acertos",
+   "Верно",
+   "答对"
+  ],
+  "plResult": [
+   "Result",
+   "Resultado",
+   "Résultat",
+   "Ergebnis",
+   "Risultato",
+   "Resultado",
+   "Результат",
+   "结果"
+  ],
+  "plPassed": [
+   "✓ passed",
+   "✓ superado",
+   "✓ réussi",
+   "✓ bestanden",
+   "✓ superato",
+   "✓ aprovado",
+   "✓ пройден",
+   "✓ 通过"
+  ],
+  "plFailed": [
+   "✗ not passed",
+   "✗ no superado",
+   "✗ non réussi",
+   "✗ nicht bestanden",
+   "✗ non superato",
+   "✗ não aprovado",
+   "✗ не пройден",
+   "✗ 未通过"
+  ],
+  "plRule": [
+   "A level is passed with at least {p} % correct answers.",
+   "Se supera un nivel con al menos {p} % de aciertos.",
+   "Un niveau est réussi avec au moins {p} % de bonnes réponses.",
+   "Ein Niveau gilt ab {p} % richtiger Antworten als bestanden.",
+   "Un livello si supera con almeno il {p} % di risposte giuste.",
+   "Um nível é aprovado com pelo menos {p} % de acertos.",
+   "Уровень засчитывается при {p} % верных ответов.",
+   "答对率达到 {p} % 即通过该级别。"
+  ],
+  "plAllDone": [
+   "You have passed all the published content ({l}). You completed the course up to B2!",
+   "Ya superaste todo el contenido publicado ({l}). ¡Completaste el curso hasta B2!",
+   "Vous avez réussi tout le contenu publié ({l}). Cours terminé jusqu’à B2 !",
+   "Sie haben alle veröffentlichten Inhalte ({l}) bestanden. Kurs bis B2 abgeschlossen!",
+   "Hai superato tutti i contenuti pubblicati ({l}). Corso completato fino a B2!",
+   "Você já passou por todo o conteúdo publicado ({l}). Curso concluído até o B2!",
+   "Вы прошли весь опубликованный материал ({l}). Курс до B2 пройден!",
+   "你已通过全部已发布内容（{l}）。课程已完成到 B2！"
+  ],
+  "plOpenNext": [
+   "The levels you passed stay open for review and you can continue from the next one.",
+   "Los niveles que superaste quedan abiertos para repasar y puedes continuar desde el siguiente.",
+   "Les niveaux réussis restent ouverts pour réviser ; continuez avec le suivant.",
+   "Bestandene Niveaus bleiben zum Wiederholen offen; Sie können mit dem nächsten weitermachen.",
+   "I livelli superati restano aperti per il ripasso e puoi continuare dal successivo.",
+   "Os níveis aprovados ficam abertos para revisão e você pode seguir para o próximo.",
+   "Пройденные уровни остаются открытыми, можно продолжать со следующего.",
+   "已通过的级别仍可复习，你可以从下一级继续。"
+  ],
+  "goCourse": [
+   "Go to the course",
+   "Ir al curso",
+   "Aller au cours",
+   "Zum Kurs",
+   "Vai al corso",
+   "Ir ao curso",
+   "К курсу",
+   "进入课程"
+  ],
+  "repeatTest": [
+   "Repeat the test",
+   "Repetir la prueba",
+   "Refaire le test",
+   "Test wiederholen",
+   "Ripeti il test",
+   "Repetir o teste",
+   "Пройти тест снова",
+   "重新测试"
+  ],
+  "plQuestion": [
+   "· {l} · question {i}/{n}",
+   "· {l} · pregunta {i}/{n}",
+   "· {l} · question {i}/{n}",
+   "· {l} · Frage {i}/{n}",
+   "· {l} · domanda {i}/{n}",
+   "· {l} · pergunta {i}/{n}",
+   "· {l} · вопрос {i}/{n}",
+   "· {l} · 第 {i}/{n} 题"
+  ],
+  "plInstr": [
+   "Answer without help or a translator. There are up to 68 questions (about 25–30 minutes) in four levels, from A1 to B2. The test stops when a level is not passed, so if it is too hard it will end sooner. You can play the audio as many times as you want. If you don’t know an answer, choose “I don’t know”.",
+   "Responde sin ayuda ni traductor. Son hasta 68 preguntas (unos 25-30 minutos) repartidas en cuatro niveles, de A1 a B2. La prueba se detiene cuando un nivel no se supera, así que si resulta muy difícil terminará antes. Puedes escuchar los audios las veces que quieras. Si no sabes una respuesta, elige «No lo sé».",
+   "Répondez sans aide ni traducteur. Jusqu’à 68 questions (environ 25–30 minutes) sur quatre niveaux, de A1 à B2. Le test s’arrête quand un niveau n’est pas réussi. Vous pouvez écouter les audios autant de fois que vous voulez. Si vous ne savez pas, choisissez « Je ne sais pas ».",
+   "Antworten Sie ohne Hilfe oder Übersetzer. Bis zu 68 Fragen (ca. 25–30 Minuten) auf vier Niveaus, von A1 bis B2. Der Test endet, wenn ein Niveau nicht bestanden wird. Audios können Sie beliebig oft hören. Wenn Sie etwas nicht wissen, wählen Sie „Ich weiß es nicht“.",
+   "Rispondi senza aiuto né traduttore. Fino a 68 domande (circa 25–30 minuti) su quattro livelli, da A1 a B2. Il test si ferma quando un livello non è superato. Puoi ascoltare gli audio quante volte vuoi. Se non sai una risposta, scegli «Non lo so».",
+   "Responda sem ajuda nem tradutor. São até 68 perguntas (cerca de 25–30 minutos) em quatro níveis, do A1 ao B2. O teste para quando um nível não é aprovado. Você pode ouvir os áudios quantas vezes quiser. Se não souber, escolha “Não sei”.",
+   "Отвечайте без помощи и переводчика. До 68 вопросов (25–30 минут) на четырёх уровнях, от A1 до B2. Тест останавливается, если уровень не пройден. Аудио можно слушать сколько угодно. Если не знаете ответ, выберите «Не знаю».",
+   "请在不借助帮助或翻译工具的情况下作答。共最多 68 题（约 25–30 分钟），分为 A1 到 B2 四个级别。某一级未通过时测试即停止。音频可反复收听。不会的题请选“我不知道”。"
+  ],
+  "cancel": [
+   "Cancel",
+   "Cancelar",
+   "Annuler",
+   "Abbrechen",
+   "Annulla",
+   "Cancelar",
+   "Отмена",
+   "取消"
+  ],
+  "faqTitle": [
+   "Frequently asked questions",
+   "Preguntas frecuentes",
+   "Questions fréquentes",
+   "Häufige Fragen",
+   "Domande frequenti",
+   "Perguntas frequentes",
+   "Частые вопросы",
+   "常见问题"
+  ],
+  "audioWeb": [
+   "🎧 Audio exercise: do it on the website.",
+   "🎧 Ejercicio de audio: hazlo en la web.",
+   "🎧 Exercice audio : à faire sur le site.",
+   "🎧 Hörübung: bitte online machen.",
+   "🎧 Esercizio audio: fallo sul sito.",
+   "🎧 Exercício de áudio: faça no site.",
+   "🎧 Аудиозадание: выполните на сайте.",
+   "🎧 听力练习：请在网站上完成。"
+  ],
+  "minWordsP": [
+   "At least {n} words.",
+   "Mínimo {n} palabras.",
+   "Au moins {n} mots.",
+   "Mindestens {n} Wörter.",
+   "Almeno {n} parole.",
+   "Mínimo de {n} palavras.",
+   "Минимум {n} слов.",
+   "至少 {n} 个单词。"
+  ],
+  "pronPrint": [
+   "Practise aloud; compare it with the audio on the website.",
+   "Practica en voz alta; compáralo con el audio en la web.",
+   "Entraînez-vous à voix haute ; comparez avec l’audio du site.",
+   "Laut üben; mit dem Audio auf der Website vergleichen.",
+   "Esercitati ad alta voce; confronta con l’audio sul sito.",
+   "Pratique em voz alta; compare com o áudio no site.",
+   "Тренируйтесь вслух; сравните с аудио на сайте.",
+   "大声练习，并与网站上的音频对照。"
+  ],
+  "exercisesH": [
+   "Exercises",
+   "Ejercicios",
+   "Exercices",
+   "Übungen",
+   "Esercizi",
+   "Exercícios",
+   "Упражнения",
+   "练习"
+  ],
+  "answerKey": [
+   "Answer key",
+   "Clave de respuestas",
+   "Corrigé",
+   "Lösungen",
+   "Soluzioni",
+   "Gabarito",
+   "Ответы",
+   "答案"
+  ],
+  "printTitle": [
+   "Print / save as PDF",
+   "Imprimir / guardar como PDF",
+   "Imprimer / enregistrer en PDF",
+   "Drucken / als PDF speichern",
+   "Stampa / salva come PDF",
+   "Imprimir / salvar como PDF",
+   "Печать / сохранить в PDF",
+   "打印 / 另存为 PDF"
+  ],
+  "unitTitle": [
+   "Unit {n}: {t}",
+   "Unidad {n}: {t}",
+   "Unité {n} : {t}",
+   "Einheit {n}: {t}",
+   "Unità {n}: {t}",
+   "Unidade {n}: {t}",
+   "Раздел {n}: {t}",
+   "第 {n} 单元：{t}"
+  ],
+  "inclExp": [
+   "Include the explanation",
+   "Incluir la explicación",
+   "Inclure l’explication",
+   "Erklärung einschließen",
+   "Includi la spiegazione",
+   "Incluir a explicação",
+   "Включить объяснение",
+   "包含讲解"
+  ],
+  "inclKey": [
+   "Include the answer key at the end",
+   "Incluir la clave de respuestas al final",
+   "Inclure le corrigé à la fin",
+   "Lösungen am Ende einschließen",
+   "Includi le soluzioni alla fine",
+   "Incluir o gabarito no final",
+   "Добавить ответы в конце",
+   "在末尾附上答案"
+  ],
+  "printNote": [
+   "Your browser’s print dialog will open: choose “Save as PDF” or your printer. Audio and pronunciation exercises work better on the website.",
+   "Se abrirá el cuadro de impresión de tu navegador: elige «Guardar como PDF» o tu impresora. Los ejercicios de audio y de pronunciación se hacen mejor en la web.",
+   "La boîte d’impression s’ouvrira : choisissez « Enregistrer en PDF » ou votre imprimante. Les exercices audio et de prononciation se font mieux sur le site.",
+   "Der Druckdialog öffnet sich: Wählen Sie „Als PDF speichern“ oder Ihren Drucker. Hör- und Ausspracheübungen gehen online besser.",
+   "Si aprirà la finestra di stampa: scegli «Salva come PDF» o la stampante. Gli esercizi audio e di pronuncia si fanno meglio sul sito.",
+   "A janela de impressão será aberta: escolha “Salvar como PDF” ou sua impressora. Exercícios de áudio e pronúncia funcionam melhor no site.",
+   "Откроется окно печати: выберите «Сохранить как PDF» или принтер. Аудио и произношение лучше выполнять на сайте.",
+   "将打开浏览器的打印窗口：选择“另存为 PDF”或你的打印机。听力和发音练习更适合在网站上完成。"
+  ],
+  "prepareDoc": [
+   "Prepare document",
+   "Preparar documento",
+   "Préparer le document",
+   "Dokument vorbereiten",
+   "Prepara il documento",
+   "Preparar documento",
+   "Подготовить документ",
+   "生成文档"
+  ],
+  "explanationH": [
+   "Explanation",
+   "Explicación",
+   "Explication",
+   "Erklärung",
+   "Spiegazione",
+   "Explicação",
+   "Объяснение",
+   "讲解"
+  ],
+  "failTitle": [
+   "The content could not be loaded",
+   "No se pudo cargar el contenido",
+   "Impossible de charger le contenu",
+   "Der Inhalt konnte nicht geladen werden",
+   "Impossibile caricare il contenuto",
+   "Não foi possível carregar o conteúdo",
+   "Не удалось загрузить содержимое",
+   "无法加载内容"
+  ],
+  "failHelp": [
+   "Check that the <b>content/</b> folder is at the root of the site. If you open the file with a double click (file://), the browser blocks loading: use GitHub Pages or a local server.",
+   "Comprueba que la carpeta <b>content/</b> está en la raíz del sitio. Si abres el archivo con doble clic (file://), el navegador bloquea la carga: usa GitHub Pages o un servidor local.",
+   "Vérifiez que le dossier <b>content/</b> est à la racine du site. En ouvrant le fichier par double-clic (file://), le navigateur bloque le chargement : utilisez GitHub Pages ou un serveur local.",
+   "Prüfen Sie, ob der Ordner <b>content/</b> im Stammverzeichnis liegt. Per Doppelklick (file://) blockiert der Browser das Laden: Nutzen Sie GitHub Pages oder einen lokalen Server.",
+   "Controlla che la cartella <b>content/</b> sia nella radice del sito. Aprendo il file con doppio clic (file://) il browser blocca il caricamento: usa GitHub Pages o un server locale.",
+   "Verifique se a pasta <b>content/</b> está na raiz do site. Ao abrir o arquivo com duplo clique (file://), o navegador bloqueia o carregamento: use o GitHub Pages ou um servidor local.",
+   "Проверьте, что папка <b>content/</b> лежит в корне сайта. При открытии файла двойным щелчком (file://) браузер блокирует загрузку: используйте GitHub Pages или локальный сервер.",
+   "请确认 <b>content/</b> 文件夹位于网站根目录。双击打开文件（file://）时浏览器会阻止加载：请使用 GitHub Pages 或本地服务器。"
+  ],
+  "contentNote": [
+   "Lessons that are not yet translated show their explanations and glossaries in Spanish.",
+   "Las explicaciones, glosarios y ejercicios de traducción están en español.",
+   "Les leçons pas encore traduites affichent leurs explications et glossaires en espagnol.",
+   "Noch nicht übersetzte Lektionen zeigen Erklärungen und Glossare auf Spanisch.",
+   "Le lezioni non ancora tradotte mostrano spiegazioni e glossari in spagnolo.",
+   "As lições ainda não traduzidas mostram explicações e glossários em espanhol.",
+   "В ещё не переведённых уроках объяснения и глоссарии на испанском.",
+   "尚未翻译的课程，其讲解和词汇表仍为西班牙语。"
+  ],
+  "courseMap": [
+   "Course map",
+   "Mapa del curso",
+   "Plan du cours",
+   "Kursübersicht",
+   "Mappa del corso",
+   "Mapa do curso",
+   "Карта курса",
+   "课程地图"
+  ],
+  "courseLede": [
+   "Four levels, from A1 to B2. Each lesson has a text, an explanation and exercises that are corrected instantly.",
+   "Cuatro niveles, de A1 a B2. Cada lección tiene un texto, una explicación y ejercicios que se corrigen al instante.",
+   "Quatre niveaux, de A1 à B2. Chaque leçon comprend un texte, une explication et des exercices corrigés immédiatement.",
+   "Vier Niveaus von A1 bis B2. Jede Lektion hat einen Text, eine Erklärung und Übungen, die sofort korrigiert werden.",
+   "Quattro livelli, da A1 a B2. Ogni lezione ha un testo, una spiegazione ed esercizi corretti all’istante.",
+   "Quatro níveis, do A1 ao B2. Cada lição tem um texto, uma explicação e exercícios corrigidos na hora.",
+   "Четыре уровня, от A1 до B2. В каждом уроке есть текст, объяснение и упражнения с мгновенной проверкой.",
+   "四个级别，从 A1 到 B2。每节课包含课文、讲解和即时批改的练习。"
+  ],
+  "progressH": [
+   "Progress",
+   "Progreso",
+   "Progression",
+   "Fortschritt",
+   "Progressi",
+   "Progresso",
+   "Прогресс",
+   "进度"
+  ],
+  "lessonsWord": [
+   "lessons",
+   "lecciones",
+   "leçons",
+   "Lektionen",
+   "lezioni",
+   "lições",
+   "уроков",
+   "节课"
+  ],
+  "todayH": [
+   "Today",
+   "Hoy",
+   "Aujourd’hui",
+   "Heute",
+   "Oggi",
+   "Hoje",
+   "Сегодня",
+   "今天"
+  ],
+  "streakH": [
+   "Streak",
+   "Racha",
+   "Série",
+   "Serie",
+   "Serie",
+   "Sequência",
+   "Серия",
+   "连续"
+  ],
+  "toolsH": [
+   "Tools",
+   "Herramientas",
+   "Outils",
+   "Werkzeuge",
+   "Strumenti",
+   "Ferramentas",
+   "Инструменты",
+   "工具"
+  ],
+  "nextH": [
+   "Next lesson",
+   "Siguiente lección",
+   "Leçon suivante",
+   "Nächste Lektion",
+   "Lezione successiva",
+   "Próxima lição",
+   "Следующий урок",
+   "下一课"
+  ],
+  "startArrow": [
+   "Start →",
+   "Empezar →",
+   "Commencer →",
+   "Starten →",
+   "Inizia →",
+   "Começar →",
+   "Начать →",
+   "开始 →"
+  ],
+  "continueArrow": [
+   "Continue →",
+   "Continuar →",
+   "Continuer →",
+   "Weiter →",
+   "Continua →",
+   "Continuar →",
+   "Продолжить →",
+   "继续 →"
+  ],
+  "nextLessonArrow": [
+   "Next lesson →",
+   "Siguiente lección →",
+   "Leçon suivante →",
+   "Nächste Lektion →",
+   "Lezione successiva →",
+   "Próxima lição →",
+   "Следующий урок →",
+   "下一课 →"
+  ],
+  "levelK": [
+   "Level {l}",
+   "Nivel {l}",
+   "Niveau {l}",
+   "Niveau {l}",
+   "Livello {l}",
+   "Nível {l}",
+   "Уровень {l}",
+   "{l} 级"
+  ],
+  "lockedW": [
+   "Locked",
+   "Bloqueada",
+   "Verrouillée",
+   "Gesperrt",
+   "Bloccata",
+   "Bloqueada",
+   "Закрыт",
+   "未解锁"
+  ],
+  "checkpointTag": [
+   "unit review",
+   "repaso de unidad",
+   "révision de l’unité",
+   "Einheitswiederholung",
+   "ripasso dell’unità",
+   "revisão da unidade",
+   "повторение раздела",
+   "单元复习"
+  ],
+  "takeExam": [
+   "Take the exam",
+   "Hacer el examen",
+   "Passer l’examen",
+   "Prüfung ablegen",
+   "Fai l’esame",
+   "Fazer o exame",
+   "Пройти экзамен",
+   "参加考试"
+  ],
+  "mapBack": [
+   "← Map",
+   "← Mapa",
+   "← Plan",
+   "← Übersicht",
+   "← Mappa",
+   "← Mapa",
+   "← Карта",
+   "← 地图"
+  ],
+  "printW": [
+   "Print",
+   "Imprimir",
+   "Imprimer",
+   "Drucken",
+   "Stampa",
+   "Imprimir",
+   "Печать",
+   "打印"
+  ],
+  "secWarmup": [
+   "To start",
+   "Para empezar",
+   "Pour commencer",
+   "Zum Einstieg",
+   "Per iniziare",
+   "Para começar",
+   "Для начала",
+   "热身"
+  ],
+  "secInput": [
+   "Text and vocabulary",
+   "Texto y vocabulario",
+   "Texte et vocabulaire",
+   "Text und Wortschatz",
+   "Testo e vocabolario",
+   "Texto e vocabulário",
+   "Текст и лексика",
+   "课文与词汇"
+  ],
+  "secExplain": [
+   "Explanation",
+   "Explicación",
+   "Explication",
+   "Erklärung",
+   "Spiegazione",
+   "Explicação",
+   "Объяснение",
+   "讲解"
+  ],
+  "secPractice": [
+   "Practice",
+   "Práctica",
+   "Pratique",
+   "Übung",
+   "Pratica",
+   "Prática",
+   "Практика",
+   "练习"
+  ],
+  "practiceH": [
+   "Exercises",
+   "Ejercicios",
+   "Exercices",
+   "Übungen",
+   "Esercizi",
+   "Exercícios",
+   "Упражнения",
+   "练习题"
+  ],
+  "practiceLede": [
+   "Answer each exercise: it is corrected instantly and the explanation appears. When you have answered all of them you will see your result. “Restart” begins again.",
+   "Responde cada ejercicio: se corrige al instante y aparece la explicación. Al responder todos verás tu resultado. Con «Reiniciar» empiezas de nuevo.",
+   "Répondez à chaque exercice : il est corrigé immédiatement et l’explication apparaît. Une fois tout répondu, vous verrez votre résultat. « Recommencer » repart de zéro.",
+   "Beantworten Sie jede Übung: Sie wird sofort korrigiert und die Erklärung erscheint. Wenn alles beantwortet ist, sehen Sie Ihr Ergebnis. „Neu starten“ beginnt von vorn.",
+   "Rispondi a ogni esercizio: viene corretto subito e appare la spiegazione. Quando avrai risposto a tutti vedrai il risultato. Con «Ricomincia» riparti da capo.",
+   "Responda cada exercício: ele é corrigido na hora e a explicação aparece. Ao responder todos, você verá o resultado. Com «Reiniciar» você começa de novo.",
+   "Отвечайте на каждое упражнение: оно сразу проверяется и появляется объяснение. Ответив на все, вы увидите результат. «Заново» — начать сначала.",
+   "逐题作答：每题即时批改并显示讲解。全部答完后会显示结果。点击“重新开始”可从头再来。"
+  ]
+ },
+ "topics": {
+  "Presentaciones": [
+   "Introductions",
+   "Presentaciones",
+   "Présentations",
+   "Vorstellung",
+   "Presentazioni",
+   "Apresentações",
+   "Знакомство",
+   "自我介绍"
+  ],
+  "Rutina diaria": [
+   "Daily routine",
+   "Rutina diaria",
+   "Routine quotidienne",
+   "Tagesablauf",
+   "Routine quotidiana",
+   "Rotina diária",
+   "Распорядок дня",
+   "日常作息"
+  ],
+  "Familia": [
+   "Family",
+   "Familia",
+   "Famille",
+   "Familie",
+   "Famiglia",
+   "Família",
+   "Семья",
+   "家庭"
+  ],
+  "Comida y bebida": [
+   "Food and drink",
+   "Comida y bebida",
+   "Nourriture et boissons",
+   "Essen und Trinken",
+   "Cibo e bevande",
+   "Comida e bebida",
+   "Еда и напитки",
+   "饮食"
+  ],
+  "La ciudad": [
+   "The town",
+   "La ciudad",
+   "La ville",
+   "Die Stadt",
+   "La città",
+   "A cidade",
+   "Город",
+   "城镇"
+  ],
+  "Tiempo libre": [
+   "Free time",
+   "Tiempo libre",
+   "Temps libre",
+   "Freizeit",
+   "Tempo libero",
+   "Tempo livre",
+   "Свободное время",
+   "休闲"
+  ],
+  "Viajes": [
+   "Travel",
+   "Viajes",
+   "Voyages",
+   "Reisen",
+   "Viaggi",
+   "Viagens",
+   "Путешествия",
+   "旅行"
+  ],
+  "Personas y vecinos": [
+   "People and neighbours",
+   "Personas y vecinos",
+   "Gens et voisins",
+   "Menschen und Nachbarn",
+   "Persone e vicini",
+   "Pessoas e vizinhos",
+   "Люди и соседи",
+   "人与邻居"
+  ],
+  "Salud": [
+   "Health",
+   "Salud",
+   "Santé",
+   "Gesundheit",
+   "Salute",
+   "Saúde",
+   "Здоровье",
+   "健康"
+  ],
+  "Anécdotas": [
+   "Anecdotes",
+   "Anécdotas",
+   "Anecdotes",
+   "Anekdoten",
+   "Aneddoti",
+   "Histórias",
+   "Истории из жизни",
+   "趣事"
+  ],
+  "Planes": [
+   "Plans",
+   "Planes",
+   "Projets",
+   "Pläne",
+   "Progetti",
+   "Planos",
+   "Планы",
+   "计划"
+  ],
+  "Estudiar en el extranjero": [
+   "Studying abroad",
+   "Estudiar en el extranjero",
+   "Étudier à l'étranger",
+   "Auslandsstudium",
+   "Studiare all'estero",
+   "Estudar no exterior",
+   "Учёба за границей",
+   "出国留学"
+  ],
+  "Trabajo": [
+   "Work",
+   "Trabajo",
+   "Travail",
+   "Arbeit",
+   "Lavoro",
+   "Trabalho",
+   "Работа",
+   "工作"
+  ],
+  "Medio ambiente": [
+   "Environment",
+   "Medio ambiente",
+   "Environnement",
+   "Umwelt",
+   "Ambiente",
+   "Meio ambiente",
+   "Экология",
+   "环境"
+  ],
+  "Historias de vida": [
+   "Life stories",
+   "Historias de vida",
+   "Récits de vie",
+   "Lebensgeschichten",
+   "Storie di vita",
+   "Histórias de vida",
+   "Истории жизни",
+   "人生故事"
+  ],
+  "Tecnología": [
+   "Technology",
+   "Tecnología",
+   "Technologie",
+   "Technologie",
+   "Tecnologia",
+   "Tecnologia",
+   "Технологии",
+   "科技"
+  ],
+  "Cultura y tradiciones": [
+   "Culture and traditions",
+   "Cultura y tradiciones",
+   "Culture et traditions",
+   "Kultur und Traditionen",
+   "Cultura e tradizioni",
+   "Cultura e tradições",
+   "Культура и традиции",
+   "文化与传统"
+  ],
+  "Voluntariado": [
+   "Volunteering",
+   "Voluntariado",
+   "Bénévolat",
+   "Ehrenamt",
+   "Volontariato",
+   "Voluntariado",
+   "Волонтёрство",
+   "志愿服务"
+  ],
+  "Trabajo y economía": [
+   "Work and economy",
+   "Trabajo y economía",
+   "Travail et économie",
+   "Arbeit und Wirtschaft",
+   "Lavoro ed economia",
+   "Trabalho e economia",
+   "Работа и экономика",
+   "工作与经济"
+  ],
+  "Medios": [
+   "Media",
+   "Medios",
+   "Médias",
+   "Medien",
+   "Media",
+   "Mídia",
+   "СМИ",
+   "媒体"
+  ],
+  "Viajes y medio ambiente": [
+   "Travel and environment",
+   "Viajes y medio ambiente",
+   "Voyages et environnement",
+   "Reisen und Umwelt",
+   "Viaggi e ambiente",
+   "Viagens e meio ambiente",
+   "Путешествия и экология",
+   "旅行与环境"
+  ],
+  "Naturaleza": [
+   "Nature",
+   "Naturaleza",
+   "Nature",
+   "Natur",
+   "Natura",
+   "Natureza",
+   "Природа",
+   "自然"
+  ],
+  "Psicología": [
+   "Psychology",
+   "Psicología",
+   "Psychologie",
+   "Psychologie",
+   "Psicologia",
+   "Psicologia",
+   "Психология",
+   "心理学"
+  ],
+  "Ficción": [
+   "Fiction",
+   "Ficción",
+   "Fiction",
+   "Fiktion",
+   "Narrativa",
+   "Ficção",
+   "Художественный текст",
+   "小说"
+  ]
+ },
+ "faq": {
+  "en": [
+   [
+    "Is my progress saved?",
+    "Yes, in this browser and on this device (there are no accounts or passwords). If you clear your browser data or use another browser or device, you will start from scratch: progress is not synced."
+   ],
+   [
+    "How are lessons unlocked?",
+    "Each lesson opens when you pass the previous one, usually with 70 % correct answers. If you pass a level in the placement test, all its lessons are unlocked."
+   ],
+   [
+    "What is the placement test?",
+    "An adaptive test that estimates which level you should start from. You pass a level with at least 75 % in its block. You can repeat it whenever you like."
+   ],
+   [
+    "How does each level’s final exam work?",
+    "It opens when you complete all the lessons of the level (or pass the level in the placement test). You pass with 75 %. When you get a question wrong, the exam tells you which topic to review, but not the answer; at the end you will see the topics with a button to go to the lesson. You can repeat it as often as you like."
+   ],
+   [
+    "What about the optional tasks?",
+    "They do not count towards your score. In writing you must write a minimum number of words in English; then you compare your text with a model and a checklist."
+   ],
+   [
+    "Why do exercises from earlier topics sometimes appear?",
+    "On purpose: mixed review helps you not to forget what you learned. They count as part of the lesson."
+   ],
+   [
+    "How does Review work?",
+    "Words from the lessons you complete come back after 1, 3, 7, 14, 30 and 60 days if you keep remembering them. If you miss one, it starts again."
+   ],
+   [
+    "What are the daily goal and the streak?",
+    "The goal is the minutes of active study you want to do each day (10, 20 or 30). The streak counts the days in a row you met it. Breaks of more than 2 minutes do not count. Reading in Self-Learning also counts."
+   ],
+   [
+    "The audio doesn’t play. What can I do?",
+    "Audio uses your browser’s English voice. Check the volume, try an up-to-date Chrome, Edge or Safari and make sure your system has an English voice installed."
+   ],
+   [
+    "What happens to my voice recording?",
+    "It is recorded only on your device so you can compare yourself with the model; it is not sent anywhere. The browser will ask for permission to use the microphone."
+   ],
+   [
+    "Can I do the lessons on paper?",
+    "Yes. Use “🖨 Print” inside a lesson, “Print unit (PDF)” in each unit or “Exam sheet”. Choose whether to include the explanation and the answer key, then select “Save as PDF” or your printer."
+   ],
+   [
+    "What does “Test mode” do?",
+    "It unlocks all lessons and exams so you can explore the content. It does not delete your progress."
+   ],
+   [
+    "How do I delete my progress?",
+    "With “Delete progress” at the bottom of the course’s main page. Everything in this browser is deleted, except your daily goal."
+   ],
+   [
+    "Why are the explanations in Spanish?",
+    "The course was written for Spanish speakers. Levels A1 and A2 are already translated (explanations, dialogues and glossary); other levels are being translated and show Spanish until then. Translation exercises stay in Spanish."
+   ],
+   [
+    "I found a mistake in a lesson",
+    "Note the code of the lesson or exercise (for example en-a2-u03-l02) and tell the site administrator."
+   ],
+   [
+    "How far does the course go?",
+    "Up to B2. Levels A1, A2, B1 and B2 are available, each with its final exam."
+   ]
+  ],
+  "es": [
+   [
+    "¿Se guarda mi progreso?",
+    "Sí, en este navegador y en este dispositivo (no hay cuentas ni contraseñas). Si borras los datos del navegador, usas otro navegador u otro dispositivo, empezarás de cero: el progreso no se sincroniza."
+   ],
+   [
+    "¿Cómo se desbloquean las lecciones?",
+    "Cada lección se abre al superar la anterior, normalmente con un 70 % de aciertos. Si superas un nivel en la prueba de nivel, todas sus lecciones quedan abiertas."
+   ],
+   [
+    "¿Qué es la prueba de nivel?",
+    "Un test que se adapta a ti y estima desde qué nivel conviene empezar. Se supera un nivel con al menos un 75 % de aciertos en su bloque. Puedes repetirla cuando quieras."
+   ],
+   [
+    "¿Cómo funciona el examen final de cada nivel?",
+    "Se habilita al completar todas las lecciones del nivel (o si superaste el nivel en la prueba). Se aprueba con un 75 %. Cuando fallas una pregunta, el examen te indica qué tema repasar, pero no te da la respuesta; al final verás los temas con un botón para ir a la lección. Puedes repetirlo cuantas veces quieras."
+   ],
+   [
+    "¿Qué pasa con las tareas opcionales?",
+    "No cuentan en la nota. En la escritura debes escribir un mínimo de palabras en inglés; después comparas tu texto con un modelo y una lista de control."
+   ],
+   [
+    "¿Por qué a veces aparecen ejercicios de temas anteriores?",
+    "Es a propósito: repasar de forma mezclada ayuda a que lo aprendido no se olvide. Cuentan como parte de la lección."
+   ],
+   [
+    "¿Cómo funciona el Repaso?",
+    "Las palabras de las lecciones que completas vuelven a aparecer a los 1, 3, 7, 14, 30 y 60 días si las vas recordando. Si fallas una, vuelve al principio."
+   ],
+   [
+    "¿Qué es la meta diaria y la racha?",
+    "La meta son los minutos de estudio activo que quieres hacer cada día (10, 20 o 30). La racha cuenta los días seguidos en que la cumpliste. Las pausas de más de 2 minutos no suman. La lectura en Autoaprendizaje también cuenta."
+   ],
+   [
+    "El audio no suena, ¿qué hago?",
+    "El audio usa la voz en inglés de tu navegador. Revisa el volumen, prueba con una versión actual de Chrome, Edge o Safari y comprueba que tu sistema tenga una voz en inglés instalada."
+   ],
+   [
+    "¿Qué pasa con mi grabación de voz?",
+    "Se graba solo en tu dispositivo para que te compares con el modelo; no se envía a ningún sitio. El navegador te pedirá permiso para usar el micrófono."
+   ],
+   [
+    "¿Puedo hacer las lecciones en papel?",
+    "Sí. Usa «🖨 Imprimir» dentro de una lección, «Imprimir unidad (PDF)» en cada unidad o «Hoja del examen». Elige si quieres explicación y clave de respuestas, y en el cuadro de impresión selecciona «Guardar como PDF» o tu impresora. Los ejercicios de audio y de pronunciación se hacen mejor en la web."
+   ],
+   [
+    "¿Qué hace el «Modo prueba»?",
+    "Desbloquea todas las lecciones y exámenes para que puedas explorar el contenido. No borra tu progreso."
+   ],
+   [
+    "¿Cómo borro mi progreso?",
+    "Con «Borrar progreso» al final de la página principal del curso. Se borra todo en este navegador, salvo tu meta diaria."
+   ],
+   [
+    "¿Por qué las explicaciones están en español?",
+    "Las lecciones se escribieron para hispanohablantes. La interfaz sigue el idioma que elijas, pero las explicaciones, los glosarios y los ejercicios de traducción están en español."
+   ],
+   [
+    "Encontré un error en una lección",
+    "Anota el código de la lección o del ejercicio (por ejemplo en-a2-u03-l02) y avisa a quien administra el sitio. Las traducciones y la pronunciación pueden mejorarse con tu ayuda."
+   ],
+   [
+    "¿Hasta qué nivel llega el curso?",
+    "Hasta B2. Los niveles A1, A2, B1 y B2 ya están disponibles, cada uno con su examen final."
+   ]
+  ],
+  "fr": [
+   [
+    "Ma progression est-elle enregistrée ?",
+    "Oui, dans ce navigateur et sur cet appareil (pas de compte ni de mot de passe). Si vous effacez les données du navigateur ou changez d’appareil, vous repartirez de zéro."
+   ],
+   [
+    "Comment se débloquent les leçons ?",
+    "Chaque leçon s’ouvre quand vous réussissez la précédente, en général avec 70 % de bonnes réponses. Si vous réussissez un niveau au test de niveau, toutes ses leçons s’ouvrent."
+   ],
+   [
+    "Qu’est-ce que le test de niveau ?",
+    "Un test adaptatif qui estime votre niveau de départ. Un niveau est réussi avec au moins 75 % dans son bloc. Vous pouvez le refaire quand vous voulez."
+   ],
+   [
+    "Comment fonctionne l’examen final ?",
+    "Il s’ouvre quand toutes les leçons du niveau sont terminées. Il faut 75 %. En cas d’erreur, l’examen indique le thème à revoir, sans donner la réponse. Vous pouvez le repasser autant de fois que vous voulez."
+   ],
+   [
+    "Et les tâches facultatives ?",
+    "Elles ne comptent pas. À l’écrit, vous devez écrire un minimum de mots en anglais puis comparer votre texte avec un modèle."
+   ],
+   [
+    "Pourquoi des exercices d’anciens thèmes ?",
+    "C’est voulu : la révision mélangée aide à ne pas oublier. Ils font partie de la leçon."
+   ],
+   [
+    "Comment fonctionne la Révision ?",
+    "Les mots des leçons terminées reviennent après 1, 3, 7, 14, 30 et 60 jours. Si vous vous trompez, ils recommencent."
+   ],
+   [
+    "Objectif quotidien et série ?",
+    "L’objectif est le nombre de minutes d’étude active par jour (10, 20 ou 30). La série compte les jours d’affilée où vous l’avez atteint. La lecture compte aussi."
+   ],
+   [
+    "L’audio ne marche pas",
+    "L’audio utilise la voix anglaise du navigateur. Vérifiez le volume, utilisez un Chrome, Edge ou Safari récent et une voix anglaise installée."
+   ],
+   [
+    "Et mon enregistrement vocal ?",
+    "Il reste uniquement sur votre appareil ; il n’est envoyé nulle part."
+   ],
+   [
+    "Puis-je travailler sur papier ?",
+    "Oui : « 🖨 Imprimer » dans une leçon, « Imprimer l’unité (PDF) » ou « Feuille d’examen »."
+   ],
+   [
+    "Que fait le « Mode test » ?",
+    "Il débloque tout pour explorer le contenu. Il n’efface pas votre progression."
+   ],
+   [
+    "Comment effacer ma progression ?",
+    "Avec « Effacer la progression » en bas de la page du cours."
+   ],
+   [
+    "Pourquoi les explications sont-elles en espagnol ?",
+    "Le cours a été écrit pour des hispanophones. Les niveaux A1 et A2 sont déjà traduits (explications, dialogues et glossaire) ; les autres niveaux sont en cours de traduction et s’affichent en espagnol en attendant. Les exercices de traduction restent en espagnol."
+   ],
+   [
+    "J’ai trouvé une erreur",
+    "Notez le code de la leçon (par ex. en-a2-u03-l02) et prévenez l’administrateur du site."
+   ],
+   [
+    "Jusqu’à quel niveau va le cours ?",
+    "Jusqu’à B2. A1, A2, B1 et B2 sont disponibles, chacun avec son examen final."
+   ]
+  ],
+  "de": [
+   [
+    "Wird mein Fortschritt gespeichert?",
+    "Ja, in diesem Browser und auf diesem Gerät (keine Konten). Wenn Sie Browserdaten löschen oder das Gerät wechseln, beginnen Sie von vorn."
+   ],
+   [
+    "Wie werden Lektionen freigeschaltet?",
+    "Jede Lektion öffnet sich, wenn Sie die vorherige bestehen, meist mit 70 %. Wer ein Niveau im Einstufungstest besteht, hat alle Lektionen offen."
+   ],
+   [
+    "Was ist der Einstufungstest?",
+    "Ein adaptiver Test, der Ihr Startniveau schätzt. Ein Niveau gilt ab 75 % als bestanden. Sie können ihn jederzeit wiederholen."
+   ],
+   [
+    "Wie funktioniert die Abschlussprüfung?",
+    "Sie öffnet sich, wenn alle Lektionen erledigt sind. Bestanden ab 75 %. Bei Fehlern zeigt sie das Thema zum Wiederholen, nicht die Lösung. Beliebig oft wiederholbar."
+   ],
+   [
+    "Und die freiwilligen Aufgaben?",
+    "Sie zählen nicht. Beim Schreiben braucht es eine Mindestzahl englischer Wörter; danach vergleichen Sie mit einem Modell."
+   ],
+   [
+    "Warum kommen ältere Themen vor?",
+    "Absichtlich: gemischtes Wiederholen hilft gegen das Vergessen."
+   ],
+   [
+    "Wie funktioniert die Wiederholung?",
+    "Wörter kommen nach 1, 3, 7, 14, 30 und 60 Tagen zurück. Bei einem Fehler beginnt es von vorn."
+   ],
+   [
+    "Tagesziel und Serie?",
+    "Das Ziel sind die aktiven Lernminuten pro Tag (10, 20 oder 30). Die Serie zählt die Tage in Folge. Lesen zählt auch."
+   ],
+   [
+    "Das Audio funktioniert nicht",
+    "Das Audio nutzt die englische Stimme des Browsers. Prüfen Sie Lautstärke, Browser (Chrome, Edge, Safari) und installierte Stimmen."
+   ],
+   [
+    "Was passiert mit meiner Aufnahme?",
+    "Sie bleibt nur auf Ihrem Gerät und wird nirgendwohin gesendet."
+   ],
+   [
+    "Kann ich auf Papier arbeiten?",
+    "Ja: „🖨 Drucken“ in der Lektion, „Einheit drucken (PDF)“ oder „Prüfungsbogen“."
+   ],
+   [
+    "Was macht der „Testmodus“?",
+    "Er schaltet alles frei, ohne Ihren Fortschritt zu löschen."
+   ],
+   [
+    "Wie lösche ich meinen Fortschritt?",
+    "Mit „Fortschritt löschen“ unten auf der Kursseite."
+   ],
+   [
+    "Warum sind die Erklärungen auf Spanisch?",
+    "Der Kurs wurde für Spanischsprachige geschrieben. Die Niveaus A1 und A2 sind bereits übersetzt (Erklärungen, Dialoge und Glossar); die anderen Niveaus werden gerade übersetzt und erscheinen bis dahin auf Spanisch. Übersetzungsübungen bleiben auf Spanisch."
+   ],
+   [
+    "Ich habe einen Fehler gefunden",
+    "Notieren Sie den Code der Lektion (z. B. en-a2-u03-l02) und melden Sie ihn dem Administrator."
+   ],
+   [
+    "Bis zu welchem Niveau geht der Kurs?",
+    "Bis B2. A1, A2, B1 und B2 sind verfügbar, jeweils mit Abschlussprüfung."
+   ]
+  ],
+  "it": [
+   [
+    "I miei progressi vengono salvati?",
+    "Sì, in questo browser e su questo dispositivo (niente account). Se cancelli i dati o cambi dispositivo, ricominci da zero."
+   ],
+   [
+    "Come si sbloccano le lezioni?",
+    "Ogni lezione si apre superando la precedente, di solito con il 70 %. Se superi un livello nel test, tutte le sue lezioni si aprono."
+   ],
+   [
+    "Cos’è il test di livello?",
+    "Un test adattivo che stima il livello da cui partire. Un livello si supera con almeno il 75 %. Puoi ripeterlo quando vuoi."
+   ],
+   [
+    "Come funziona l’esame finale?",
+    "Si apre completando tutte le lezioni del livello. Si supera con il 75 %. Se sbagli, indica l’argomento da ripassare, non la risposta. Puoi ripeterlo quante volte vuoi."
+   ],
+   [
+    "E le attività facoltative?",
+    "Non contano nel voto. Nella scrittura serve un minimo di parole in inglese; poi confronti il testo con un modello."
+   ],
+   [
+    "Perché compaiono argomenti precedenti?",
+    "Di proposito: il ripasso misto aiuta a non dimenticare."
+   ],
+   [
+    "Come funziona il Ripasso?",
+    "Le parole tornano dopo 1, 3, 7, 14, 30 e 60 giorni. Se sbagli, ricominciano."
+   ],
+   [
+    "Obiettivo giornaliero e serie?",
+    "L’obiettivo sono i minuti di studio attivo al giorno (10, 20 o 30). La serie conta i giorni consecutivi. Anche la lettura conta."
+   ],
+   [
+    "L’audio non funziona",
+    "L’audio usa la voce inglese del browser. Controlla volume, browser aggiornato e voce inglese installata."
+   ],
+   [
+    "E la mia registrazione?",
+    "Resta solo sul tuo dispositivo; non viene inviata da nessuna parte."
+   ],
+   [
+    "Posso lavorare su carta?",
+    "Sì: «🖨 Stampa» nella lezione, «Stampa unità (PDF)» o «Foglio d’esame»."
+   ],
+   [
+    "Cosa fa la «Modalità prova»?",
+    "Sblocca tutto senza cancellare i progressi."
+   ],
+   [
+    "Come cancello i progressi?",
+    "Con «Cancella progressi» in fondo alla pagina del corso."
+   ],
+   [
+    "Perché le spiegazioni sono in spagnolo?",
+    "Il corso è stato scritto per ispanofoni. I livelli A1 e A2 sono già tradotti (spiegazioni, dialoghi e glossario); gli altri livelli sono in traduzione e nel frattempo appaiono in spagnolo. Gli esercizi di traduzione restano in spagnolo."
+   ],
+   [
+    "Ho trovato un errore",
+    "Annota il codice della lezione (es. en-a2-u03-l02) e avvisa l’amministratore."
+   ],
+   [
+    "Fino a che livello arriva il corso?",
+    "Fino a B2. A1, A2, B1 e B2 sono disponibili, ciascuno con esame finale."
+   ]
+  ],
+  "pt": [
+   [
+    "Meu progresso é salvo?",
+    "Sim, neste navegador e neste dispositivo (sem contas). Se apagar os dados ou trocar de dispositivo, começará do zero."
+   ],
+   [
+    "Como as lições são desbloqueadas?",
+    "Cada lição abre ao passar na anterior, geralmente com 70 %. Se passar de nível no teste, todas as lições dele abrem."
+   ],
+   [
+    "O que é o teste de nível?",
+    "Um teste adaptativo que estima por onde começar. Um nível é aprovado com pelo menos 75 %. Pode repeti-lo quando quiser."
+   ],
+   [
+    "Como funciona o exame final?",
+    "Abre ao concluir todas as lições do nível. Aprova-se com 75 %. Ao errar, indica o tema a revisar, sem dar a resposta. Pode repetir quantas vezes quiser."
+   ],
+   [
+    "E as tarefas opcionais?",
+    "Não contam na nota. Na escrita é preciso um mínimo de palavras em inglês; depois você compara com um modelo."
+   ],
+   [
+    "Por que aparecem temas anteriores?",
+    "De propósito: a revisão misturada ajuda a não esquecer."
+   ],
+   [
+    "Como funciona a Revisão?",
+    "As palavras voltam após 1, 3, 7, 14, 30 e 60 dias. Se errar, recomeçam."
+   ],
+   [
+    "Meta diária e sequência?",
+    "A meta são os minutos de estudo ativo por dia (10, 20 ou 30). A sequência conta os dias seguidos. A leitura também conta."
+   ],
+   [
+    "O áudio não toca",
+    "O áudio usa a voz em inglês do navegador. Verifique volume, navegador atualizado e voz em inglês instalada."
+   ],
+   [
+    "E minha gravação de voz?",
+    "Fica só no seu dispositivo; não é enviada a lugar nenhum."
+   ],
+   [
+    "Posso fazer em papel?",
+    "Sim: “🖨 Imprimir” na lição, “Imprimir unidade (PDF)” ou “Folha do exame”."
+   ],
+   [
+    "O que faz o “Modo teste”?",
+    "Desbloqueia tudo sem apagar seu progresso."
+   ],
+   [
+    "Como apago meu progresso?",
+    "Com “Apagar progresso” no fim da página do curso."
+   ],
+   [
+    "Por que as explicações estão em espanhol?",
+    "O curso foi escrito para hispanofalantes. Os níveis A1 e A2 já estão traduzidos (explicações, diálogos e glossário); os outros níveis estão sendo traduzidos e aparecem em espanhol até lá. Os exercícios de tradução continuam em espanhol."
+   ],
+   [
+    "Encontrei um erro",
+    "Anote o código da lição (ex.: en-a2-u03-l02) e avise o administrador."
+   ],
+   [
+    "Até que nível vai o curso?",
+    "Até o B2. A1, A2, B1 e B2 estão disponíveis, cada um com exame final."
+   ]
+  ],
+  "ru": [
+   [
+    "Сохраняется ли мой прогресс?",
+    "Да, в этом браузере и на этом устройстве (без аккаунтов). Если очистить данные или сменить устройство, придётся начать заново."
+   ],
+   [
+    "Как открываются уроки?",
+    "Каждый урок открывается после прохождения предыдущего, обычно с 70 %. Если уровень пройден в тесте, все его уроки открыты."
+   ],
+   [
+    "Что такое тест на уровень?",
+    "Адаптивный тест, который определяет, с какого уровня начать. Уровень засчитывается при 75 %. Его можно пройти снова."
+   ],
+   [
+    "Как устроен итоговый экзамен?",
+    "Он открывается после всех уроков уровня. Проходной балл 75 %. При ошибке экзамен называет тему для повторения, но не ответ. Можно пересдавать сколько угодно."
+   ],
+   [
+    "А необязательные задания?",
+    "Они не влияют на оценку. В письме нужно минимальное число английских слов, затем вы сравниваете текст с образцом."
+   ],
+   [
+    "Почему встречаются старые темы?",
+    "Специально: смешанное повторение помогает не забывать."
+   ],
+   [
+    "Как работает повторение?",
+    "Слова возвращаются через 1, 3, 7, 14, 30 и 60 дней. При ошибке — сначала."
+   ],
+   [
+    "Цель на день и серия?",
+    "Цель — минуты активной учёбы в день (10, 20 или 30). Серия — дни подряд с выполненной целью. Чтение тоже засчитывается."
+   ],
+   [
+    "Не работает звук",
+    "Используется английский голос браузера. Проверьте громкость, браузер (Chrome, Edge, Safari) и установленный английский голос."
+   ],
+   [
+    "Что с моей записью голоса?",
+    "Она остаётся только на вашем устройстве и никуда не отправляется."
+   ],
+   [
+    "Можно ли заниматься на бумаге?",
+    "Да: «🖨 Печать» в уроке, «Распечатать раздел (PDF)» или «Лист экзамена»."
+   ],
+   [
+    "Что делает «Тестовый режим»?",
+    "Открывает всё, не удаляя прогресс."
+   ],
+   [
+    "Как удалить прогресс?",
+    "Кнопкой «Удалить прогресс» внизу страницы курса."
+   ],
+   [
+    "Почему объяснения на испанском?",
+    "Курс написан для испаноговорящих. Уровни A1 и A2 уже переведены (объяснения, диалоги и глоссарий); остальные уровни переводятся и пока показываются на испанском. Упражнения на перевод остаются на испанском."
+   ],
+   [
+    "Я нашёл ошибку",
+    "Запишите код урока (например, en-a2-u03-l02) и сообщите администратору."
+   ],
+   [
+    "До какого уровня доходит курс?",
+    "До B2. Доступны A1, A2, B1 и B2, у каждого есть итоговый экзамен."
+   ]
+  ],
+  "zh": [
+   [
+    "我的进度会保存吗？",
+    "会，保存在当前浏览器和设备上（无需账号）。清除浏览器数据或更换设备后需从头开始。"
+   ],
+   [
+    "课程如何解锁？",
+    "通过上一课（通常需答对 70 %）即可打开下一课。在分级测试中通过某级别，该级别全部课程都会开放。"
+   ],
+   [
+    "什么是分级测试？",
+    "一种自适应测试，帮你判断从哪个级别开始。每级答对 75 % 即通过，可随时重测。"
+   ],
+   [
+    "结业考试如何进行？",
+    "完成该级别全部课程后开放，75 % 及格。答错时会提示应复习的主题，但不给答案。可无限次重考。"
+   ],
+   [
+    "选做任务呢？",
+    "不计分。写作需达到最少英文词数，然后与范文对照。"
+   ],
+   [
+    "为什么会出现以前的主题？",
+    "这是有意安排：混合复习有助于记牢。"
+   ],
+   [
+    "复习如何运作？",
+    "完成课程中的单词会在 1、3、7、14、30、60 天后再次出现，答错则重新开始。"
+   ],
+   [
+    "每日目标和连续天数？",
+    "目标是每天主动学习的分钟数（10、20 或 30）。连续天数记录连续达标的天数。阅读也计入。"
+   ],
+   [
+    "没有声音怎么办？",
+    "音频使用浏览器的英语语音。请检查音量、使用较新版的 Chrome、Edge 或 Safari，并确认已安装英语语音。"
+   ],
+   [
+    "我的录音会怎样？",
+    "只保存在你的设备上，不会发送到任何地方。"
+   ],
+   [
+    "可以在纸上学习吗？",
+    "可以：使用课程中的“🖨 打印”、单元的“打印单元（PDF）”或“试卷”。"
+   ],
+   [
+    "“测试模式”有什么用？",
+    "解锁全部内容，不会删除你的进度。"
+   ],
+   [
+    "如何清除进度？",
+    "点击课程主页底部的“清除进度”。"
+   ],
+   [
+    "为什么讲解是西班牙语？",
+    "本课程原为西班牙语使用者编写。A1 和 A2 级别已翻译完成（讲解、对话和词汇表）；其他级别正在翻译中，在此之前显示西班牙语。翻译练习仍为西班牙语。"
+   ],
+   [
+    "我发现了一个错误",
+    "记下课程代码（例如 en-a2-u03-l02）并告知网站管理员。"
+   ],
+   [
+    "课程到哪个级别？",
+    "到 B2。A1、A2、B1、B2 均已上线，每级都有结业考试。"
+   ]
+  ]
+ }
+}

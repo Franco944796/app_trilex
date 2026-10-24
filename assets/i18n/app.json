@@ -1,0 +1,332 @@
+{
+ "navCourse": [
+  "Course",
+  "Curso",
+  "Cours",
+  "Kurs",
+  "Corso",
+  "Curso",
+  "Курс",
+  "课程"
+ ],
+ "navReading": [
+  "Reading",
+  "Lectura",
+  "Lecture",
+  "Lesen",
+  "Lettura",
+  "Leitura",
+  "Чтение",
+  "阅读"
+ ],
+ "navMore": [
+  "Settings",
+  "Ajustes",
+  "Réglages",
+  "Einstellungen",
+  "Impostazioni",
+  "Ajustes",
+  "Настройки",
+  "设置"
+ ],
+ "settingsTitle": [
+  "Settings",
+  "Ajustes",
+  "Réglages",
+  "Einstellungen",
+  "Impostazioni",
+  "Ajustes",
+  "Настройки",
+  "设置"
+ ],
+ "languageH": [
+  "Interface language",
+  "Idioma de la interfaz",
+  "Langue de l’interface",
+  "Sprache der Oberfläche",
+  "Lingua dell’interfaccia",
+  "Idioma da interface",
+  "Язык интерфейса",
+  "界面语言"
+ ],
+ "themeH": [
+  "Theme",
+  "Tema",
+  "Thème",
+  "Design",
+  "Tema",
+  "Tema",
+  "Тема",
+  "主题"
+ ],
+ "themeAuto": [
+  "Automatic",
+  "Automático",
+  "Automatique",
+  "Automatisch",
+  "Automatico",
+  "Automático",
+  "Автоматически",
+  "自动"
+ ],
+ "themeLight": [
+  "Light",
+  "Claro",
+  "Clair",
+  "Hell",
+  "Chiaro",
+  "Claro",
+  "Светлая",
+  "浅色"
+ ],
+ "themeDark": [
+  "Dark",
+  "Oscuro",
+  "Sombre",
+  "Dunkel",
+  "Scuro",
+  "Escuro",
+  "Тёмная",
+  "深色"
+ ],
+ "remindersH": [
+  "Daily reminder",
+  "Recordatorio diario",
+  "Rappel quotidien",
+  "Tägliche Erinnerung",
+  "Promemoria giornaliero",
+  "Lembrete diário",
+  "Ежедневное напоминание",
+  "每日提醒"
+ ],
+ "remindersOn": [
+  "Remind me to practise every day",
+  "Recordarme practicar todos los días",
+  "Me rappeler de pratiquer chaque jour",
+  "Mich täglich ans Üben erinnern",
+  "Ricordami di esercitarmi ogni giorno",
+  "Lembrar-me de praticar todos os dias",
+  "Напоминать заниматься каждый день",
+  "每天提醒我练习"
+ ],
+ "reminderTime": [
+  "Time",
+  "Hora",
+  "Heure",
+  "Uhrzeit",
+  "Ora",
+  "Hora",
+  "Время",
+  "时间"
+ ],
+ "reminderTitle": [
+  "Time for English",
+  "Hora de inglés",
+  "C’est l’heure de l’anglais",
+  "Zeit für Englisch",
+  "È l’ora dell’inglese",
+  "Hora do inglês",
+  "Время английского",
+  "该学英语了"
+ ],
+ "reminderBody": [
+  "Your daily goal is {m} minutes. Keep your streak going!",
+  "Tu meta diaria es de {m} minutos. ¡No pierdas la racha!",
+  "Votre objectif quotidien est de {m} minutes. Gardez votre série !",
+  "Ihr Tagesziel sind {m} Minuten. Halten Sie Ihre Serie!",
+  "Il tuo obiettivo giornaliero è di {m} minuti. Non perdere la serie!",
+  "Sua meta diária é de {m} minutos. Não perca a sequência!",
+  "Ваша цель на день — {m} минут. Не прерывайте серию!",
+  "你的每日目标是 {m} 分钟。保持连续学习！"
+ ],
+ "remindersDenied": [
+  "Notifications are turned off for Trilex. You can allow them in the phone settings.",
+  "Las notificaciones de Trilex están desactivadas. Puedes permitirlas en los ajustes del teléfono.",
+  "Les notifications de Trilex sont désactivées. Vous pouvez les autoriser dans les réglages du téléphone.",
+  "Benachrichtigungen für Trilex sind aus. Sie können sie in den Telefoneinstellungen erlauben.",
+  "Le notifiche di Trilex sono disattivate. Puoi consentirle nelle impostazioni del telefono.",
+  "As notificações do Trilex estão desativadas. Você pode permiti-las nos ajustes do telefone.",
+  "Уведомления Trilex отключены. Разрешите их в настройках телефона.",
+  "Trilex 的通知已关闭，可在手机设置中开启。"
+ ],
+ "updatesH": [
+  "Content",
+  "Contenido",
+  "Contenu",
+  "Inhalte",
+  "Contenuti",
+  "Conteúdo",
+  "Материалы",
+  "内容"
+ ],
+ "updatesCheck": [
+  "Check for new content",
+  "Buscar contenido nuevo",
+  "Chercher du nouveau contenu",
+  "Nach neuen Inhalten suchen",
+  "Cerca nuovi contenuti",
+  "Procurar conteúdo novo",
+  "Проверить обновления",
+  "检查新内容"
+ ],
+ "updatesChecking": [
+  "Checking…",
+  "Buscando…",
+  "Recherche…",
+  "Suche läuft…",
+  "Ricerca in corso…",
+  "Procurando…",
+  "Проверка…",
+  "正在检查……"
+ ],
+ "updatesNone": [
+  "You already have the latest content.",
+  "Ya tienes el contenido más reciente.",
+  "Vous avez déjà le contenu le plus récent.",
+  "Sie haben bereits die neuesten Inhalte.",
+  "Hai già i contenuti più recenti.",
+  "Você já tem o conteúdo mais recente.",
+  "У вас уже самые новые материалы.",
+  "已是最新内容。"
+ ],
+ "updatesDone": [
+  "Content updated ({n} files).",
+  "Contenido actualizado ({n} archivos).",
+  "Contenu mis à jour ({n} fichiers).",
+  "Inhalte aktualisiert ({n} Dateien).",
+  "Contenuti aggiornati ({n} file).",
+  "Conteúdo atualizado ({n} arquivos).",
+  "Материалы обновлены (файлов: {n}).",
+  "内容已更新（{n} 个文件）。"
+ ],
+ "updatesError": [
+  "Could not connect. Try again when you are online.",
+  "No se pudo conectar. Prueba de nuevo cuando tengas internet.",
+  "Connexion impossible. Réessayez une fois en ligne.",
+  "Keine Verbindung. Versuchen Sie es online erneut.",
+  "Impossibile connettersi. Riprova quando sei online.",
+  "Não foi possível conectar. Tente de novo quando estiver online.",
+  "Нет соединения. Попробуйте снова, когда будет интернет.",
+  "无法连接，请联网后重试。"
+ ],
+ "contentVersion": [
+  "Content version",
+  "Versión del contenido",
+  "Version du contenu",
+  "Inhaltsversion",
+  "Versione dei contenuti",
+  "Versão do conteúdo",
+  "Версия материалов",
+  "内容版本"
+ ],
+ "resetH": [
+  "Delete data",
+  "Borrar datos",
+  "Effacer les données",
+  "Daten löschen",
+  "Cancella i dati",
+  "Apagar dados",
+  "Удаление данных",
+  "删除数据"
+ ],
+ "resetReading": [
+  "Delete notes and words",
+  "Borrar notas y palabras",
+  "Effacer notes et mots",
+  "Notizen und Wörter löschen",
+  "Cancella note e parole",
+  "Apagar notas e palavras",
+  "Удалить заметки и слова",
+  "删除笔记和单词"
+ ],
+ "resetReadingConfirm": [
+  "Delete all your reading progress, notes, highlights and saved words on this phone?",
+  "¿Borrar todo tu progreso de lectura, notas, subrayados y palabras guardadas en este teléfono?",
+  "Effacer toute votre progression de lecture, vos notes, surlignages et mots enregistrés sur ce téléphone ?",
+  "Den gesamten Lesefortschritt, Notizen, Markierungen und gespeicherten Wörter auf diesem Telefon löschen?",
+  "Cancellare tutti i progressi di lettura, le note, le evidenziazioni e le parole salvate su questo telefono?",
+  "Apagar todo o seu progresso de leitura, notas, destaques e palavras salvas neste telefone?",
+  "Удалить весь прогресс чтения, заметки, выделения и сохранённые слова на этом телефоне?",
+  "删除此手机上的全部阅读进度、笔记、标注和收藏的单词？"
+ ],
+ "aboutH": [
+  "About",
+  "Acerca de",
+  "À propos",
+  "Über",
+  "Informazioni",
+  "Sobre",
+  "О приложении",
+  "关于"
+ ],
+ "aboutText": [
+  "Trilex: English from A1 to B2, with the same content as the website. Your progress is saved only on this phone. Books are public-domain texts; the IBM Plex fonts are under the SIL Open Font License.",
+  "Trilex: inglés de A1 a B2, con el mismo contenido que la web. Tu progreso se guarda solo en este teléfono. Los libros son textos de dominio público; la tipografía IBM Plex tiene licencia SIL Open Font License.",
+  "Trilex : l’anglais de A1 à B2, avec le même contenu que le site. Votre progression est enregistrée uniquement sur ce téléphone. Les livres sont du domaine public ; les polices IBM Plex sont sous licence SIL Open Font License.",
+  "Trilex: Englisch von A1 bis B2, mit denselben Inhalten wie die Website. Ihr Fortschritt wird nur auf diesem Telefon gespeichert. Die Bücher sind gemeinfrei; die Schriften IBM Plex stehen unter der SIL Open Font License.",
+  "Trilex: inglese da A1 a B2, con gli stessi contenuti del sito. I tuoi progressi restano solo su questo telefono. I libri sono di pubblico dominio; i caratteri IBM Plex sono sotto licenza SIL Open Font License.",
+  "Trilex: inglês do A1 ao B2, com o mesmo conteúdo do site. Seu progresso fica salvo só neste telefone. Os livros são de domínio público; as fontes IBM Plex têm licença SIL Open Font License.",
+  "Trilex: английский от A1 до B2, с тем же содержанием, что и на сайте. Прогресс хранится только на этом телефоне. Книги — общественное достояние; шрифты IBM Plex распространяются по лицензии SIL Open Font License.",
+  "Trilex：A1 到 B2 的英语，内容与网站相同。进度只保存在本机。书籍为公有领域作品；IBM Plex 字体采用 SIL Open Font License 授权。"
+ ],
+ "openWeb": [
+  "Open the website",
+  "Abrir la web",
+  "Ouvrir le site",
+  "Website öffnen",
+  "Apri il sito",
+  "Abrir o site",
+  "Открыть сайт",
+  "打开网站"
+ ],
+ "markWord": [
+  "Highlight the word",
+  "Subrayar la palabra",
+  "Surligner le mot",
+  "Wort markieren",
+  "Evidenzia la parola",
+  "Destacar a palavra",
+  "Выделить слово",
+  "标注这个词"
+ ],
+ "markSentence": [
+  "Highlight the sentence",
+  "Subrayar la oración",
+  "Surligner la phrase",
+  "Satz markieren",
+  "Evidenzia la frase",
+  "Destacar a frase",
+  "Выделить предложение",
+  "标注这句话"
+ ],
+ "markRange": [
+  "Choose a passage…",
+  "Elegir un fragmento…",
+  "Choisir un passage…",
+  "Abschnitt wählen…",
+  "Scegli un passaggio…",
+  "Escolher um trecho…",
+  "Выбрать фрагмент…",
+  "选择一段……"
+ ],
+ "rangeHint": [
+  "Tap the last word of the passage.",
+  "Toca la última palabra del fragmento.",
+  "Touchez le dernier mot du passage.",
+  "Tippen Sie auf das letzte Wort des Abschnitts.",
+  "Tocca l’ultima parola del passaggio.",
+  "Toque na última palavra do trecho.",
+  "Нажмите на последнее слово фрагмента.",
+  "点击这段的最后一个词。"
+ ],
+ "markHintApp": [
+  "To highlight and add a note, tap a word and choose the word, the sentence or a passage.",
+  "Para subrayar y agregar una nota, toca una palabra y elige la palabra, la oración o un fragmento.",
+  "Pour surligner et ajouter une note, touchez un mot et choisissez le mot, la phrase ou un passage.",
+  "Zum Markieren mit Notiz tippen Sie auf ein Wort und wählen das Wort, den Satz oder einen Abschnitt.",
+  "Per evidenziare e aggiungere una nota, tocca una parola e scegli la parola, la frase o un passaggio.",
+  "Para destacar e adicionar uma nota, toque numa palavra e escolha a palavra, a frase ou um trecho.",
+  "Чтобы выделить и добавить заметку, нажмите на слово и выберите слово, предложение или фрагмент.",
+  "要标注并添加笔记，点击一个词，然后选择这个词、这句话或一段。"
+ ]
+}

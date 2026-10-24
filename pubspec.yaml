@@ -1,0 +1,131 @@
+name: trilex
+description: Trilex – curso de inglés de A1 a B2 con lecturas, libros y repaso.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_local_notifications: 17.2.4
+  flutter_timezone: 3.0.1
+  flutter_tts: ^4.2.0
+  http: ^1.2.2
+  path_provider: ^2.1.4
+  shared_preferences: ^2.3.2
+  timezone: ^0.9.4
+  url_launcher: ^6.3.0
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/i18n/
+    # Carpetas del contenido: las escribe tools/app_sync.py (Flutter no incluye subcarpetas solas).
+    # contenido: inicio
+    - assets/content/en/
+    - assets/content/en/a1/
+    - assets/content/en/a1/unit-01/
+    - assets/content/en/a1/unit-02/
+    - assets/content/en/a1/unit-03/
+    - assets/content/en/a1/unit-04/
+    - assets/content/en/a1/unit-05/
+    - assets/content/en/a1/unit-06/
+    - assets/content/en/a1/unit-07/
+    - assets/content/en/a1/unit-08/
+    - assets/content/en/a1/unit-09/
+    - assets/content/en/a1/unit-10/
+    - assets/content/en/a1/unit-11/
+    - assets/content/en/a2/
+    - assets/content/en/a2/unit-01/
+    - assets/content/en/a2/unit-02/
+    - assets/content/en/a2/unit-03/
+    - assets/content/en/a2/unit-04/
+    - assets/content/en/a2/unit-05/
+    - assets/content/en/a2/unit-06/
+    - assets/content/en/a2/unit-07/
+    - assets/content/en/a2/unit-08/
+    - assets/content/en/a2/unit-09/
+    - assets/content/en/a2/unit-10/
+    - assets/content/en/a2/unit-11/
+    - assets/content/en/a2/unit-12/
+    - assets/content/en/a2/unit-13/
+    - assets/content/en/b1/
+    - assets/content/en/b1/unit-01/
+    - assets/content/en/b1/unit-02/
+    - assets/content/en/b1/unit-03/
+    - assets/content/en/b1/unit-04/
+    - assets/content/en/b1/unit-05/
+    - assets/content/en/b1/unit-06/
+    - assets/content/en/b1/unit-07/
+    - assets/content/en/b1/unit-08/
+    - assets/content/en/b1/unit-09/
+    - assets/content/en/b1/unit-10/
+    - assets/content/en/b1/unit-11/
+    - assets/content/en/b1/unit-12/
+    - assets/content/en/b2/
+    - assets/content/en/b2/unit-01/
+    - assets/content/en/b2/unit-02/
+    - assets/content/en/b2/unit-03/
+    - assets/content/en/b2/unit-04/
+    - assets/content/en/b2/unit-05/
+    - assets/content/en/b2/unit-06/
+    - assets/content/en/b2/unit-07/
+    - assets/content/en/b2/unit-08/
+    - assets/content/en/b2/unit-09/
+    - assets/content/en/b2/unit-10/
+    - assets/content/en/b2/unit-11/
+    - assets/content/en/b2/unit-12/
+    - assets/content/en/b2/unit-13/
+    - assets/content/en/b2/unit-14/
+    - assets/content/en/grammar/
+    - assets/content/en/i18n/
+    - assets/content/en/i18n/de/
+    - assets/content/en/i18n/en/
+    - assets/content/en/i18n/fr/
+    - assets/content/en/i18n/it/
+    - assets/content/en/i18n/pt/
+    - assets/content/en/i18n/ru/
+    - assets/content/en/i18n/zh/
+    - assets/content/en/reading/
+    - assets/content/en/reading/books/alice/
+    - assets/content/en/reading/books/happy-prince/
+    - assets/content/en/reading/books/jekyll-hyde/
+    - assets/content/en/reading/books/peter-rabbit/
+    - assets/content/en/reading/books/sherlock-holmes/
+    - assets/content/en/reading/books/velveteen-rabbit/
+    - assets/content/en/reading/books/wizard-of-oz/
+    - assets/content/en/reading/i18n/
+    - assets/content/en/reading/texts/
+    - assets/content/en/vocab/
+    # contenido: fin
+
+  fonts:
+    - family: Plex Sans
+      fonts:
+        - asset: assets/fonts/IBMPlexSans-Regular.ttf
+        - asset: assets/fonts/IBMPlexSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/IBMPlexSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexSans-SemiBold.ttf
+          weight: 600
+    - family: Plex Serif
+      fonts:
+        - asset: assets/fonts/IBMPlexSerif-Regular.ttf
+        - asset: assets/fonts/IBMPlexSerif-Italic.ttf
+          style: italic
+        - asset: assets/fonts/IBMPlexSerif-SemiBold.ttf
+          weight: 600
+    - family: Plex Mono
+      fonts:
+        - asset: assets/fonts/IBMPlexMono-Regular.ttf
+        - asset: assets/fonts/IBMPlexMono-Medium.ttf
+          weight: 500
