@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../core/services.dart';
@@ -198,7 +199,14 @@ class _ReaderScreenState extends State<ReaderScreen> {
 
   String _text(int p) => str(doc!.blocks[p]['text']);
 
+  bool _overlaps(List<Map<String, int>> ranges) => marks.any((m) => jsonList(m['ranges']).any((a) => ranges.any(
+      (b) => a['p'] == b['p'] && (a['s'] as num) < b['e']! && b['s']! < (a['e'] as num))));
+
+  void _alreadyMarked() =>
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('alreadyMarked')), duration: const Duration(seconds: 2)));
+
   void _addMark(List<Map<String, int>> ranges, String color, {bool openNote = false}) {
+    if (_overlaps(ranges)) return _alreadyMarked();
     final quote = [for (final r in ranges) _text(r['p']!).substring(r['s']!, r['e']!)].join(' ').replaceAll(RegExp(r'\s+'), ' ').trim();
     final m = {
       'id': 'm${DateTime.now().millisecondsSinceEpoch.toRadixString(36)}',
@@ -248,6 +256,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
     if (st != null) {
       setState(() => rangeStart = null);
       final ranges = _span(st, (p: p, s: s, e: e));
+      if (_overlaps(ranges)) return _alreadyMarked();
       _pickColor(ranges);
       return;
     }
@@ -346,46 +355,50 @@ class _ReaderScreenState extends State<ReaderScreen> {
               child: Text(tr(saved ? 'savedWord' : 'saveWord')),
             ),
             const Divider(height: 28),
-            Kicker(tr('markW')),
-            const SizedBox(height: 10),
-            Text(tr('markWord'), style: TextStyle(fontSize: 13, color: Tx.muted)),
-            const SizedBox(height: 6),
-            _ColorRow(onPick: (c) {
-              Navigator.pop(ctx);
-              _addMark([{'p': p, 's': s, 'e': e}], c);
-            }),
-            const SizedBox(height: 12),
-            Text(tr('markSentence'), style: TextStyle(fontSize: 13, color: Tx.muted)),
-            const SizedBox(height: 6),
-            _ColorRow(onPick: (c) {
-              Navigator.pop(ctx);
-              _addMark([_sentence(p, s, e)], c);
-            }),
-            const SizedBox(height: 12),
-            Wrap(spacing: 8, runSpacing: 8, children: [
+            if (inMark.isNotEmpty) ...[
+              Text(tr('alreadyMarked'), style: TextStyle(fontSize: 13, color: Tx.muted)),
+              const SizedBox(height: 8),
               OutlinedButton(
                 onPressed: () {
                   Navigator.pop(ctx);
-                  setState(() => rangeStart = (p: p, s: s));
+                  _openNotes(focus: str(inMark.last['id']));
                 },
-                child: Text(tr('markRange')),
+                child: Text('✎ ${tr('seeNote')}'),
               ),
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.pop(ctx);
-                  _addMark([_sentence(p, s, e)], 'yellow', openNote: true);
-                },
-                child: Text('✎ ${tr('noteAdd')}'),
-              ),
-              if (inMark.isNotEmpty)
-                TextButton(
+            ] else ...[
+              Kicker(tr('markW')),
+              const SizedBox(height: 10),
+              Text(tr('markWord'), style: TextStyle(fontSize: 13, color: Tx.muted)),
+              const SizedBox(height: 6),
+              _ColorRow(onPick: (c) {
+                Navigator.pop(ctx);
+                _addMark([{'p': p, 's': s, 'e': e}], c);
+              }),
+              const SizedBox(height: 12),
+              Text(tr('markSentence'), style: TextStyle(fontSize: 13, color: Tx.muted)),
+              const SizedBox(height: 6),
+              _ColorRow(onPick: (c) {
+                Navigator.pop(ctx);
+                _addMark([_sentence(p, s, e)], c);
+              }),
+              const SizedBox(height: 12),
+              Wrap(spacing: 8, runSpacing: 8, children: [
+                OutlinedButton(
                   onPressed: () {
                     Navigator.pop(ctx);
-                    _openNotes(focus: str(inMark.last['id']));
+                    setState(() => rangeStart = (p: p, s: s));
                   },
-                  child: Text(tr('notesH')),
+                  child: Text(tr('markRange')),
                 ),
-            ]),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                    _addMark([_sentence(p, s, e)], 'yellow', openNote: true);
+                  },
+                  child: Text('✎ ${tr('noteAdd')}'),
+                ),
+              ]),
+            ],
           ]),
         ),
       ),
@@ -645,27 +658,40 @@ class _Paragraph extends StatefulWidget {
 
 class _ParagraphState extends State<_Paragraph> {
   final tokens = <({int s, int e, bool word})>[];
-  final taps = <int, TapGestureRecognizer>{};
+  final _textKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-    for (final m in RegExp(r"[A-Za-z’'-]+|[^A-Za-z’'-]+").allMatches(widget.text)) {
-      final word = RegExp(r'[A-Za-z]').hasMatch(m[0]!);
-      tokens.add((s: m.start, e: m.end, word: word));
-      if (word) {
-        final i = tokens.length - 1;
-        taps[i] = TapGestureRecognizer()..onTap = () => _tap(i);
-      }
-    }
+    _tokenize();
   }
 
   @override
-  void dispose() {
-    for (final t in taps.values) {
-      t.dispose();
+  void didUpdateWidget(_Paragraph old) {
+    super.didUpdateWidget(old);
+    if (old.text != widget.text) _tokenize();
+  }
+
+  void _tokenize() {
+    tokens.clear();
+    for (final m in RegExp(r"[A-Za-z’'-]+|[^A-Za-z’'-]+").allMatches(widget.text)) {
+      tokens.add((s: m.start, e: m.end, word: RegExp(r'[A-Za-z]').hasMatch(m[0]!)));
     }
-    super.dispose();
+  }
+
+  // Un solo detector por párrafo: con un reconocedor por palabra, los capítulos largos
+  // (~9000 palabras) dejaban la app muy lenta.
+  void _onTapUp(TapUpDetails d) {
+    final box = _textKey.currentContext?.findRenderObject();
+    if (box is! RenderParagraph) return;
+    final at = box.getPositionForOffset(d.localPosition).offset;
+    final i = tokens.indexWhere((t) => t.word && at >= t.s && at <= t.e);
+    if (i < 0) return;
+    final t = tokens[i];
+    final hit = box
+        .getBoxesForSelection(TextSelection(baseOffset: t.s, extentOffset: t.e))
+        .any((b) => b.toRect().inflate(2).contains(d.localPosition));
+    if (hit) _tap(i);
   }
 
   void _tap(int i) {
@@ -697,29 +723,51 @@ class _ParagraphState extends State<_Paragraph> {
       color: Tx.readerText,
       fontStyle: widget.verse ? FontStyle.italic : FontStyle.normal,
     );
+    // las palabras seguidas con el mismo estilo van en un mismo tramo de texto
     final spans = <InlineSpan>[];
-    for (var i = 0; i < tokens.length; i++) {
-      final t = tokens[i];
+    var runStart = 0;
+    Color? runBg;
+    var runKey = false;
+    void flush(int end) {
+      if (end <= runStart) return;
+      spans.add(TextSpan(
+        text: widget.text.substring(runStart, end),
+        style: runBg == null && !runKey
+            ? null
+            : TextStyle(
+                backgroundColor: runBg,
+                decoration: runKey ? TextDecoration.underline : null,
+                decorationColor: Tx.blue,
+                decorationThickness: 2,
+              ),
+      ));
+      runStart = end;
+    }
+
+    for (final t in tokens) {
       String? color;
       for (final r in ranges) {
         if (t.s < r.$2 && t.e > r.$1) color = r.$3;
       }
-      final key = keys.any((k) => t.s < k.end && t.e > k.start) && t.word;
+      final key = t.word && keys.any((k) => t.s < k.end && t.e > k.start);
       final start = widget.rangeStart != null && widget.rangeStart!.p == widget.index && widget.rangeStart!.s >= t.s && widget.rangeStart!.s < t.e;
-      spans.add(TextSpan(
-        text: widget.text.substring(t.s, t.e),
-        recognizer: taps[i],
-        style: TextStyle(
-          backgroundColor: start ? Tx.rangeStart : (color != null ? Tx.marks[color]?.first : null),
-          decoration: key ? TextDecoration.underline : null,
-          decorationColor: Tx.blue,
-          decorationThickness: 2,
-        ),
-      ));
+      final bg = start ? Tx.rangeStart : (color != null ? Tx.marks[color]?.first : null);
+      if (bg != runBg || key != runKey) {
+        flush(t.s);
+        runBg = bg;
+        runKey = key;
+      }
     }
+    flush(widget.text.length);
     return Padding(
       padding: EdgeInsets.only(left: widget.verse ? 18 : 0),
-      child: Text.rich(TextSpan(style: base, children: spans)),
+      child: RepaintBoundary(
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTapUp: _onTapUp,
+          child: Text.rich(TextSpan(style: base, children: spans), key: _textKey),
+        ),
+      ),
     );
   }
 }
@@ -897,7 +945,7 @@ class _QuizState extends State<_Quiz> {
       for (final q in qs)
         q['type'] == 'tf'
             ? [(tr('trueW'), true), (tr('falseW'), false)]
-            : [for (final o in strList(q['options'])) (o, o)],
+            : [for (final o in seededShuffle(strList(q['options']), str(q['q']))) (o, o)],
     ];
     for (final c in inputs.values) {
       c.clear();

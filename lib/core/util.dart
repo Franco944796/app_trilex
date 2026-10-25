@@ -65,3 +65,16 @@ String sentence(List<String> tokens) => tokens.join(' ').replaceAllMapped(RegExp
 int dayNumber([DateTime? d]) => (d ?? DateTime.now()).millisecondsSinceEpoch ~/ 86400000;
 
 String dayKey(DateTime d) => '${d.year}-${pad2(d.month)}-${pad2(d.day)}';
+
+/// Mismo orden que shuffled() en ingles/lector.js.
+List<T> seededShuffle<T>(List<T> a, String seed) {
+  var s = 0;
+  for (final c in seed.codeUnits) {
+    s = (s * 31 + c) & 0xFFFFFFFF;
+  }
+  final keyed = [
+    for (final x in a) (x, s = (s * 1664525 + 1013904223) & 0xFFFFFFFF),
+  ];
+  keyed.sort((p, q) => p.$2.compareTo(q.$2));
+  return [for (final k in keyed) k.$1];
+}

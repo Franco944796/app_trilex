@@ -123,6 +123,12 @@ if not edit("android/app/build.gradle.kts", gradle_kts):
 edit("ios/Runner/AppDelegate.swift", app_delegate)
 edit("ios/Runner/Info.plist", info_plist)
 edit("ios/Runner.xcodeproj/project.pbxproj", pbxproj)
+# flutter create deja la prueba de su app de ejemplo (MyApp), que no compila con Trilex
+template_test = os.path.join(ROOT, "test", "widget_test.dart")
+if os.path.isfile(template_test) and "MyApp" in open(template_test, encoding="utf-8").read():
+    os.remove(template_test)
+    done.append("test/widget_test.dart (borrado)")
+
 print("Archivos ajustados:" if done else "Nada que cambiar (ya estaba configurado).")
 for p in done:
     print("  -", p)

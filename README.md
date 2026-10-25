@@ -38,13 +38,18 @@ En una terminal, dentro de esta carpeta (`trilex/`):
 2. Si pregunta algo sobre archivos existentes, respondé que no los reemplace.
 3. `configurar_plataformas.py` deja listos el nombre «Trilex», el identificador `com.trilex.app`, los permisos de
    internet y notificaciones, y lo que necesitan los recordatorios en Android e iOS.
-   Se puede ejecutar más de una vez sin problema.
+   Se puede ejecutar más de una vez sin problema. También borra `test/widget_test.dart`, la prueba de la
+   app de ejemplo que deja `flutter create` (busca un `MyApp` que no existe).
 
 ## 3. Probarla
 
 Con el emulador abierto o el teléfono conectado:
 
     flutter run
+
+Pruebas automáticas de la lógica (corrección de respuestas, mezcla de opciones, formato):
+
+    flutter test
 
 Qué conviene probar:
 
