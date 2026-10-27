@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../core/content.dart';
 import '../core/services.dart';
 import '../core/util.dart';
 import '../reading/reader_screen.dart';
@@ -11,8 +13,8 @@ import 'exam_screen.dart';
 import 'lesson_screen.dart';
 import 'placement_screen.dart';
 
-/// Gramática B1–B2 como consulta: todas las unidades abiertas, por tema, para estudiar lo que
-/// haga falta cuando aparece en una lectura.
+/// Gramática B1–B2 como consulta, por tema, para estudiar lo que haga falta cuando aparece en una lectura.
+/// Los niveles se abren según la prueba de nivel y el examen B1 (ver [Course.unlocked]).
 class GrammarScreen extends StatefulWidget {
   const GrammarScreen({super.key});
   @override
@@ -50,6 +52,7 @@ class _GrammarScreenState extends State<GrammarScreen> {
 
   Widget _level(Json lv, bool open) {
     final cefr = str(lv['cefr']);
+    final locked = !course.unlocked(cefr);
     final ls = course.flat.where((l) => l['cefr'] == cefr).toList();
     final nd = ls.where((l) => course.isDone(l['id'])).length;
     final head = InkWell(
@@ -60,7 +63,7 @@ class _GrammarScreenState extends State<GrammarScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(border: Border.all(color: Tx.ink), borderRadius: BorderRadius.circular(8)),
-            child: Text(cefr, style: TextStyle(fontFamily: Tx.mono, fontWeight: FontWeight.w500, color: Tx.ink)),
+            child: Text(locked ? '🔒 $cefr' : cefr, style: TextStyle(fontFamily: Tx.mono, fontWeight: FontWeight.w500, color: Tx.ink)),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -81,11 +84,34 @@ class _GrammarScreenState extends State<GrammarScreen> {
       decoration: BoxDecoration(border: Border(top: BorderSide(color: Tx.ink, width: 2))),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         head,
-        if (open) ...[
+        if (open && locked) ...[
+          _locked(cefr),
+          const SizedBox(height: 16),
+        ] else if (open) ...[
           for (final u in Course.units(lv).where((u) => Course.lessonsOf(u).isNotEmpty)) _unit(u),
           _exam(lv),
           const SizedBox(height: 16),
         ],
+      ]),
+    );
+  }
+
+  Widget _locked(String cefr) {
+    final below = cefr == 'B1';
+    return Panel(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Kicker(tr('lockedW')),
+        const SizedBox(height: 6),
+        Text(tr(below ? 'grLockB1' : 'grLockB2')),
+        const SizedBox(height: 12),
+        Wrap(spacing: 8, runSpacing: 8, children: [
+          if (below)
+            FilledButton(
+              onPressed: () => launchUrl(Uri.parse(Content.siteUrl), mode: LaunchMode.externalApplication),
+              child: Text(tr('openWeb')),
+            ),
+          OutlinedButton(onPressed: () => _go(const PlacementScreen()), child: Text(tr('placementT'))),
+        ]),
       ]),
     );
   }

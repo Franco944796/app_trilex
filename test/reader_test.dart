@@ -77,6 +77,10 @@ void main() {
     expect(find.byIcon(Icons.close), findsOneWidget);
     expect(find.text(tr('copyW')), findsOneWidget);
     expect(find.text(tr('translateW')), findsNothing, reason: 'traducir es solo para frases cortas de un párrafo');
+    final bar = tester.getRect(find.byIcon(Icons.close));
+    expect(bar.bottom, lessThan(second.center.dy), reason: 'la barra flota justo arriba de donde se soltó');
+    expect(bar.top, greaterThan(second.center.dy - 120));
+    expect(find.textContaining('«'), findsNothing, reason: 'sin la frase entre comillas');
 
     await tester.tap(find.byWidgetPredicate((w) => w is InkWell && w.customBorder is CircleBorder).first);
     await tester.pump();
@@ -87,6 +91,30 @@ void main() {
     expect((ranges.first as Map)['s'], 0);
     expect(str((marks.first as Map)['quote']), startsWith('Every day,'));
     expect(find.byIcon(Icons.close), findsNothing);
+  });
+
+  testWidgets('con el mouse alcanza con hacer clic y arrastrar', (tester) async {
+    await _setUp(tester);
+    await _open(tester, const ReaderScreen.text('b1-coffee'));
+    final t = await tester.runAsync(() => content.obj('reading/texts/b1-coffee.json'));
+    final paras = strList(t!['paragraphs']);
+    await _toTop(tester, paras[0]);
+    final scroll = tester.state<ScrollableState>(find.byType(Scrollable).first).position;
+    final before = scroll.pixels;
+
+    final g = await tester.startGesture(tester.getRect(_para(paras[0])).topLeft + const Offset(4, 12), kind: PointerDeviceKind.mouse);
+    await g.moveTo(tester.getRect(_para(paras[0])).center);
+    await g.moveTo(tester.getRect(_para(paras[1])).center);
+    await tester.pump();
+    await g.up();
+    await tester.pump();
+
+    expect(scroll.pixels, before, reason: 'arrastrar con el mouse no desplaza el texto');
+    expect(find.text(tr('copyW')), findsOneWidget);
+    await tester.tap(find.byWidgetPredicate((w) => w is InkWell && w.customBorder is CircleBorder).first);
+    await tester.pump();
+    final ranges = (((progress.notes['t:b1-coffee'] as Map)['marks'] as List).first as Map)['ranges'] as List;
+    expect(ranges.map((r) => (r as Map)['p']), [0, 1]);
   });
 
   testWidgets('con una selección abierta, tocar el texto solo la quita', (tester) async {

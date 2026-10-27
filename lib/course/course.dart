@@ -65,7 +65,16 @@ class Course {
     return null;
   }
 
-  bool free(String cefr) => strList(progress.placement?['passed']).contains(cefr);
+  /// B1 está abierto salvo que la prueba de nivel diera menos de B1. B2 se abre al sacar B2 en la prueba
+  /// o al aprobar el examen B1; sin prueba hecha queda cerrado.
+  bool unlocked(String cefr) {
+    if (progress.testMode) return true;
+    final pl = progress.placement;
+    final passed = strList(pl?['passed']);
+    final b1 = pl == null || passed.contains('B1');
+    if (cefr == 'B1') return b1;
+    return b1 && (passed.contains(cefr) || (progress.exams['B1'] as Map?)?['passed'] == true);
+  }
   bool isDone(String id) => progress.done[id] != null;
   double scoreOf(String id) => ((progress.done[id] as Map?)?['score'] as num?)?.toDouble() ?? 0;
 

@@ -300,14 +300,14 @@
   "标注这句话"
  ],
  "markHintApp": [
-  "To highlight or add a note, press and hold a word, then drag over the words or paragraphs you want.",
-  "Para subrayar o agregar una nota, mantén presionada una palabra y arrastra sobre las palabras o párrafos que quieras.",
-  "Pour surligner ou ajouter une note, maintenez le doigt sur un mot, puis glissez sur les mots ou paragraphes voulus.",
-  "Zum Markieren oder für eine Notiz ein Wort gedrückt halten und über die gewünschten Wörter oder Absätze ziehen.",
-  "Per evidenziare o aggiungere una nota, tieni premuta una parola e trascina sulle parole o sui paragrafi che vuoi.",
-  "Para destacar ou adicionar uma nota, mantenha pressionada uma palavra e arraste sobre as palavras ou parágrafos que quiser.",
-  "Чтобы выделить текст или добавить заметку, нажмите и удерживайте слово, затем проведите по нужным словам или абзацам.",
-  "要标注或添加笔记，请长按一个词，然后拖过想要的词或段落。"
+  "To highlight or add a note, press and hold a word (with a mouse, click it) and drag over the words or paragraphs you want.",
+  "Para subrayar o agregar una nota, mantén presionada una palabra (con el mouse, haz clic) y arrastra sobre las palabras o párrafos que quieras.",
+  "Pour surligner ou ajouter une note, maintenez le doigt sur un mot (avec la souris, cliquez) et glissez sur les mots ou paragraphes voulus.",
+  "Zum Markieren oder für eine Notiz ein Wort gedrückt halten (mit der Maus anklicken) und über die gewünschten Wörter oder Absätze ziehen.",
+  "Per evidenziare o aggiungere una nota, tieni premuta una parola (con il mouse, fai clic) e trascina sulle parole o sui paragrafi che vuoi.",
+  "Para destacar ou adicionar uma nota, mantenha pressionada uma palavra (com o mouse, clique) e arraste sobre as palavras ou parágrafos que quiser.",
+  "Чтобы выделить текст или добавить заметку, нажмите и удерживайте слово (мышью — щёлкните) и проведите по нужным словам или абзацам.",
+  "要标注或添加笔记，请长按一个词（用鼠标则点击），然后拖过想要的词或段落。"
  ],
  "navToday": [
   "Today",
@@ -1368,5 +1368,45 @@
   "Copiado",
   "Скопировано",
   "已复制"
+ ],
+ "chooseLang": [
+  "Choose your language",
+  "Elige tu idioma",
+  "Choisissez votre langue",
+  "Wählen Sie Ihre Sprache",
+  "Scegli la tua lingua",
+  "Escolha o seu idioma",
+  "Выберите язык",
+  "选择你的语言"
+ ],
+ "chooseLangSub": [
+  "Buttons, explanations and translations will be in this language. You can change it later in Settings.",
+  "Los botones, las explicaciones y las traducciones estarán en este idioma. Puedes cambiarlo después en Ajustes.",
+  "Les boutons, les explications et les traductions seront dans cette langue. Vous pourrez la changer plus tard dans Réglages.",
+  "Schaltflächen, Erklärungen und Übersetzungen erscheinen in dieser Sprache. Sie können sie später in den Einstellungen ändern.",
+  "Pulsanti, spiegazioni e traduzioni saranno in questa lingua. Potrai cambiarla più tardi in Impostazioni.",
+  "Os botões, as explicações e as traduções estarão neste idioma. Você pode mudá-lo depois em Ajustes.",
+  "Кнопки, объяснения и переводы будут на этом языке. Позже его можно изменить в настройках.",
+  "按钮、说明和翻译都会使用这种语言。之后可以在设置中更改。"
+ ],
+ "grLockB1": [
+  "Your placement test result was below B1. Start with levels A1–A2 on the website, and when you feel ready, take the test again: with B1 or higher this level opens.",
+  "Tu prueba de nivel dio menos de B1. Te conviene empezar por los niveles A1–A2 en la web y, cuando te sientas listo, repetir la prueba: con B1 o más se abre este nivel.",
+  "Votre test de niveau est inférieur à B1. Commencez par les niveaux A1–A2 sur le site et, quand vous vous sentirez prêt, refaites le test : avec B1 ou plus, ce niveau s’ouvre.",
+  "Ihr Einstufungstest lag unter B1. Beginnen Sie mit den Niveaus A1–A2 auf der Website und machen Sie den Test erneut, wenn Sie bereit sind: Ab B1 wird diese Stufe freigeschaltet.",
+  "Il tuo test di livello è sotto il B1. Inizia dai livelli A1–A2 sul sito e, quando ti senti pronto, ripeti il test: con B1 o più questo livello si sblocca.",
+  "O seu teste de nível ficou abaixo de B1. Comece pelos níveis A1–A2 no site e, quando se sentir pronto, repita o teste: com B1 ou mais este nível é liberado.",
+  "Тест на уровень показал ниже B1. Начните с уровней A1–A2 на сайте, а когда будете готовы, пройдите тест снова: с B1 и выше этот уровень откроется.",
+  "你的分级测试低于 B1。建议先在网站上学习 A1–A2，准备好后再做一次测试：达到 B1 或以上即可解锁本级别。"
+ ],
+ "grLockB2": [
+  "B2 opens when you pass the B1 exam (at the end of level B1) or get B2 in the placement test.",
+  "B2 se desbloquea al aprobar el examen B1 (al final del nivel B1) o al sacar B2 en la prueba de nivel.",
+  "Le B2 se débloque en réussissant l’examen B1 (à la fin du niveau B1) ou en obtenant B2 au test de niveau.",
+  "B2 wird freigeschaltet, wenn Sie die B1-Prüfung (am Ende von B1) bestehen oder im Einstufungstest B2 erreichen.",
+  "Il B2 si sblocca superando l’esame B1 (alla fine del livello B1) o ottenendo B2 nel test di livello.",
+  "O B2 é liberado ao passar no exame B1 (no fim do nível B1) ou ao tirar B2 no teste de nível.",
+  "B2 откроется, когда вы сдадите экзамен B1 (в конце уровня B1) или получите B2 в тесте на уровень.",
+  "通过 B1 考试（在 B1 级别末尾）或在分级测试中达到 B2，即可解锁 B2。"
  ]
 }

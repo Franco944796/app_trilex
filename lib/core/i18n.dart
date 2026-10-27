@@ -60,10 +60,15 @@ class I18n extends ChangeNotifier {
 
   void refresh() => notifyListeners();
 
+  /// Si ya se eligió un idioma (si no, al abrir la app por primera vez se pregunta).
+  bool get chosen => langs.contains(_prefs.getString('selectedLanguage'));
+
   Future<void> setLang(String l) async {
-    if (!langs.contains(l) || l == lang) return;
-    lang = l;
+    if (!langs.contains(l)) return;
+    // se guarda aunque no cambie: el idioma detectado del sistema también cuenta como elegido
     await _prefs.setString('selectedLanguage', l);
+    if (l == lang) return;
+    lang = l;
     notifyListeners();
   }
 }

@@ -9,8 +9,9 @@ mismo contenido que la web. Los principiantes (A1–A2) usan la web.
   notas, escuchar y repetir (con grabación), completar huecos, resumen guiado, lectura cronometrada y volver a
   contarlo.
 - **Palabras:** repaso espaciado escrito de las palabras guardadas y del vocabulario de las lecciones.
-- **Gramática:** las unidades B1–B2 abiertas como consulta, con lectura recomendada, dictogloss y exámenes de
-  autoevaluación; prueba de nivel B1/B2.
+- **Gramática:** las unidades B1–B2 como consulta, con lectura recomendada, dictogloss y exámenes de
+  autoevaluación; prueba de nivel B1/B2. B2 se desbloquea al sacar B2 en la prueba o al aprobar el examen B1;
+  si la prueba da menos de B1, los dos niveles quedan cerrados y se recomienda la web.
 - **Recordatorio diario:** un aviso para cumplir la meta de estudio.
 - **Idiomas:** la interfaz está en los 8 idiomas de la web.
 - **Tema claro y oscuro:** automático (sigue al teléfono), claro u oscuro, igual que en la web.
@@ -70,9 +71,10 @@ Qué conviene probar:
 - **Modo prueba:** al final del mapa hay un interruptor que abre todas las lecciones y los exámenes.
 - **Lectura:** abrir un texto y tocar una palabra para ver su traducción y su definición. Desde esa misma
   ventana se puede subrayar la palabra o la oración con un color, o escribir una nota.
-  Para subrayar varias palabras o párrafos: mantener presionada una palabra y arrastrar (cerca del borde, el
-  texto se desplaza solo); al soltar aparece una barra con los colores, «Nota», «Traducir» y «Copiar».
+  Para subrayar varias palabras o párrafos: mantener presionada una palabra y arrastrar (con mouse, hacer clic
+  y arrastrar; cerca del borde, el texto se desplaza solo); al soltar aparece, junto al dedo o al mouse, una barra con los colores, «Nota», «Traducir» y «Copiar».
   El botón «Notas» de arriba muestra las burbujas.
+- **Primer inicio:** la app pregunta el idioma de la interfaz; después se cambia en Ajustes.
 - **Ajustes:** cambiar el idioma (toda la app cambia, incluido el significado de las palabras), elegir el
   tema (Automático / Claro / Oscuro), activar el recordatorio y buscar actualizaciones del contenido.
 

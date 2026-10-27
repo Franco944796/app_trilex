@@ -148,7 +148,8 @@ class _TodayScreenState extends State<TodayScreen> {
     final learned = progress.words.whereType<Map>().where((w) => ((w['box'] as num?) ?? 0) >= 4).length +
         progress.srs.entries.where((e) => known.contains(e.key) && (((e.value as Map)['box'] as num?) ?? 0) >= 4).length;
     final lastRead = progress.reading['lastRead'] as Map?;
-    final related = lastRead == null ? null : course.unitForReading(str(lastRead['href']).replaceFirst('#/texto/', ''));
+    var related = lastRead == null ? null : course.unitForReading(str(lastRead['href']).replaceFirst('#/texto/', ''));
+    if (related != null && !course.unlocked(str(related['cefr']))) related = null;
     return PageList(children: [
       PageHeader(kicker: tr('todayK', {'l': myLevel}), title: tr('todayTitle'), lede: tr('todayLede')),
       _stats(),

@@ -7,7 +7,9 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
 ## Decisiones tomadas
 - Reglas de trabajo: `../web-idiomas/reglas-de-trabajo.md`.
 - Se sacan A1–A2 de la app. La prueba de nivel solo distingue B1/B2; si da menos, recomienda la web.
-- Curso = consulta: unidades B1–B2 abiertas, por tema; exámenes como autoevaluación.
+- Curso = consulta, por tema; exámenes como autoevaluación. Niveles (2026-10-27): B1 abierto salvo que la
+  prueba de nivel dé menos de B1 (entonces B1 y B2 cerrados y se recomienda la web); B2 se abre al sacar B2
+  en la prueba o al aprobar el examen B1; sin prueba hecha, B2 cerrado.
 - Pestaña «Hoy» como inicio: lectura + repaso de palabras + una actividad para producir, según la meta.
 - Lector con las actividades de la web: escuchar y repetir, completar huecos, resumen guiado,
   lectura cronometrada, volver a contarlo, repaso espaciado escrito de las palabras guardadas.
@@ -73,6 +75,19 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
   - JSON grandes decodificados en otro hilo (`compute`) y diccionario precargado al iniciar.
   - Medido en pruebas (modo depuración, capítulo de ~10 000 palabras): carga 1030 → 550 ms, primer cuadro
     700 → 270 ms (46 ms al abrir otro capítulo), desplazamiento 23 → 11 ms por cuadro, redibujado 300 → 50 ms.
+
+- 2026-10-27 Lector: con mouse (computadora) se selecciona haciendo clic y arrastrando, como en la web; con el
+  dedo sigue siendo mantener presionado y arrastrar. Prueba nueva en `test/reader_test.dart` (19 en total).
+
+- 2026-10-27 Al abrir la app por primera vez se elige el idioma de la interfaz (`lib/welcome_screen.dart`);
+  se aplica al tocarlo y después se cambia en Ajustes. Si ya había un idioma guardado, no se pregunta.
+  3 pruebas nuevas en `test/welcome_test.dart` (22 en total) y captura revisada.
+
+- 2026-10-27 Gramática: candado por nivel (`Course.unlocked`), aviso con cómo desbloquear, y la lección
+  siguiente y la sugerencia de «Hoy» respetan el bloqueo. 6 pruebas nuevas en `test/levels_test.dart` (28 en total).
+
+- 2026-10-27 Lector: la barra de colores de la selección flota junto a donde se suelta (arriba si hay lugar,
+  si no abajo) y acompaña al texto al desplazar; ya no muestra la frase entre comillas.
 
 ## En curso
 - Nada.

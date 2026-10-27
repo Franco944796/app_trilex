@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -83,6 +84,9 @@ class _ReaderScreenState extends State<ReaderScreen> {
   final sel = ValueNotifier<_Sel>((ranges: const <Map<String, int>>[], done: true));
   ({int p, int s, int e})? anchor;
   Offset? dragAt;
+
+  /// Dónde se soltó la selección, en coordenadas del texto (no de la pantalla): la barra lo acompaña al desplazar.
+  Offset barAt = Offset.zero;
   Timer? edgeTimer;
   bool keywords = false;
   RegExp? glossRe;
@@ -444,8 +448,11 @@ class _ReaderScreenState extends State<ReaderScreen> {
   void _selEnd() {
     edgeTimer?.cancel();
     edgeTimer = null;
+    final at = dragAt;
     dragAt = null;
     if (anchor == null) return;
+    final view = viewKey.currentContext?.findRenderObject() as RenderBox?;
+    if (at != null && view != null && scroll.hasClients) barAt = view.globalToLocal(at) + Offset(0, scroll.offset);
     anchor = null;
     sel.value = (ranges: sel.value.ranges, done: true);
   }
@@ -511,6 +518,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
     });
   }
 
+  /// Barra flotante de la selección, junto al punto donde se soltó (arriba si hay lugar; si no, abajo).
   Widget _selBar(_Ranges ranges) {
     final quote = _quote(ranges);
     final r = ranges.first;
@@ -520,64 +528,60 @@ class _ReaderScreenState extends State<ReaderScreen> {
       f();
     }
 
-    return SafeArea(
-      child: Material(
-        color: Tx.surface,
-        shape: Border(top: BorderSide(color: Tx.line)),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 2, 4, 6),
-          child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(children: [
-              Expanded(
-                child: Text('«$quote»',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontFamily: Tx.serif, fontStyle: FontStyle.italic, fontSize: 13.5, color: Tx.muted)),
-              ),
-              IconButton(tooltip: tr('close'), onPressed: _selClear, icon: const Icon(Icons.close, size: 20)),
-            ]),
-            Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
-              for (final c in Tx.marks.keys)
-                InkWell(
-                  customBorder: const CircleBorder(),
-                  onTap: () => act(() => _addMark(ranges, c)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(6),
-                    child: Container(
-                      width: 28,
-                      height: 28,
-                      decoration: BoxDecoration(
-                        color: Tx.marks[c]![0],
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Tx.marks[c]![1], width: 1.5),
-                      ),
-                    ),
+    final bar = Material(
+      color: Tx.surface,
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: BorderSide(color: Tx.line)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+        child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
+          for (final c in Tx.marks.keys)
+            InkWell(
+              customBorder: const CircleBorder(),
+              onTap: () => act(() => _addMark(ranges, c)),
+              child: Padding(
+                padding: const EdgeInsets.all(6),
+                child: Container(
+                  width: 28,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    color: Tx.marks[c]![0],
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Tx.marks[c]![1], width: 1.5),
                   ),
                 ),
-              const SizedBox(width: 6),
-              TextButton(
-                style: small,
-                onPressed: () => act(() => _addMark(ranges, 'yellow', openNote: true)),
-                child: Text('✎ ${tr('noteAdd')}'),
               ),
-              if (ranges.length == 1 && quote.split(' ').length <= 4)
-                TextButton(
-                  style: small,
-                  onPressed: () => act(() => _wordSheet(r['p']!, r['s']!, r['e']!, quote, _quote([_sentence(r['p']!, r['s']!, r['e']!)]))),
-                  child: Text(tr('translateW')),
-                ),
-              TextButton(
-                style: small,
-                onPressed: () => act(() {
-                  Clipboard.setData(ClipboardData(text: quote));
-                  _snack('copiedW');
-                }),
-                child: Text(tr('copyW')),
-              ),
-            ]),
-          ]),
-        ),
+            ),
+          TextButton(
+            style: small,
+            onPressed: () => act(() => _addMark(ranges, 'yellow', openNote: true)),
+            child: Text('✎ ${tr('noteAdd')}'),
+          ),
+          if (ranges.length == 1 && quote.split(' ').length <= 4)
+            TextButton(
+              style: small,
+              onPressed: () => act(() => _wordSheet(r['p']!, r['s']!, r['e']!, quote, _quote([_sentence(r['p']!, r['s']!, r['e']!)]))),
+              child: Text(tr('translateW')),
+            ),
+          TextButton(
+            style: small,
+            onPressed: () => act(() {
+              Clipboard.setData(ClipboardData(text: quote));
+              _snack('copiedW');
+            }),
+            child: Text(tr('copyW')),
+          ),
+          IconButton(tooltip: tr('close'), onPressed: _selClear, icon: const Icon(Icons.close, size: 20)),
+        ]),
       ),
+    );
+    return AnimatedBuilder(
+      animation: scroll,
+      builder: (context, child) => CustomSingleChildLayout(
+        delegate: _BarLayout(barAt - Offset(0, scroll.hasClients ? scroll.offset : 0)),
+        child: child,
+      ),
+      child: bar,
     );
   }
 
@@ -798,13 +802,17 @@ class _ReaderScreenState extends State<ReaderScreen> {
             ),
         ],
       ),
-      body: d == null ? (error != null ? LoadError(error!) : const Center(child: CircularProgressIndicator())) : _body(d),
-      bottomNavigationBar: tmStart != null
-          ? _TimerBar(start: tmStart!, onStop: _stopTimed)
-          : ValueListenableBuilder<_Sel>(
-              valueListenable: sel,
-              builder: (context, s, child) => s.done && s.ranges.isNotEmpty ? _selBar(s.ranges) : const SizedBox.shrink(),
-            ),
+      body: d == null
+          ? (error != null ? LoadError(error!) : const Center(child: CircularProgressIndicator()))
+          : Stack(children: [
+              _body(d),
+              ValueListenableBuilder<_Sel>(
+                valueListenable: sel,
+                builder: (context, s, child) =>
+                    s.done && s.ranges.isNotEmpty ? Positioned.fill(child: _selBar(s.ranges)) : const SizedBox.shrink(),
+              ),
+            ]),
+      bottomNavigationBar: tmStart != null ? _TimerBar(start: tmStart!, onStop: _stopTimed) : null,
     );
   }
 
@@ -1004,6 +1012,26 @@ class _KeepState extends State<_Keep> with AutomaticKeepAliveClientMixin {
     super.build(context);
     return widget.child;
   }
+}
+
+class _BarLayout extends SingleChildLayoutDelegate {
+  _BarLayout(this.at);
+  final Offset at;
+
+  @override
+  BoxConstraints getConstraintsForChild(BoxConstraints c) => BoxConstraints.loose(Size(c.maxWidth - 16, c.maxHeight));
+
+  @override
+  Offset getPositionForChild(Size size, Size child) {
+    const gap = 28.0;
+    final x = (at.dx - child.width / 2).clamp(8.0, size.width - child.width - 8);
+    final above = at.dy - gap - child.height;
+    // sin clamp vertical: si la selección sale de la pantalla al desplazar, la barra se va con ella
+    return Offset(x, above >= 8 ? above : at.dy + gap);
+  }
+
+  @override
+  bool shouldRelayout(_BarLayout old) => old.at != at;
 }
 
 /// Barra del cronómetro: se redibuja sola cada segundo, sin reconstruir el lector.
@@ -1238,19 +1266,39 @@ class _ParagraphState extends State<_Paragraph> with AutomaticKeepAliveClientMix
     return Padding(
       padding: EdgeInsets.only(left: widget.verse ? 18 : 0),
       child: RepaintBoundary(
-        child: GestureDetector(
+        // con el mouse alcanza con hacer clic y arrastrar, como en la web: el mouse no desplaza la lista,
+        // así que el arrastre no compite con el desplazamiento
+        child: RawGestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTapUp: _onTapUp,
-          onLongPressStart: (d) {
-            _press(true);
-            widget.onPress(d.globalPosition);
+          gestures: {
+            PanGestureRecognizer: GestureRecognizerFactoryWithHandlers<PanGestureRecognizer>(
+              () => PanGestureRecognizer(supportedDevices: {PointerDeviceKind.mouse}),
+              (r) => r
+                ..onStart = (d) {
+                  _press(true);
+                  widget.onPress(d.globalPosition);
+                }
+                ..onUpdate = ((d) => widget.onDrag(d.globalPosition))
+                ..onEnd = (_) {
+                  _press(false);
+                  widget.onRelease();
+                },
+            ),
           },
-          onLongPressMoveUpdate: (d) => widget.onDrag(d.globalPosition),
-          onLongPressEnd: (_) {
-            _press(false);
-            widget.onRelease();
-          },
-          child: Text.rich(TextSpan(style: base, children: spans), key: _textKey),
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTapUp: _onTapUp,
+            onLongPressStart: (d) {
+              _press(true);
+              widget.onPress(d.globalPosition);
+            },
+            onLongPressMoveUpdate: (d) => widget.onDrag(d.globalPosition),
+            onLongPressEnd: (_) {
+              _press(false);
+              widget.onRelease();
+            },
+            child: Text.rich(TextSpan(style: base, children: spans), key: _textKey),
+          ),
         ),
       ),
     );

@@ -9,6 +9,7 @@ import 'reading/reading_home.dart';
 import 'settings_screen.dart';
 import 'today/today_screen.dart';
 import 'ui/theme.dart';
+import 'welcome_screen.dart';
 import 'words/words_screen.dart';
 
 Future<void> main() async {
@@ -43,6 +44,8 @@ class TrilexApp extends StatefulWidget {
 }
 
 class _TrilexAppState extends State<TrilexApp> with WidgetsBindingObserver {
+  bool welcome = !i18n.chosen;
+
   @override
   void initState() {
     super.initState();
@@ -103,7 +106,7 @@ class _TrilexAppState extends State<TrilexApp> with WidgetsBindingObserver {
         onPointerDown: (_) => progress.tick(),
         child: child ?? const SizedBox.shrink(),
       ),
-      home: const Shell(),
+      home: welcome ? WelcomeScreen(onDone: () => setState(() => welcome = false)) : const Shell(),
     );
   }
 }

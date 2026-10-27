@@ -59,7 +59,7 @@ class _LessonScreenState extends State<LessonScreen> {
     final pass = ((L['checkpoint'] as Map?)?['pass_score'] as num?)?.toDouble() ?? 0.7;
     final ok = p >= pass;
     final k = course.flat.indexWhere((x) => x['id'] == ent['id']);
-    final nx = k + 1 < course.flat.length ? course.flat[k + 1] : null;
+    final nx = k + 1 < course.flat.length && course.unlocked(str(course.flat[k + 1]['cefr'])) ? course.flat[k + 1] : null;
     final u = course.unitOf(ent);
     final lv = course.levelOf(ent['cefr']);
     final ul = Course.lessonsOf(u);
