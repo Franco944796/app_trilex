@@ -93,6 +93,25 @@ class Progress extends ChangeNotifier {
     return reading['words'] = <dynamic>[];
   }
 
+  /// Plan de «Hoy»: qué partes se hicieron cada día ({día: ['read', 'review', 'produce']}).
+  /// Solo se guardan los últimos 60 días.
+  Json get daily => _map(reading, 'daily');
+
+  bool doneToday(String part) => strList(daily[dayKey(DateTime.now())]).contains(part);
+
+  void markToday(String part) {
+    final k = dayKey(DateTime.now());
+    final l = strList(daily[k]);
+    if (l.contains(part)) return;
+    daily[k] = [...l, part];
+    final keep = (daily.keys.toList()..sort()).reversed.take(60).toSet();
+    daily.removeWhere((key, _) => !keep.contains(key));
+    save();
+  }
+
+  /// Listas «puedo…» de cada nivel: {B1: [índices marcados]}.
+  Json get canDo => _map(reading, 'cando');
+
   double get textSize => (reading['size'] as num?)?.toDouble() ?? 1.0;
   double get rate => (reading['rate'] as num?)?.toDouble() ?? 0.9;
 

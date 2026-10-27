@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
+  audioplayers: ^6.8.1
   flutter:
     sdk: flutter
   flutter_local_notifications: 17.2.4
@@ -14,6 +15,7 @@ dependencies:
   flutter_tts: ^4.2.0
   http: ^1.2.2
   path_provider: ^2.1.4
+  record: ^7.1.2
   shared_preferences: ^2.3.2
   timezone: ^0.9.4
   url_launcher: ^6.3.0
@@ -28,7 +30,7 @@ flutter:
 
   assets:
     - assets/i18n/
-    # Carpetas del contenido: las escribe tools/app_sync.py (Flutter no incluye subcarpetas solas).
+    # Carpetas del contenido: las escribe tool/contenido.py (Flutter no incluye subcarpetas solas).
     # contenido: inicio
     - assets/content/en/
     - assets/content/en/a1/
@@ -96,10 +98,14 @@ flutter:
     - assets/content/en/i18n/zh/
     - assets/content/en/reading/
     - assets/content/en/reading/books/alice/
+    - assets/content/en/reading/books/call-of-the-wild/
+    - assets/content/en/reading/books/christmas-carol/
+    - assets/content/en/reading/books/dorian-gray/
     - assets/content/en/reading/books/happy-prince/
     - assets/content/en/reading/books/jekyll-hyde/
     - assets/content/en/reading/books/peter-rabbit/
     - assets/content/en/reading/books/sherlock-holmes/
+    - assets/content/en/reading/books/time-machine/
     - assets/content/en/reading/books/velveteen-rabbit/
     - assets/content/en/reading/books/wizard-of-oz/
     - assets/content/en/reading/i18n/

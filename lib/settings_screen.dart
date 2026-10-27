@@ -97,7 +97,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       PageHeader(kicker: 'Trilex', title: tr('settingsTitle')),
       _section(tr('languageH'), [
         DropdownButtonFormField<String>(
-          value: i18n.lang,
+          initialValue: i18n.lang,
           items: [for (final l in I18n.names.entries) DropdownMenuItem(value: l.key, child: Text(l.value))],
           onChanged: (v) async {
             if (v == null) return;

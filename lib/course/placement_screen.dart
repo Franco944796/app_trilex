@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../core/content.dart';
 import '../core/services.dart';
 import '../core/util.dart';
 import '../ui/theme.dart';
@@ -7,8 +9,9 @@ import '../ui/widgets.dart';
 import 'course.dart';
 import 'exercise_view.dart';
 
-/// Prueba de nivel adaptativa: bloques A1 → B2, una pregunta por pantalla, sin corrección
-/// visible; se detiene en el primer bloque que no se supera.
+/// Prueba de nivel de la app: solo los bloques B1 y B2 (la app es para nivel intermedio), una
+/// pregunta por pantalla, sin corrección visible; se detiene en el primer bloque no superado.
+/// Si no se supera B1, se recomienda la web, que tiene A1–A2.
 class PlacementScreen extends StatefulWidget {
   const PlacementScreen({super.key});
   @override
@@ -30,7 +33,7 @@ class _PlacementScreenState extends State<PlacementScreen> {
     });
   }
 
-  List<Json> get blocks => jsonList(test!['blocks']);
+  List<Json> get blocks => jsonList(test!['blocks']).where((b) => Course.appLevels.contains(b['level'])).toList();
   double get passRatio => ((test!['algorithm'] as Map?)?['pass_ratio'] as num?)?.toDouble() ?? 0.75;
 
   void _answer(double v) {
@@ -56,7 +59,7 @@ class _PlacementScreenState extends State<PlacementScreen> {
   void _end() {
     final done = blocks.where((b) => res.containsKey(b['level'])).toList();
     final passed = done.where((b) => res[b['level']]!.ok / res[b['level']]!.n >= passRatio).toList();
-    final lv = passed.isEmpty ? 'A1' : str(passed.last['level']);
+    final lv = passed.isEmpty ? 'A2' : str(passed.last['level']);
     progress.course['placement'] = {
       'level': lv,
       'passed': [for (final b in passed) b['level']],
@@ -107,7 +110,7 @@ class _PlacementScreenState extends State<PlacementScreen> {
   Widget _result() {
     final done = blocks.where((b) => res.containsKey(b['level'])).toList();
     final passed = done.where((b) => res[b['level']]!.ok / res[b['level']]!.n >= passRatio).toList();
-    final lv = passed.isEmpty ? 'A1' : str(passed.last['level']);
+    final lv = passed.isEmpty ? 'A1–A2' : str(passed.last['level']);
     Json? failB;
     for (final b in done) {
       if (!passed.contains(b)) {
@@ -117,7 +120,7 @@ class _PlacementScreenState extends State<PlacementScreen> {
     }
     final need = (passRatio * 100).round();
     final msg = passed.isEmpty
-        ? tr('plStartA1', {'p': need})
+        ? tr('plBelowB1', {'p': need})
         : failB == null
             ? tr('plTop', {'l': lv})
             : tr('plUpTo', {
@@ -126,12 +129,11 @@ class _PlacementScreenState extends State<PlacementScreen> {
                 'p': _pc(res[failB['level']]!),
                 'near': _pc(res[failB['level']]!) >= 50 ? tr('plNear') : '',
               });
-    final all = course.ready.every((l) => passed.any((b) => b['level'] == l['cefr']));
     return PageList(children: [
       PageHeader(
         kicker: tr('placementT'),
         title: lv,
-        lede: '${passed.isEmpty ? tr('plStartPoint') : tr('plYourLevel', {'l': lv})} $msg',
+        lede: passed.isEmpty ? msg : '${tr('plYourLevel', {'l': lv})} $msg',
       ),
       CardBox(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -146,14 +148,19 @@ class _PlacementScreenState extends State<PlacementScreen> {
             ),
           const SizedBox(height: 8),
           Text(
-            '${tr('plRule', {'p': need})} ${passed.isEmpty ? '' : (all ? tr('plAllDone', {'l': course.ready.map((l) => l['cefr']).join(', ')}) : tr('plOpenNext'))}',
+            tr('plRule', {'p': need}),
             style: TextStyle(fontSize: 13, color: Tx.muted),
           ),
         ]),
       ),
       const SizedBox(height: 16),
       Wrap(spacing: 8, children: [
-        FilledButton(onPressed: () => Navigator.of(context).pop(), child: Text(tr('goCourse'))),
+        if (passed.isEmpty)
+          FilledButton(
+            onPressed: () => launchUrl(Uri.parse(Content.siteUrl), mode: LaunchMode.externalApplication),
+            child: Text(tr('openWeb')),
+          ),
+        FilledButton(onPressed: () => Navigator.of(context).pop(), child: Text(tr('back'))),
         OutlinedButton(
           onPressed: () => setState(() {
             res.clear();

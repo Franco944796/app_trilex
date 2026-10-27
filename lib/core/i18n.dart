@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'dart:ui' show PlatformDispatcher;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// assets/i18n/ui.json lo genera tools/app_sync.py desde la web: no editarlo a mano.
+/// assets/i18n/ui.json son los textos de la web (antes los copiaba tools/app_sync.py; los temas nuevos los
+/// agrega tool/contenido/generar.py). Los textos propios de la app van en assets/i18n/app.json.
 /// Cada clave: [en, es, fr, de, it, pt, ru, zh].
 class I18n extends ChangeNotifier {
   static const langs = ['en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'zh'];

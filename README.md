@@ -1,9 +1,16 @@
 # Trilex (app para Android e iOS)
 
-App en Flutter del curso de inglés de Trilex, con el mismo diseño y el mismo contenido que la web.
+App en Flutter de Trilex para **autoaprendizaje de inglés en nivel intermedio (B1–B2)**, con el mismo diseño y el
+mismo contenido que la web. Los principiantes (A1–A2) usan la web.
 
-- **Curso:** mapa por niveles, lecciones en una página, prueba de nivel, repaso y exámenes finales.
-- **Lectura:** textos por nivel y libros completos, con la traducción al tocar una palabra, subrayados con notas y PDF de los libros.
+- **Hoy:** plan diario de leer → repasar palabras → producir (dictogloss o volver a contarlo), progreso de lectura
+  y autoevaluación «puedo…» de B1 y B2.
+- **Leer:** lecturas B1–B2 y libros completos, con traducción al tocar una palabra o una frase corta, subrayados con
+  notas, escuchar y repetir (con grabación), completar huecos, resumen guiado, lectura cronometrada y volver a
+  contarlo.
+- **Palabras:** repaso espaciado escrito de las palabras guardadas y del vocabulario de las lecciones.
+- **Gramática:** las unidades B1–B2 abiertas como consulta, con lectura recomendada, dictogloss y exámenes de
+  autoevaluación; prueba de nivel B1/B2.
 - **Recordatorio diario:** un aviso para cumplir la meta de estudio.
 - **Idiomas:** la interfaz está en los 8 idiomas de la web.
 - **Tema claro y oscuro:** automático (sigue al teléfono), claro u oscuro, igual que en la web.
@@ -47,6 +54,11 @@ Con el emulador abierto o el teléfono conectado:
 
     flutter run
 
+`flutter run` arranca en modo de depuración, que es bastante más lento (sobre todo la primera vez que se abre
+cada pantalla). Para ver la velocidad real:
+
+    flutter run --profile
+
 Pruebas automáticas de la lógica (corrección de respuestas, mezcla de opciones, formato):
 
     flutter test
@@ -58,6 +70,8 @@ Qué conviene probar:
 - **Modo prueba:** al final del mapa hay un interruptor que abre todas las lecciones y los exámenes.
 - **Lectura:** abrir un texto y tocar una palabra para ver su traducción y su definición. Desde esa misma
   ventana se puede subrayar la palabra o la oración con un color, o escribir una nota.
+  Para subrayar varias palabras o párrafos: mantener presionada una palabra y arrastrar (cerca del borde, el
+  texto se desplaza solo); al soltar aparece una barra con los colores, «Nota», «Traducir» y «Copiar».
   El botón «Notas» de arriba muestra las burbujas.
 - **Ajustes:** cambiar el idioma (toda la app cambia, incluido el significado de las palabras), elegir el
   tema (Automático / Claro / Oscuro), activar el recordatorio y buscar actualizaciones del contenido.
@@ -89,26 +103,29 @@ conectado. Otra opción es usar `flutter run` con el iPhone conectado.
   `content/en/manifest.json`, que genera `build.py`. Al abrirse con conexión, la app compara ese índice con el
   suyo y descarga solo los archivos que cambiaron. También se puede forzar desde *Ajustes → Buscar
   actualizaciones*.
-- **Para incluir el contenido nuevo dentro de la app**, antes de compilar una versión nueva ejecutá desde la
-  carpeta de trabajo:
+- **Para incluir el contenido nuevo dentro de la app**, antes de compilar una versión nueva ejecutá desde esta
+  carpeta:
 
-      cd tools
-      python3 build.py
-      python3 app_sync.py <ruta a esta carpeta trilex> <ruta a la carpeta ingles/ de la web>
+      python3 tool/contenido/generar.py   # lecturas y libros B1–B2 nuevos (fuentes en tool/contenido/)
+      python3 tool/contenido.py           # valida, rehace manifest.json y copia a assets/content/en
 
-  `app_sync.py` copia los JSON del contenido a `assets/content/en`, genera `assets/i18n/ui.json` con los textos de
-  la web y actualiza la lista de carpetas de `pubspec.yaml`.
+  `tool/contenido.py` reemplaza a `app_sync.py` (el generador original no está en este equipo): copia el contenido
+  de `../web-idiomas/content/en`, rehace el manifest y actualiza la lista de carpetas de `pubspec.yaml`. Los textos
+  de la app que no vienen de la web están en `assets/i18n/app.json`.
 
 La dirección de la web está en `lib/core/content.dart` (`Content.siteUrl`).
 
 ## Estructura
 
     lib/
-      main.dart              arranque y navegación (Curso · Lectura · Ajustes)
+      main.dart              arranque y navegación (Hoy · Leer · Palabras · Gramática · Ajustes)
       core/                  contenido y actualizaciones, idiomas, tema, progreso, audio, recordatorios
       ui/                    colores (tema claro y oscuro) y tipografía, piezas del diseño, markdown de las explicaciones
-      course/                mapa, lección, ejercicios, práctica, examen, prueba de nivel, repaso, vocabulario
-      reading/               lecturas, libros, lector (palabras, subrayados, notas, preguntas), palabras y notas
+      today/                 «Hoy» (plan diario y progreso) y autoevaluación «puedo…»
+      course/                gramática (consulta), lección, ejercicios, práctica, examen, prueba de nivel,
+                             vocabulario y dictogloss
+      reading/               lecturas, libros, lector y sus actividades (activities.dart), notas
+      words/                 «Palabras» y su repaso espaciado escrito
       settings_screen.dart   ajustes
     assets/
       content/en/            el contenido de la web (JSON)
@@ -116,8 +133,12 @@ La dirección de la web está en `lib/core/content.dart` (`Content.siteUrl`).
       i18n/app.json          textos propios de la app
       fonts/                 IBM Plex (licencia SIL OFL, ver OFL.txt)
     tool/configurar_plataformas.py
+    tool/contenido.py        valida y sincroniza el contenido de la web
+    tool/contenido/          fuentes del contenido B1–B2 nuevo (lecturas, libros, diccionario) y generar.py
 
 **Diferencias con la web:**
 
-- Los ejercicios de pronunciación no graban la voz: se escucha el modelo y se marca como practicado.
-- Las hojas para imprimir quedan solo en la web.
+- La app es solo para B1–B2 y la gramática es de consulta (todo abierto); la web tiene el curso completo A1–B2.
+- Los ejercicios de pronunciación de las lecciones no graban la voz; la grabación está en «escuchar y repetir» y
+  «volver a contarlo» del lector.
+- Las hojas para imprimir, el repaso mixto y las preguntas frecuentes quedan solo en la web.

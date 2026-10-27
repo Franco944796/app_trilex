@@ -36,7 +36,7 @@ class TxPalette {
     required this.doneLine,
     required this.readerText,
     required this.noteBg,
-    required this.rangeStart,
+    required this.selection,
     required this.marks,
   });
 
@@ -53,7 +53,7 @@ class TxPalette {
 
   final Color lightBtn, lightBtnText;
 
-  final Color track, doneLine, readerText, noteBg, rangeStart;
+  final Color track, doneLine, readerText, noteBg, selection;
 
   /// Colores de los subrayados del lector: [fondo, borde].
   final Map<String, List<Color>> marks;
@@ -94,7 +94,7 @@ const _light = TxPalette(
   doneLine: Color(0xFFB9D8C6),
   readerText: Color(0xFF22252B),
   noteBg: Color(0xBFFFFFFF),
-  rangeStart: Color(0x261D2025),
+  selection: Color(0x382E55C7),
   marks: {
     'yellow': [Color(0xFFFFF1B0), Color(0xFFE0B400)],
     'green': [Color(0xFFD6F0DC), Color(0xFF2F9A55)],
@@ -138,7 +138,7 @@ const _dark = TxPalette(
   doneLine: Color(0xFF2F5A43),
   readerText: Color(0xFFDFE2E7),
   noteBg: Color(0x38000000),
-  rangeStart: Color(0x33E6E8EC),
+  selection: Color(0x478FA9F0),
   marks: {
     'yellow': [Color(0xFF4A3E10), Color(0xFFE0B400)],
     'green': [Color(0xFF1D3A28), Color(0xFF4CBF75)],
@@ -190,7 +190,7 @@ class Tx {
   static Color get doneLine => _p.doneLine;
   static Color get readerText => _p.readerText;
   static Color get noteBg => _p.noteBg;
-  static Color get rangeStart => _p.rangeStart;
+  static Color get selection => _p.selection;
   static Map<String, List<Color>> get marks => _p.marks;
 
   static const sans = 'Plex Sans', serif = 'Plex Serif', mono = 'Plex Mono';

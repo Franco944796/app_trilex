@@ -8,6 +8,7 @@ import '../ui/theme.dart';
 import '../ui/widgets.dart';
 import 'book_screen.dart';
 import 'reader_screen.dart';
+import '../course/course.dart';
 import 'reading.dart';
 import 'words_notes.dart';
 
@@ -16,7 +17,7 @@ class ReadingHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
-        length: 4,
+        length: 3,
         child: Column(children: [
           Material(
             color: Tx.bg,
@@ -30,13 +31,12 @@ class ReadingHome extends StatelessWidget {
               tabs: [
                 Tab(text: tr('tabTexts')),
                 Tab(text: tr('tabBooks')),
-                Tab(text: tr('tabWords')),
                 Tab(text: tr('tabNotes')),
               ],
             ),
           ),
           const Divider(),
-          const Expanded(child: TabBarView(children: [TextsTab(), BooksTab(), WordsTab(), NotesTab()])),
+          const Expanded(child: TabBarView(children: [TextsTab(), BooksTab(), NotesTab()])),
         ]),
       );
 }
@@ -52,9 +52,18 @@ class TextsTab extends StatefulWidget {
   State<TextsTab> createState() => _TextsTabState();
 }
 
+/// Niveles de la app (los textos A1–A2 están en la web).
+bool appLevel(dynamic level) => Course.appLevels.contains(str(level));
+
+/// Nivel de partida: el de la prueba de nivel, o B1.
+String get myLevel {
+  final pl = str(progress.placement?['level']);
+  return Course.appLevels.contains(pl) ? pl : 'B1';
+}
+
 class _TextsTabState extends State<TextsTab> {
   Json? ix;
-  String level = 'A1';
+  String level = myLevel;
 
   @override
   void initState() {
@@ -67,13 +76,13 @@ class _TextsTabState extends State<TextsTab> {
   @override
   Widget build(BuildContext context) {
     if (ix == null) return const Center(child: CircularProgressIndicator());
-    final texts = jsonList(ix!['texts']);
+    final texts = jsonList(ix!['texts']).where((t) => appLevel(t['level'])).toList();
     final list = texts.where((t) => t['level'] == level).toList();
     int doneN(String l) => texts.where((t) => t['level'] == l && progress.texts[t['id']] != null).length;
     return PageList(children: [
       PageHeader(kicker: tr('selfK'), title: tr('readTitle'), lede: tr('introTexts')),
       Wrap(spacing: 8, runSpacing: 8, children: [
-        for (final l in strList(ix!['levels']))
+        for (final l in strList(ix!['levels']).where(appLevel))
           ChoiceChip(
             label: Text('$l  ${doneN(l)}/${texts.where((t) => t['level'] == l).length}'),
             selected: level == l,
@@ -157,7 +166,7 @@ class _BooksTabState extends State<BooksTab> {
     if (ix == null) return const Center(child: CircularProgressIndicator());
     return PageList(children: [
       PageHeader(kicker: tr('selfK'), title: tr('readTitle'), lede: tr('introBooks')),
-      for (final b in jsonList(ix!['books'])) _card(b),
+      for (final b in jsonList(ix!['books']).where((b) => appLevel(b['level']))) _card(b),
     ]);
   }
 

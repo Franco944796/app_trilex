@@ -3,10 +3,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/services.dart';
 import 'course/course.dart';
-import 'course/map_screen.dart';
+import 'course/grammar_screen.dart';
+import 'reading/reading.dart';
 import 'reading/reading_home.dart';
 import 'settings_screen.dart';
+import 'today/today_screen.dart';
 import 'ui/theme.dart';
+import 'words/words_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +26,7 @@ Future<void> main() async {
   }
   await reminders.init();
   runApp(const TrilexApp());
+  WidgetsBinding.instance.addPostFrameCallback((_) => reading.warmUp().catchError((Object _) {}));
   // contenido nuevo en la web: se descarga en segundo plano (sin conexión, no pasa nada)
   content.update().then((n) async {
     if (n > 0) {
@@ -115,15 +119,17 @@ class _ShellState extends State<Shell> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [const MapScreen(), const ReadingHome(), const SettingsScreen()];
+    final pages = [const TodayScreen(), const ReadingHome(), const WordsScreen(), const GrammarScreen(), const SettingsScreen()];
     return Scaffold(
-        body: SafeArea(child: pages[tab]),
+        body: SafeArea(child: KeyedSubtree(key: ValueKey(tab), child: pages[tab])),
         bottomNavigationBar: NavigationBar(
           selectedIndex: tab,
           onDestinationSelected: (i) => setState(() => tab = i),
           destinations: [
-            NavigationDestination(icon: const Icon(Icons.school_outlined), selectedIcon: const Icon(Icons.school), label: tr('navCourse')),
+            NavigationDestination(icon: const Icon(Icons.today_outlined), selectedIcon: const Icon(Icons.today), label: tr('navToday')),
             NavigationDestination(icon: const Icon(Icons.menu_book_outlined), selectedIcon: const Icon(Icons.menu_book), label: tr('navReading')),
+            NavigationDestination(icon: const Icon(Icons.translate_outlined), selectedIcon: const Icon(Icons.translate), label: tr('navWords')),
+            NavigationDestination(icon: const Icon(Icons.school_outlined), selectedIcon: const Icon(Icons.school), label: tr('navGrammar')),
             NavigationDestination(icon: const Icon(Icons.tune_outlined), selectedIcon: const Icon(Icons.tune), label: tr('navMore')),
           ],
         ),

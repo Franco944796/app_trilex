@@ -4,79 +4,7 @@ import '../core/services.dart';
 import '../core/util.dart';
 import '../ui/theme.dart';
 import '../ui/widgets.dart';
-import 'reading.dart';
 import 'reading_home.dart';
-
-class WordsTab extends StatefulWidget {
-  const WordsTab({super.key});
-  @override
-  State<WordsTab> createState() => _WordsTabState();
-}
-
-class _WordsTabState extends State<WordsTab> {
-  final meanings = <String, String>{};
-
-  // significado en el idioma actual (las palabras pueden haberse guardado en otro)
-  Future<void> _translate() async {
-    for (final x in progress.words) {
-      final w = (x as Map).cast<String, dynamic>();
-      if (w['lg'] == i18n.lang && str(w['tr']).isNotEmpty) {
-        meanings[str(w['w'])] = str(w['tr']);
-      } else if (i18n.isEs && str(w['es']).isNotEmpty) {
-        meanings[str(w['w'])] = str(w['es']);
-      } else {
-        final r = await reading.lookup(str(w['w']));
-        meanings[str(w['w'])] = r?.tr ?? str(w['es']);
-      }
-    }
-    if (mounted) setState(() {});
-  }
-
-  bool _busy = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final words = progress.words;
-    final missing = words.any((x) => !meanings.containsKey(str((x as Map)['w'])));
-    if (missing && !_busy) {
-      _busy = true;
-      Future.microtask(_translate).whenComplete(() => _busy = false);
-    }
-    return PageList(children: [
-      PageHeader(
-        kicker: tr('selfK'),
-        title: tr('myWordsTitle'),
-        lede: words.isEmpty ? tr('noWords') : tr('myWordsNote', {'n': words.length}),
-      ),
-      for (var i = 0; i < words.length; i++) _row(i, (words[i] as Map).cast<String, dynamic>()),
-    ]);
-  }
-
-  Widget _row(int i, Json w) => Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(border: Border(top: BorderSide(color: Tx.line))),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(str(w['w']), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Tx.ink)),
-              Text(meanings[str(w['w'])] ?? ''),
-              if (str(w['ctx']).isNotEmpty)
-                Text(str(w['ctx']), style: TextStyle(fontSize: 12.5, color: Tx.muted, fontStyle: FontStyle.italic)),
-            ]),
-          ),
-          SayButton(str(w['w'])),
-          IconButton(
-            tooltip: tr('delete'),
-            icon: Icon(Icons.delete_outline, size: 20, color: Tx.muted),
-            onPressed: () {
-              progress.words.removeAt(i);
-              progress.save();
-              setState(() {});
-            },
-          ),
-        ]),
-      );
-}
 
 class NotesTab extends StatefulWidget {
   const NotesTab({super.key});

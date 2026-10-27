@@ -1,13 +1,35 @@
-import 'package:flutter/gestures.dart';
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../core/services.dart';
 import '../core/util.dart';
+import '../course/course.dart';
 import '../ui/theme.dart';
 import '../ui/widgets.dart';
+import 'activities.dart';
 import 'reading.dart';
+
+typedef _Ranges = List<Map<String, int>>;
+
+/// Si el párrafo está acomodado en la lista ahora. Uno que se conserva fuera de la pantalla
+/// (el párrafo donde empezó el arrastre) tiene una posición vieja y no sirve para medir.
+bool _placed(RenderObject r) {
+  if (!r.attached || r is! RenderBox || !r.hasSize) return false;
+  RenderObject? o = r;
+  while (o != null && o.parentData is! SliverMultiBoxAdaptorParentData) {
+    o = o.parent;
+  }
+  final pd = o?.parentData;
+  return pd is SliverMultiBoxAdaptorParentData && !pd.keptAlive;
+}
+
+/// Selección del lector: un rango {p, s, e} por párrafo; [done] es falso mientras se arrastra.
+typedef _Sel = ({_Ranges ranges, bool done});
 
 class _Doc {
   _Doc({
@@ -23,15 +45,20 @@ class _Doc {
     required this.questions,
     this.summary = '',
     this.task = '',
+    this.summaryModel = '',
+    this.words = 0,
     this.prev,
     this.next,
     this.prevBest,
     required this.onScore,
   });
-  final String id, noteTitle, href, level, kicker, title, sub, summary, task;
+  final String id, noteTitle, href, level, kicker, title, sub, summary, task, summaryModel;
+  final int words;
   final List<Json> blocks, glossary, questions;
   final Widget Function()? prev, next;
-  final double? prevBest;
+
+  /// Se actualiza al terminar el cuestionario, así «Reiniciar» muestra el mejor puntaje nuevo.
+  double? prevBest;
   final void Function(double score) onScore;
 }
 
@@ -48,12 +75,24 @@ class _ReaderScreenState extends State<ReaderScreen> {
   _Doc? doc;
   Object? error;
   final scroll = ScrollController();
+  final viewKey = GlobalKey();
   final paraKeys = <GlobalKey>[];
+
+  /// Párrafos construidos en este momento: la lista es perezosa y solo existen los cercanos a la pantalla.
+  final live = <int, _ParagraphState>{};
+  final sel = ValueNotifier<_Sel>((ranges: const <Map<String, int>>[], done: true));
+  ({int p, int s, int e})? anchor;
+  Offset? dragAt;
+  Timer? edgeTimer;
   bool keywords = false;
+  RegExp? glossRe;
   int? speaking;
-  ({int p, int s})? rangeStart;
   final draft = TextEditingController();
   Map<String, String> glossTr = {};
+  List<String> sentences = [];
+  List<ClozeItem> cloze = [];
+  DateTime? tmStart;
+  String tmMsg = '';
 
   bool get isBook => widget.chapterN != null;
 
@@ -68,8 +107,11 @@ class _ReaderScreenState extends State<ReaderScreen> {
   @override
   void dispose() {
     speech.stop();
+    edgeTimer?.cancel();
+    reading.clearGlossary();
     scroll.dispose();
     draft.dispose();
+    sel.dispose();
     super.dispose();
   }
 
@@ -89,10 +131,14 @@ class _ReaderScreenState extends State<ReaderScreen> {
         kicker: '${tr('tabTexts')} · ${t['level']} · ${i18n.topic(str(t['topic']))}',
         title: str(t['title']),
         sub: '${i18n.isEs ? '${t['title_es']} · ' : ''}${tr('wordsN', {'n': t['words']})} · ~${tr('minN', {'n': t['minutes']})}',
-        blocks: [for (final p in strList(t['paragraphs'])) {'t': 'p', 'text': p}],
+        blocks: [
+          for (final p in strList(t['paragraphs'])) {'t': 'p', 'text': p}
+        ],
         glossary: jsonList(t['glossary']),
         questions: jsonList(t['questions']),
         task: str(t['task']),
+        summaryModel: course.summaryOf(widget.id) ?? '',
+        words: (t['words'] as num?)?.toInt() ?? 0,
         prev: k > 0 ? () => ReaderScreen.text(str(same[k - 1]['id'])) : null,
         next: k >= 0 && k < same.length - 1 ? () => ReaderScreen.text(str(same[k + 1]['id'])) : null,
         prevBest: best?.toDouble(),
@@ -111,7 +157,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
       final total = jsonList(b['chapters']).length;
       final st = _bookState();
       st['last'] = n;
-      progress.save();
       final best = ((st['c'] as Map)['$n'] as Map?)?['best'] as num?;
       d = _Doc(
         id: 'b:${widget.id}:$n',
@@ -122,6 +167,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
         title: '$n. ${c['title']}',
         sub: '${b['author']} · ${tr('wordsN', {'n': c['words']})}',
         summary: i18n.isEs ? str(c['summary_es']) : '',
+        words: (c['words'] as num?)?.toInt() ?? 0,
         blocks: jsonList(c['blocks']),
         glossary: jsonList(c['glossary']),
         questions: jsonList(c['questions']),
@@ -146,10 +192,22 @@ class _ReaderScreenState extends State<ReaderScreen> {
     paraKeys
       ..clear()
       ..addAll(List.generate(d.blocks.length, (_) => GlobalKey()));
+    // para «Hoy»: lo último que se abrió, para seguir leyendo y para volver a contarlo
+    progress.reading['lastRead'] = {'href': d.href, 'title': d.noteTitle, 'level': d.level, 'at': DateTime.now().millisecondsSinceEpoch};
+    progress.save();
+    final sents = [for (final b in d.blocks) ...sentencesOf(str(b['text']))];
     if (!mounted) return;
     setState(() {
       doc = d;
       glossTr = tr_;
+      sentences = sents;
+      cloze = clozeItems(d.glossary, sents, tr_);
+      glossRe = d.glossary.isEmpty
+          ? null
+          : RegExp(
+              '\\b(${(d.glossary.map((g) => RegExp.escape(str(g['en']))).toList()..sort((a, b) => b.length - a.length)).join('|')})\\b',
+              caseSensitive: false,
+            );
     });
     if (isBook) _restorePosition();
   }
@@ -163,10 +221,14 @@ class _ReaderScreenState extends State<ReaderScreen> {
   }
 
   void _restorePosition() {
-    final f = ((_bookState()['pos'] as Map)['${widget.chapterN}'] as num?)?.toDouble();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (f != null && scroll.hasClients) {
-        scroll.jumpTo((scroll.position.maxScrollExtent * f).clamp(0, scroll.position.maxScrollExtent).toDouble());
+    final n = doc!.blocks.length;
+    final v = (_bookState()['pos'] as Map)['${widget.chapterN}'] as num?;
+    // antes se guardaba la fracción desplazada (0–1); ahora, el número de párrafo
+    final p = v == null || n == 0 ? 0 : (v is double ? (v * n).floor() : v.toInt()).clamp(0, n - 1);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (p > 0) {
+        await _reveal(p, alignment: 0, duration: Duration.zero);
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('resumed')), duration: const Duration(seconds: 2)));
       }
       scroll.addListener(_savePosition);
@@ -176,10 +238,71 @@ class _ReaderScreenState extends State<ReaderScreen> {
   int _lastPosSave = 0;
   void _savePosition() {
     final now = DateTime.now().millisecondsSinceEpoch;
-    if (now - _lastPosSave < 800 || !scroll.hasClients || scroll.position.maxScrollExtent <= 0) return;
+    if (now - _lastPosSave < 800) return;
+    final p = _topParagraph();
+    if (p == null) return;
     _lastPosSave = now;
-    (_bookState()['pos'] as Map)['${widget.chapterN}'] = double.parse((scroll.offset / scroll.position.maxScrollExtent).toStringAsFixed(3));
+    (_bookState()['pos'] as Map)['${widget.chapterN}'] = p;
     progress.save();
+  }
+
+  RenderBox? _box(int p) {
+    final r = paraKeys[p].currentContext?.findRenderObject();
+    return r is RenderBox && _placed(r) ? r : null;
+  }
+
+  /// Primer párrafo que se ve arriba de la pantalla.
+  int? _topParagraph() {
+    final view = viewKey.currentContext?.findRenderObject() as RenderBox?;
+    if (view == null) return null;
+    final top = view.localToGlobal(Offset.zero).dy;
+    int? best;
+    for (final i in live.keys) {
+      final box = _box(i);
+      if (box != null && box.localToGlobal(Offset(0, box.size.height)).dy > top && (best == null || i < best)) best = i;
+    }
+    return best;
+  }
+
+  /// Lleva el párrafo [p] a la pantalla. Si todavía no está construido, salta a una posición estimada
+  /// por la cantidad de letras y repite hasta que aparezca.
+  Future<void> _reveal(int p, {double alignment = 0.3, Duration duration = const Duration(milliseconds: 400)}) async {
+    for (var i = 0; i < 8 && mounted; i++) {
+      final c = paraKeys[p].currentContext;
+      if (c != null && c.mounted) return Scrollable.ensureVisible(c, alignment: alignment, duration: duration);
+      final off = _estimate(p);
+      if (off == null || !scroll.hasClients) return;
+      scroll.jumpTo(off.clamp(0.0, scroll.position.maxScrollExtent));
+      await WidgetsBinding.instance.endOfFrame;
+    }
+  }
+
+  double? _estimate(int p) {
+    var chars = 0, count = 0, height = 0.0;
+    int? near;
+    var nearOff = 0.0;
+    for (final i in live.keys) {
+      final box = _box(i);
+      if (box == null) continue;
+      chars += _text(i).length;
+      height += box.size.height;
+      count++;
+      if (near == null || (i - p).abs() < (near - p).abs()) {
+        near = i;
+        nearOff = RenderAbstractViewport.of(box).getOffsetToReveal(box, 0).offset;
+      }
+    }
+    if (near == null || chars == 0) return null;
+    const gap = 14.0;
+    final perChar = (height - gap * count).clamp(0.0, double.infinity) / chars;
+    var off = nearOff;
+    for (var k = near; k < p; k++) {
+      off += _text(k).length * perChar + gap;
+    }
+    for (var k = p; k < near; k++) {
+      off -= _text(k).length * perChar + gap;
+    }
+    return off;
   }
 
   Map? get notesDoc => progress.notes[doc!.id] as Map?;
@@ -199,15 +322,18 @@ class _ReaderScreenState extends State<ReaderScreen> {
 
   String _text(int p) => str(doc!.blocks[p]['text']);
 
-  bool _overlaps(List<Map<String, int>> ranges) => marks.any((m) => jsonList(m['ranges']).any((a) => ranges.any(
-      (b) => a['p'] == b['p'] && (a['s'] as num) < b['e']! && b['s']! < (a['e'] as num))));
+  bool _overlaps(_Ranges ranges) => marks.any((m) =>
+      jsonList(m['ranges']).any((a) => ranges.any((b) => a['p'] == b['p'] && (a['s'] as num) < b['e']! && b['s']! < (a['e'] as num))));
 
-  void _alreadyMarked() =>
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('alreadyMarked')), duration: const Duration(seconds: 2)));
+  void _snack(String key) =>
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr(key)), duration: const Duration(seconds: 2)));
 
-  void _addMark(List<Map<String, int>> ranges, String color, {bool openNote = false}) {
-    if (_overlaps(ranges)) return _alreadyMarked();
-    final quote = [for (final r in ranges) _text(r['p']!).substring(r['s']!, r['e']!)].join(' ').replaceAll(RegExp(r'\s+'), ' ').trim();
+  String _quote(_Ranges ranges) =>
+      [for (final r in ranges) _text(r['p']!).substring(r['s']!, r['e']!)].join(' ').replaceAll(RegExp(r'\s+'), ' ').trim();
+
+  void _addMark(_Ranges ranges, String color, {bool openNote = false}) {
+    if (_overlaps(ranges)) return _snack('alreadyMarked');
+    final quote = _quote(ranges);
     final m = {
       'id': 'm${DateTime.now().millisecondsSinceEpoch.toRadixString(36)}',
       'color': color,
@@ -237,53 +363,218 @@ class _ReaderScreenState extends State<ReaderScreen> {
     return {'p': p, 's': a, 'e': b};
   }
 
-  List<Map<String, int>> _span(({int p, int s}) a, ({int p, int s, int e}) b) {
-    var x = a, y = b;
-    if (b.p < a.p || (b.p == a.p && b.s < a.s)) {
-      // se tocó primero la última palabra
-      final endA = RegExp(r"[A-Za-z’'-]*").matchAsPrefix(_text(a.p), a.s)!.end;
-      x = (p: b.p, s: b.s);
-      y = (p: a.p, s: a.s, e: endA);
-    }
-    return [
-      for (var p = x.p; p <= y.p; p++)
-        {'p': p, 's': p == x.p ? x.s : 0, 'e': p == y.p ? y.e : _text(p).length},
-    ];
-  }
-
   void _onWord(int p, int s, int e, String word, String sentence) {
-    final st = rangeStart;
-    if (st != null) {
-      setState(() => rangeStart = null);
-      final ranges = _span(st, (p: p, s: s, e: e));
-      if (_overlaps(ranges)) return _alreadyMarked();
-      _pickColor(ranges);
-      return;
-    }
+    // con una selección abierta, tocar el texto solo la quita
+    if (sel.value.ranges.isNotEmpty) return _selClear();
     _wordSheet(p, s, e, word, sentence);
   }
 
-  Future<void> _pickColor(List<Map<String, int>> ranges) async {
-    await showModalBottomSheet<void>(
-      context: context,
-      builder: (ctx) => SafeArea(
+  // ── selección: mantener presionado y arrastrar, también entre párrafos ──
+
+  static final _wordCh = RegExp(r"[A-Za-z’'-]");
+
+  /// Párrafo y letra bajo un punto de la pantalla; entre párrafos, el más cercano.
+  ({int p, int o})? _hit(Offset global) {
+    ({int p, int o})? best;
+    var bestD = double.infinity;
+    for (final e in live.entries) {
+      final rp = e.value.paragraph;
+      if (rp == null) continue;
+      final local = rp.globalToLocal(global);
+      final h = rp.size.height;
+      final d = local.dy < 0 ? -local.dy : (local.dy > h ? local.dy - h : 0.0);
+      if (d < bestD) {
+        bestD = d;
+        best = (p: e.key, o: rp.getPositionForOffset(Offset(local.dx, local.dy.clamp(0.0, h - 1))).offset);
+      }
+    }
+    return best;
+  }
+
+  _Ranges _trim(_Ranges rs) {
+    final out = <Map<String, int>>[];
+    for (final r in rs) {
+      final t = _text(r['p']!);
+      var s = r['s']!, e = r['e']!;
+      while (s < e && t[s].trim().isEmpty) {
+        s++;
+      }
+      while (e > s && t[e - 1].trim().isEmpty) {
+        e--;
+      }
+      if (e > s) out.add({'p': r['p']!, 's': s, 'e': e});
+    }
+    return out;
+  }
+
+  void _selStart(Offset global) {
+    final h = _hit(global);
+    if (h == null) return;
+    final t = _text(h.p);
+    var at = h.o;
+    // sobre comillas o signos pegados a una palabra, se toma esa palabra
+    for (final d in const [0, 1, -1, 2, -2]) {
+      final i = h.o + d;
+      if (i >= 0 && i < t.length && _wordCh.hasMatch(t[i])) {
+        at = i;
+        break;
+      }
+    }
+    var s = at, e = at;
+    while (s > 0 && _wordCh.hasMatch(t[s - 1])) {
+      s--;
+    }
+    while (e < t.length && _wordCh.hasMatch(t[e])) {
+      e++;
+    }
+    if (e == s) return;
+    HapticFeedback.selectionClick();
+    anchor = (p: h.p, s: s, e: e);
+    dragAt = global;
+    sel.value = (ranges: _trim([{'p': h.p, 's': s, 'e': e}]), done: false);
+  }
+
+  void _selMove(Offset global) {
+    if (anchor == null) return;
+    dragAt = global;
+    _extend();
+    _autoScroll();
+  }
+
+  void _selEnd() {
+    edgeTimer?.cancel();
+    edgeTimer = null;
+    dragAt = null;
+    if (anchor == null) return;
+    anchor = null;
+    sel.value = (ranges: sel.value.ranges, done: true);
+  }
+
+  void _selClear() => sel.value = (ranges: const <Map<String, int>>[], done: true);
+
+  /// Lleva la selección hasta la palabra bajo el dedo (siempre palabras enteras).
+  void _extend() {
+    final a = anchor, at = dragAt;
+    final f = a == null || at == null ? null : _hit(at);
+    if (a == null || f == null) return;
+    final t = _text(f.p);
+    final _Ranges r;
+    if (f.p > a.p || (f.p == a.p && f.o >= a.s)) {
+      var e = f.o;
+      while (e < t.length && _wordCh.hasMatch(t[e])) {
+        e++;
+      }
+      if (f.p == a.p && e < a.e) e = a.e;
+      r = [for (var p = a.p; p <= f.p; p++) {'p': p, 's': p == a.p ? a.s : 0, 'e': p == f.p ? e : _text(p).length}];
+    } else {
+      var s = f.o;
+      while (s > 0 && _wordCh.hasMatch(t[s - 1])) {
+        s--;
+      }
+      r = [for (var p = f.p; p <= a.p; p++) {'p': p, 's': p == f.p ? s : 0, 'e': p == a.p ? a.e : _text(p).length}];
+    }
+    final next = _trim(r);
+    final now = sel.value.ranges;
+    final same = next.length == now.length &&
+        [for (var i = 0; i < next.length; i++) i].every((i) => mapEquals(next[i], now[i]));
+    if (!same) sel.value = (ranges: next, done: false);
+  }
+
+  /// Velocidad del desplazamiento automático: el dedo cerca del borde de arriba o de abajo.
+  double _edgeSpeed() {
+    final view = viewKey.currentContext?.findRenderObject() as RenderBox?;
+    final at = dragAt;
+    if (view == null || at == null) return 0;
+    final y = view.globalToLocal(at).dy, h = view.size.height;
+    const zone = 60.0;
+    final v = y < zone ? y - zone : (y > h - zone ? y - (h - zone) : 0.0);
+    return (v * 0.4).clamp(-22.0, 22.0);
+  }
+
+  void _autoScroll() {
+    if (edgeTimer != null || _edgeSpeed() == 0) return;
+    edgeTimer = Timer.periodic(const Duration(milliseconds: 16), (t) {
+      final v = _edgeSpeed();
+      if (v == 0 || anchor == null || !scroll.hasClients) {
+        t.cancel();
+        edgeTimer = null;
+        return;
+      }
+      final pos = scroll.position;
+      final to = (scroll.offset + v).clamp(pos.minScrollExtent, pos.maxScrollExtent);
+      if (to == scroll.offset) return;
+      scroll.jumpTo(to);
+      // las posiciones de los párrafos cambian recién al dibujar el cuadro siguiente
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _extend();
+      });
+    });
+  }
+
+  Widget _selBar(_Ranges ranges) {
+    final quote = _quote(ranges);
+    final r = ranges.first;
+    final small = TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 10), minimumSize: const Size(0, 40));
+    void act(void Function() f) {
+      _selClear();
+      f();
+    }
+
+    return SafeArea(
+      child: Material(
+        color: Tx.surface,
+        shape: Border(top: BorderSide(color: Tx.line)),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(16, 2, 4, 6),
           child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Kicker(tr('markW')),
-            const SizedBox(height: 12),
-            _ColorRow(onPick: (c) {
-              Navigator.pop(ctx);
-              _addMark(ranges, c);
-            }),
-            const SizedBox(height: 12),
-            OutlinedButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-                _addMark(ranges, 'yellow', openNote: true);
-              },
-              child: Text('✎ ${tr('noteAdd')}'),
-            ),
+            Row(children: [
+              Expanded(
+                child: Text('«$quote»',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontFamily: Tx.serif, fontStyle: FontStyle.italic, fontSize: 13.5, color: Tx.muted)),
+              ),
+              IconButton(tooltip: tr('close'), onPressed: _selClear, icon: const Icon(Icons.close, size: 20)),
+            ]),
+            Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
+              for (final c in Tx.marks.keys)
+                InkWell(
+                  customBorder: const CircleBorder(),
+                  onTap: () => act(() => _addMark(ranges, c)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                        color: Tx.marks[c]![0],
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Tx.marks[c]![1], width: 1.5),
+                      ),
+                    ),
+                  ),
+                ),
+              const SizedBox(width: 6),
+              TextButton(
+                style: small,
+                onPressed: () => act(() => _addMark(ranges, 'yellow', openNote: true)),
+                child: Text('✎ ${tr('noteAdd')}'),
+              ),
+              if (ranges.length == 1 && quote.split(' ').length <= 4)
+                TextButton(
+                  style: small,
+                  onPressed: () => act(() => _wordSheet(r['p']!, r['s']!, r['e']!, quote, _quote([_sentence(r['p']!, r['s']!, r['e']!)]))),
+                  child: Text(tr('translateW')),
+                ),
+              TextButton(
+                style: small,
+                onPressed: () => act(() {
+                  Clipboard.setData(ClipboardData(text: quote));
+                  _snack('copiedW');
+                }),
+                child: Text(tr('copyW')),
+              ),
+            ]),
           ]),
         ),
       ),
@@ -372,7 +663,9 @@ class _ReaderScreenState extends State<ReaderScreen> {
               const SizedBox(height: 6),
               _ColorRow(onPick: (c) {
                 Navigator.pop(ctx);
-                _addMark([{'p': p, 's': s, 'e': e}], c);
+                _addMark([
+                  {'p': p, 's': s, 'e': e}
+                ], c);
               }),
               const SizedBox(height: 12),
               Text(tr('markSentence'), style: TextStyle(fontSize: 13, color: Tx.muted)),
@@ -382,22 +675,13 @@ class _ReaderScreenState extends State<ReaderScreen> {
                 _addMark([_sentence(p, s, e)], c);
               }),
               const SizedBox(height: 12),
-              Wrap(spacing: 8, runSpacing: 8, children: [
-                OutlinedButton(
-                  onPressed: () {
-                    Navigator.pop(ctx);
-                    setState(() => rangeStart = (p: p, s: s));
-                  },
-                  child: Text(tr('markRange')),
-                ),
-                OutlinedButton(
-                  onPressed: () {
-                    Navigator.pop(ctx);
-                    _addMark([_sentence(p, s, e)], 'yellow', openNote: true);
-                  },
-                  child: Text('✎ ${tr('noteAdd')}'),
-                ),
-              ]),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.pop(ctx);
+                  _addMark([_sentence(p, s, e)], 'yellow', openNote: true);
+                },
+                child: Text('✎ ${tr('noteAdd')}'),
+              ),
             ],
           ]),
         ),
@@ -418,6 +702,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
       'english';
 
   Future<void> _openNotes({String? focus}) async {
+    _selClear();
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -431,9 +716,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
           focus: focus,
           onGo: (m) {
             Navigator.pop(ctx);
-            final p = (jsonList(m['ranges']).first['p'] as num).toInt();
-            final c = paraKeys[p].currentContext;
-            if (c != null) Scrollable.ensureVisible(c, alignment: 0.3, duration: const Duration(milliseconds: 400));
+            _reveal((jsonList(m['ranges']).first['p'] as num).toInt());
           },
           onChanged: () {
             progress.save();
@@ -445,6 +728,36 @@ class _ReaderScreenState extends State<ReaderScreen> {
     _tidyNotes();
     progress.save();
     if (mounted) setState(() {});
+  }
+
+  List<int> get _speeds => [
+        for (final x in ((progress.reading['speed'] as Map?)?[doc!.id] as List?) ?? const []) ((x as Map)['wpm'] as num).toInt(),
+      ];
+
+  void _startTimed() {
+    speech.stop();
+    _selClear();
+    setState(() {
+      tmMsg = '';
+      tmStart = DateTime.now();
+      speaking = null;
+    });
+    scroll.animateTo(0, duration: const Duration(milliseconds: 400), curve: Curves.easeOut);
+  }
+
+  void _stopTimed() {
+    final secs = DateTime.now().difference(tmStart!).inMilliseconds / 1000;
+    final d = doc!;
+    final wpm = secs <= 0 ? 0 : (d.words / (secs / 60)).round();
+    setState(() => tmStart = null);
+    // más de 600 palabras por minuto no es leer: probablemente se tocó sin querer
+    if (d.words == 0 || wpm > 600) {
+      setState(() => tmMsg = tr('tmTooFast'));
+      return;
+    }
+    final all = (progress.reading['speed'] as Map?) ?? (progress.reading['speed'] = <String, dynamic>{});
+    ((all[d.id] as List?) ?? (all[d.id] = <dynamic>[])).add({'wpm': wpm, 'at': DateTime.now().millisecondsSinceEpoch});
+    progress.save();
   }
 
   void _play() {
@@ -463,8 +776,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
       return;
     }
     setState(() => speaking = i);
-    final c = paraKeys[i].currentContext;
-    if (c != null) Scrollable.ensureVisible(c, alignment: 0.3, duration: const Duration(milliseconds: 300));
+    _reveal(i, duration: const Duration(milliseconds: 300));
     speech.say(_text(i), rate: progress.rate, onDone: () {
       if (mounted && speaking == i) _readFrom(i + 1);
     });
@@ -487,142 +799,185 @@ class _ReaderScreenState extends State<ReaderScreen> {
         ],
       ),
       body: d == null ? (error != null ? LoadError(error!) : const Center(child: CircularProgressIndicator())) : _body(d),
-      bottomNavigationBar: rangeStart == null
-          ? null
-          : SafeArea(
-              child: Container(
-                color: Tx.feature,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                child: Row(children: [
-                  Expanded(child: Text(tr('rangeHint'), style: TextStyle(color: Tx.onFeatureStrong))),
-                  TextButton(
-                    onPressed: () => setState(() => rangeStart = null),
-                    child: Text(tr('cancel'), style: TextStyle(color: Tx.featureAccent)),
-                  ),
-                ]),
-              ),
+      bottomNavigationBar: tmStart != null
+          ? _TimerBar(start: tmStart!, onStop: _stopTimed)
+          : ValueListenableBuilder<_Sel>(
+              valueListenable: sel,
+              builder: (context, s, child) => s.done && s.ranges.isNotEmpty ? _selBar(s.ranges) : const SizedBox.shrink(),
             ),
     );
   }
 
   Widget _body(_Doc d) {
     final size = progress.textSize;
-    final glossRe = d.glossary.isEmpty
-        ? null
-        : RegExp(
-            '\\b(${(d.glossary.map((g) => RegExp.escape(str(g['en']))).toList()..sort((a, b) => b.length - a.length)).join('|')})\\b',
-            caseSensitive: false,
-          );
-    return PageList(controller: scroll, children: [
-      PageHeader(kicker: d.kicker, title: d.title, lede: d.sub),
-      if (d.summary.isNotEmpty) ...[NoteBlock(label: tr('summaryK'), text: d.summary), const SizedBox(height: 14)],
-      Wrap(spacing: 8, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
-        FilledButton(onPressed: _play, child: Text(speaking != null ? tr('stopAudio') : tr('playAudio'))),
-        DropdownButton<double>(
-          value: const [0.7, 0.9, 1.05].contains(progress.rate) ? progress.rate : 0.9,
-          underline: const SizedBox.shrink(),
-          items: [
-            DropdownMenuItem(value: 0.9, child: Text(tr('speedNormal'))),
-            DropdownMenuItem(value: 0.7, child: Text(tr('speedSlow'))),
-            DropdownMenuItem(value: 1.05, child: Text(tr('speedFast'))),
-          ],
-          onChanged: (v) {
-            progress.reading['rate'] = v ?? 0.9;
-            progress.save();
-            setState(() {});
-          },
+    final byPara = <int, List<(int, int, String)>>{};
+    for (final m in marks) {
+      for (final r in jsonList(m['ranges'])) {
+        (byPara[(r['p'] as num).toInt()] ??= []).add(((r['s'] as num).toInt(), (r['e'] as num).toInt(), str(m['color'])));
+      }
+    }
+    const side = EdgeInsets.symmetric(horizontal: 16);
+    // Lista perezosa: en un capítulo de 10 000 palabras solo se arman los párrafos cercanos a la pantalla.
+    return CustomScrollView(
+      key: viewKey,
+      controller: scroll,
+      scrollCacheExtent: const ScrollCacheExtent.pixels(600),
+      slivers: [
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+          sliver: SliverToBoxAdapter(child: _header(d)),
         ),
-        OutlinedButton(onPressed: () => _resize(-0.1), child: const Text('A−')),
-        OutlinedButton(onPressed: () => _resize(0.1), child: const Text('A+')),
-        FilterChip(
-          label: Text(tr('highlight')),
-          selected: keywords,
-          onSelected: (v) => setState(() => keywords = v),
-        ),
-      ]),
-      if (d.glossary.isNotEmpty) ...[
-        const SizedBox(height: 12),
-        Panel(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: Theme(
-            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-            child: ExpansionTile(
-              initiallyExpanded: !isBook,
-              tilePadding: EdgeInsets.zero,
-              title: Text(tr('keywords', {'n': d.glossary.length}), style: TextStyle(fontWeight: FontWeight.w500, color: Tx.ink)),
-              children: [
-                for (final g in d.glossary)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text.rich(TextSpan(children: [
-                        TextSpan(text: str(g['en']), style: TextStyle(fontWeight: FontWeight.w600, color: Tx.ink)),
-                        TextSpan(text: ' — ${glossTr[str(g['en'])] ?? str(g['es'])}'),
-                      ])),
-                    ),
-                  ),
-              ],
+        SliverPadding(
+          padding: side,
+          sliver: SliverList.builder(
+            itemCount: d.blocks.length,
+            itemBuilder: (context, i) => Container(
+              key: paraKeys[i],
+              margin: const EdgeInsets.only(bottom: 14),
+              padding: speaking == i ? const EdgeInsets.all(6) : EdgeInsets.zero,
+              decoration: BoxDecoration(color: speaking == i ? Tx.blueSoft : null, borderRadius: BorderRadius.circular(6)),
+              child: _Paragraph(
+                index: i,
+                text: _text(i),
+                verse: d.blocks[i]['t'] == 'v',
+                size: size,
+                marks: byPara[i] ?? const [],
+                keywords: keywords ? glossRe : null,
+                selection: sel,
+                live: live,
+                onWord: _onWord,
+                onPress: _selStart,
+                onDrag: _selMove,
+                onRelease: _selEnd,
+              ),
             ),
           ),
         ),
-      ],
-      const SizedBox(height: 10),
-      Text('${tr('tapTip')} ${tr('markHintApp')}', style: TextStyle(fontSize: 12.5, color: Tx.muted)),
-      const SizedBox(height: 14),
-      for (var i = 0; i < d.blocks.length; i++)
-        Container(
-          key: paraKeys[i],
-          margin: const EdgeInsets.only(bottom: 14),
-          padding: speaking == i ? const EdgeInsets.all(6) : EdgeInsets.zero,
-          decoration: BoxDecoration(color: speaking == i ? Tx.blueSoft : null, borderRadius: BorderRadius.circular(6)),
-          child: _Paragraph(
-            index: i,
-            text: _text(i),
-            verse: d.blocks[i]['t'] == 'v',
-            size: size,
-            marks: marks,
-            keywords: keywords ? glossRe : null,
-            rangeStart: rangeStart,
-            onWord: _onWord,
-          ),
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 40),
+          // también perezosas; una vez armadas se conservan (respuestas del cuestionario, grabaciones…)
+          sliver: SliverList.list(children: [for (final w in _after(d)) _Keep(child: w)]),
         ),
-      SectionTitle(tr('questionsN', {'n': d.questions.length}), title: tr('compQ'), lede: tr('qNote')),
-      _Quiz(doc: d),
-      if (d.task.isNotEmpty) ...[
-        SectionTitle(tr('afterReading')),
-        Text(d.task),
-        const SizedBox(height: 8),
-        TextField(
-          controller: draft,
-          minLines: 5,
-          maxLines: 12,
-          decoration: InputDecoration(hintText: tr('writeHere')),
-          onChanged: (v) {
-            progress.drafts[d.id] = v;
-            progress.save();
-          },
-        ),
-        const SizedBox(height: 4),
-        Text(tr('draftNote'), style: TextStyle(fontSize: 12.5, color: Tx.muted)),
       ],
-      const SizedBox(height: 24),
-      const Divider(),
-      const SizedBox(height: 12),
-      Row(children: [
-        if (d.prev != null)
-          OutlinedButton(
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => d.prev!())),
-            child: Text(tr('prev')),
+    );
+  }
+
+  Widget _header(_Doc d) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        PageHeader(kicker: d.kicker, title: d.title, lede: d.sub),
+        if (d.summary.isNotEmpty) ...[NoteBlock(label: tr('summaryK'), text: d.summary), const SizedBox(height: 14)],
+        Wrap(spacing: 8, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
+          FilledButton(onPressed: _play, child: Text(speaking != null ? tr('stopAudio') : tr('playAudio'))),
+          DropdownButton<double>(
+            value: const [0.7, 0.9, 1.05].contains(progress.rate) ? progress.rate : 0.9,
+            underline: const SizedBox.shrink(),
+            items: [
+              DropdownMenuItem(value: 0.9, child: Text(tr('speedNormal'))),
+              DropdownMenuItem(value: 0.7, child: Text(tr('speedSlow'))),
+              DropdownMenuItem(value: 1.05, child: Text(tr('speedFast'))),
+            ],
+            onChanged: (v) {
+              progress.reading['rate'] = v ?? 0.9;
+              progress.save();
+              setState(() {});
+            },
           ),
-        const Spacer(),
-        if (d.next != null)
-          FilledButton(
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => d.next!())),
-            child: Text(tr('next')),
+          OutlinedButton(onPressed: () => _resize(-0.1), child: const Text('A−')),
+          OutlinedButton(onPressed: () => _resize(0.1), child: const Text('A+')),
+          FilterChip(
+            label: Text(tr('highlight')),
+            selected: keywords,
+            onSelected: (v) => setState(() => keywords = v),
           ),
+        ]),
+        if (d.glossary.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          Panel(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            // Material propio: sin él, el fondo del Panel tapa el efecto del toque (y Flutter avisa)
+            child: Material(
+              type: MaterialType.transparency,
+              child: Theme(
+                data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                child: ExpansionTile(
+                  initiallyExpanded: !isBook,
+                  tilePadding: EdgeInsets.zero,
+                  title: Text(tr('keywords', {'n': d.glossary.length}), style: TextStyle(fontWeight: FontWeight.w500, color: Tx.ink)),
+                  children: [
+                    for (final g in d.glossary)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text.rich(TextSpan(children: [
+                            TextSpan(text: str(g['en']), style: TextStyle(fontWeight: FontWeight.w600, color: Tx.ink)),
+                            TextSpan(text: ' — ${glossTr[str(g['en'])] ?? str(g['es'])}'),
+                          ])),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+        const SizedBox(height: 10),
+        Text('${tr('tapTip')} ${tr('markHintApp')}', style: TextStyle(fontSize: 12.5, color: Tx.muted)),
+        const SizedBox(height: 14),
+      ]);
+
+  List<Widget> _after(_Doc d) {
+    Widget group(List<Widget> children) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: children);
+    return [
+      ShadowSection(sentences: sentences),
+      group([
+        SectionTitle(tr('questionsN', {'n': d.questions.length}), title: tr('compQ'), lede: tr('qNote')),
+        _Quiz(doc: d),
       ]),
-    ]);
+      ClozeSection(items: cloze),
+      if (d.summaryModel.isNotEmpty) SummarySection(docId: d.id, level: d.level, model: d.summaryModel),
+      group([
+        SectionTitle(tr('fluH')),
+        TimedReadingCard(history: _speeds, running: tmStart != null, onStart: _startTimed, message: tmMsg),
+        const SizedBox(height: 12),
+        const RetellCard(),
+      ]),
+      if (d.task.isNotEmpty)
+        group([
+          SectionTitle(tr('afterReading')),
+          Text(d.task),
+          const SizedBox(height: 8),
+          TextField(
+            controller: draft,
+            minLines: 5,
+            maxLines: 12,
+            decoration: InputDecoration(hintText: tr('writeHere')),
+            onChanged: (v) {
+              progress.drafts[d.id] = v;
+              progress.save();
+            },
+          ),
+          const SizedBox(height: 4),
+          Text(tr('draftNote'), style: TextStyle(fontSize: 12.5, color: Tx.muted)),
+        ]),
+      group([
+        const SizedBox(height: 24),
+        const Divider(),
+        const SizedBox(height: 12),
+        Row(children: [
+          if (d.prev != null)
+            OutlinedButton(
+              onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => d.prev!())),
+              child: Text(tr('prev')),
+            ),
+          const Spacer(),
+          if (d.next != null)
+            FilledButton(
+              onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => d.next!())),
+              child: Text(tr('next')),
+            ),
+        ]),
+      ]),
+    ];
   }
 
   void _resize(double delta) {
@@ -633,6 +988,68 @@ class _ReaderScreenState extends State<ReaderScreen> {
   }
 }
 
+class _Keep extends StatefulWidget {
+  const _Keep({required this.child});
+  final Widget child;
+  @override
+  State<_Keep> createState() => _KeepState();
+}
+
+class _KeepState extends State<_Keep> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return widget.child;
+  }
+}
+
+/// Barra del cronómetro: se redibuja sola cada segundo, sin reconstruir el lector.
+class _TimerBar extends StatefulWidget {
+  const _TimerBar({required this.start, required this.onStop});
+  final DateTime start;
+  final VoidCallback onStop;
+  @override
+  State<_TimerBar> createState() => _TimerBarState();
+}
+
+class _TimerBarState extends State<_TimerBar> {
+  Timer? tick;
+
+  @override
+  void initState() {
+    super.initState();
+    tick = Timer.periodic(const Duration(seconds: 1), (_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    tick?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => SafeArea(
+        child: Container(
+          color: Tx.feature,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Row(children: [
+            Expanded(
+              child: Text('⏱ ${clock(DateTime.now().difference(widget.start).inSeconds)}',
+                  style: TextStyle(fontFamily: Tx.mono, fontSize: 18, color: Tx.onFeatureStrong)),
+            ),
+            FilledButton(
+              onPressed: widget.onStop,
+              style: FilledButton.styleFrom(backgroundColor: Tx.lightBtn, foregroundColor: Tx.lightBtnText),
+              child: Text(tr('tmStop')),
+            ),
+          ]),
+        ),
+      );
+}
+
 class _Paragraph extends StatefulWidget {
   const _Paragraph({
     required this.index,
@@ -641,35 +1058,87 @@ class _Paragraph extends StatefulWidget {
     required this.size,
     required this.marks,
     required this.keywords,
-    required this.rangeStart,
+    required this.selection,
+    required this.live,
     required this.onWord,
+    required this.onPress,
+    required this.onDrag,
+    required this.onRelease,
   });
   final int index;
   final String text;
   final bool verse;
   final double size;
-  final List<Json> marks;
+
+  /// Subrayados de este párrafo: (inicio, fin, color).
+  final List<(int, int, String)> marks;
   final RegExp? keywords;
-  final ({int p, int s})? rangeStart;
+  final ValueListenable<_Sel> selection;
+  final Map<int, _ParagraphState> live;
   final void Function(int p, int s, int e, String word, String sentence) onWord;
+  final void Function(Offset global) onPress, onDrag;
+  final VoidCallback onRelease;
   @override
   State<_Paragraph> createState() => _ParagraphState();
 }
 
-class _ParagraphState extends State<_Paragraph> {
+class _ParagraphState extends State<_Paragraph> with AutomaticKeepAliveClientMixin {
   final tokens = <({int s, int e, bool word})>[];
   final _textKey = GlobalKey();
+  (int, int)? sel;
+  bool pressing = false;
+  Widget? cached;
+  Object? cachedFor;
+  List<(int, int, String)> cachedMarks = const [];
+
+  // El párrafo donde empezó a arrastrarse no se descarta aunque salga de la pantalla:
+  // con él se iría el gesto y la selección quedaría a medias.
+  @override
+  bool get wantKeepAlive => pressing;
+
+  RenderParagraph? get paragraph {
+    final r = _textKey.currentContext?.findRenderObject();
+    return r is RenderParagraph && _placed(r) ? r : null;
+  }
 
   @override
   void initState() {
     super.initState();
     _tokenize();
+    widget.live[widget.index] = this;
+    widget.selection.addListener(_onSel);
+    sel = _mine();
   }
 
   @override
   void didUpdateWidget(_Paragraph old) {
     super.didUpdateWidget(old);
     if (old.text != widget.text) _tokenize();
+  }
+
+  @override
+  void dispose() {
+    if (identical(widget.live[widget.index], this)) widget.live.remove(widget.index);
+    widget.selection.removeListener(_onSel);
+    if (pressing) widget.onRelease();
+    super.dispose();
+  }
+
+  (int, int)? _mine() {
+    for (final r in widget.selection.value.ranges) {
+      if (r['p'] == widget.index) return (r['s']!, r['e']!);
+    }
+    return null;
+  }
+
+  void _onSel() {
+    final m = _mine();
+    if (m != sel) setState(() => sel = m);
+  }
+
+  void _press(bool v) {
+    pressing = v;
+    updateKeepAlive();
   }
 
   void _tokenize() {
@@ -682,8 +1151,8 @@ class _ParagraphState extends State<_Paragraph> {
   // Un solo detector por párrafo: con un reconocedor por palabra, los capítulos largos
   // (~9000 palabras) dejaban la app muy lenta.
   void _onTapUp(TapUpDetails d) {
-    final box = _textKey.currentContext?.findRenderObject();
-    if (box is! RenderParagraph) return;
+    final box = paragraph;
+    if (box == null) return;
     final at = box.getPositionForOffset(d.localPosition).offset;
     final i = tokens.indexWhere((t) => t.word && at >= t.s && at <= t.e);
     if (i < 0) return;
@@ -709,12 +1178,17 @@ class _ParagraphState extends State<_Paragraph> {
 
   @override
   Widget build(BuildContext context) {
-    final ranges = <(int, int, String)>[];
-    for (final m in widget.marks) {
-      for (final r in jsonList(m['ranges'])) {
-        if (r['p'] == widget.index) ranges.add(((r['s'] as num).toInt(), (r['e'] as num).toInt(), str(m['color'])));
-      }
-    }
+    super.build(context);
+    // el lector se reconstruye entero al cambiar algo (un subrayado, el párrafo leído en voz alta):
+    // si este párrafo no cambió, se devuelve el mismo widget y Flutter no lo vuelve a armar
+    final key = (widget.text, widget.size, widget.verse, widget.keywords, sel, Tx.readerText);
+    if (cached != null && key == cachedFor && listEquals(widget.marks, cachedMarks)) return cached!;
+    cachedFor = key;
+    cachedMarks = widget.marks;
+    return cached = _build();
+  }
+
+  Widget _build() {
     final keys = widget.keywords == null ? const <RegExpMatch>[] : widget.keywords!.allMatches(widget.text).toList();
     final base = TextStyle(
       fontFamily: Tx.serif,
@@ -723,6 +1197,7 @@ class _ParagraphState extends State<_Paragraph> {
       color: Tx.readerText,
       fontStyle: widget.verse ? FontStyle.italic : FontStyle.normal,
     );
+    final sel = this.sel;
     // las palabras seguidas con el mismo estilo van en un mismo tramo de texto
     final spans = <InlineSpan>[];
     var runStart = 0;
@@ -746,12 +1221,13 @@ class _ParagraphState extends State<_Paragraph> {
 
     for (final t in tokens) {
       String? color;
-      for (final r in ranges) {
+      for (final r in widget.marks) {
         if (t.s < r.$2 && t.e > r.$1) color = r.$3;
       }
       final key = t.word && keys.any((k) => t.s < k.end && t.e > k.start);
-      final start = widget.rangeStart != null && widget.rangeStart!.p == widget.index && widget.rangeStart!.s >= t.s && widget.rangeStart!.s < t.e;
-      final bg = start ? Tx.rangeStart : (color != null ? Tx.marks[color]?.first : null);
+      final mark = color != null ? Tx.marks[color]?.first : null;
+      final chosen = sel != null && t.s < sel.$2 && t.e > sel.$1;
+      final bg = chosen ? (mark == null ? Tx.selection : Color.alphaBlend(Tx.selection, mark)) : mark;
       if (bg != runBg || key != runKey) {
         flush(t.s);
         runBg = bg;
@@ -765,6 +1241,15 @@ class _ParagraphState extends State<_Paragraph> {
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTapUp: _onTapUp,
+          onLongPressStart: (d) {
+            _press(true);
+            widget.onPress(d.globalPosition);
+          },
+          onLongPressMoveUpdate: (d) => widget.onDrag(d.globalPosition),
+          onLongPressEnd: (_) {
+            _press(false);
+            widget.onRelease();
+          },
           child: Text.rich(TextSpan(style: base, children: spans), key: _textKey),
         ),
       ),
@@ -773,9 +1258,8 @@ class _ParagraphState extends State<_Paragraph> {
 }
 
 class _ColorRow extends StatelessWidget {
-  const _ColorRow({required this.onPick, this.selected});
+  const _ColorRow({required this.onPick});
   final void Function(String color) onPick;
-  final String? selected;
   @override
   Widget build(BuildContext context) => Row(children: [
         for (final c in Tx.marks.keys)
@@ -790,7 +1274,7 @@ class _ColorRow extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Tx.marks[c]![0],
                   shape: BoxShape.circle,
-                  border: Border.all(color: Tx.marks[c]![1], width: selected == c ? 3 : 1.5),
+                  border: Border.all(color: Tx.marks[c]![1], width: 1.5),
                 ),
               ),
             ),
@@ -967,7 +1451,13 @@ class _QuizState extends State<_Quiz> {
       ans[i] = ok;
       shown[i] = answer;
     });
-    if (ans.every((a) => a != null)) widget.doc.onScore(ans.where((a) => a == true).length / qs.length);
+    if (ans.every((a) => a != null)) {
+      final s = ans.where((a) => a == true).length / qs.length;
+      widget.doc.onScore(s);
+      progress.markToday('read');
+      final b = widget.doc.prevBest;
+      widget.doc.prevBest = b == null || s > b ? s : b;
+    }
   }
 
   @override
@@ -975,7 +1465,13 @@ class _QuizState extends State<_Quiz> {
     if (qs.isEmpty) {
       return Align(
         alignment: Alignment.centerLeft,
-        child: FilledButton(onPressed: () => widget.doc.onScore(1), child: Text(tr('markRead'))),
+        child: FilledButton(
+          onPressed: () {
+            widget.doc.onScore(1);
+            progress.markToday('read');
+          },
+          child: Text(tr('markRead')),
+        ),
       );
     }
     final answered = ans.where((a) => a != null).length;
@@ -990,8 +1486,7 @@ class _QuizState extends State<_Quiz> {
         ),
       ScorePanel(score: sc.toDouble(), total: qs.length, answered: answered, onRestart: () => setState(_reset)),
       const SizedBox(height: 12),
-      for (var i = 0; i < qs.length; i++)
-        Padding(padding: const EdgeInsets.only(bottom: 12), child: _card(i)),
+      for (var i = 0; i < qs.length; i++) Padding(padding: const EdgeInsets.only(bottom: 12), child: _card(i)),
       if (finished)
         Panel(
           color: s >= 0.5 ? Tx.blueSoft : Tx.rustSoft,

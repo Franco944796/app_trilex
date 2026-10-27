@@ -299,34 +299,1074 @@
   "Выделить предложение",
   "标注这句话"
  ],
- "markRange": [
-  "Choose a passage…",
-  "Elegir un fragmento…",
-  "Choisir un passage…",
-  "Abschnitt wählen…",
-  "Scegli un passaggio…",
-  "Escolher um trecho…",
-  "Выбрать фрагмент…",
-  "选择一段……"
- ],
- "rangeHint": [
-  "Tap the last word of the passage.",
-  "Toca la última palabra del fragmento.",
-  "Touchez le dernier mot du passage.",
-  "Tippen Sie auf das letzte Wort des Abschnitts.",
-  "Tocca l’ultima parola del passaggio.",
-  "Toque na última palavra do trecho.",
-  "Нажмите на последнее слово фрагмента.",
-  "点击这段的最后一个词。"
- ],
  "markHintApp": [
-  "To highlight and add a note, tap a word and choose the word, the sentence or a passage.",
-  "Para subrayar y agregar una nota, toca una palabra y elige la palabra, la oración o un fragmento.",
-  "Pour surligner et ajouter une note, touchez un mot et choisissez le mot, la phrase ou un passage.",
-  "Zum Markieren mit Notiz tippen Sie auf ein Wort und wählen das Wort, den Satz oder einen Abschnitt.",
-  "Per evidenziare e aggiungere una nota, tocca una parola e scegli la parola, la frase o un passaggio.",
-  "Para destacar e adicionar uma nota, toque numa palavra e escolha a palavra, a frase ou um trecho.",
-  "Чтобы выделить и добавить заметку, нажмите на слово и выберите слово, предложение или фрагмент.",
-  "要标注并添加笔记，点击一个词，然后选择这个词、这句话或一段。"
+  "To highlight or add a note, press and hold a word, then drag over the words or paragraphs you want.",
+  "Para subrayar o agregar una nota, mantén presionada una palabra y arrastra sobre las palabras o párrafos que quieras.",
+  "Pour surligner ou ajouter une note, maintenez le doigt sur un mot, puis glissez sur les mots ou paragraphes voulus.",
+  "Zum Markieren oder für eine Notiz ein Wort gedrückt halten und über die gewünschten Wörter oder Absätze ziehen.",
+  "Per evidenziare o aggiungere una nota, tieni premuta una parola e trascina sulle parole o sui paragrafi che vuoi.",
+  "Para destacar ou adicionar uma nota, mantenha pressionada uma palavra e arraste sobre as palavras ou parágrafos que quiser.",
+  "Чтобы выделить текст или добавить заметку, нажмите и удерживайте слово, затем проведите по нужным словам или абзацам.",
+  "要标注或添加笔记，请长按一个词，然后拖过想要的词或段落。"
+ ],
+ "navToday": [
+  "Today",
+  "Hoy",
+  "Aujourd'hui",
+  "Heute",
+  "Oggi",
+  "Hoje",
+  "Сегодня",
+  "今天"
+ ],
+ "navWords": [
+  "Words",
+  "Palabras",
+  "Mots",
+  "Wörter",
+  "Parole",
+  "Palavras",
+  "Слова",
+  "单词"
+ ],
+ "navGrammar": [
+  "Grammar",
+  "Gramática",
+  "Grammaire",
+  "Grammatik",
+  "Grammatica",
+  "Gramática",
+  "Грамматика",
+  "语法"
+ ],
+ "todayK": [
+  "Your plan · {l}",
+  "Tu plan · {l}",
+  "Votre plan · {l}",
+  "Ihr Plan · {l}",
+  "Il tuo piano · {l}",
+  "Seu plano · {l}",
+  "Ваш план · {l}",
+  "你的计划 · {l}"
+ ],
+ "todayTitle": [
+  "Today",
+  "Hoy",
+  "Aujourd'hui",
+  "Heute",
+  "Oggi",
+  "Hoje",
+  "Сегодня",
+  "今天"
+ ],
+ "todayLede": [
+  "Three steps: read, review your words and produce something of your own. In that order, every day.",
+  "Tres pasos: leer, repasar tus palabras y producir algo propio. En ese orden, todos los días.",
+  "Trois étapes : lire, réviser vos mots et produire quelque chose de vous. Dans cet ordre, chaque jour.",
+  "Drei Schritte: lesen, Ihre Wörter wiederholen und selbst etwas produzieren. In dieser Reihenfolge, jeden Tag.",
+  "Tre passi: leggere, ripassare le tue parole e produrre qualcosa di tuo. In quest’ordine, ogni giorno.",
+  "Três passos: ler, revisar suas palavras e produzir algo seu. Nessa ordem, todos os dias.",
+  "Три шага: читать, повторять свои слова и создавать что-то своё. В этом порядке, каждый день.",
+  "三个步骤：阅读、复习你的单词、自己输出内容。每天按这个顺序完成。"
+ ],
+ "tdRead": [
+  "Read",
+  "Leer",
+  "Lire",
+  "Lesen",
+  "Leggere",
+  "Ler",
+  "Читать",
+  "阅读"
+ ],
+ "tdReview": [
+  "Review",
+  "Repasar",
+  "Réviser",
+  "Wiederholen",
+  "Ripassare",
+  "Revisar",
+  "Повторить",
+  "复习"
+ ],
+ "tdReviewSub": [
+  "Your saved words and the vocabulary from your lessons",
+  "Tus palabras guardadas y el vocabulario de tus lecciones",
+  "Vos mots enregistrés et le vocabulaire de vos leçons",
+  "Ihre gespeicherten Wörter und der Wortschatz Ihrer Lektionen",
+  "Le parole salvate e il lessico delle tue lezioni",
+  "Suas palavras salvas e o vocabulário das suas lições",
+  "Сохранённые слова и лексика из уроков",
+  "你保存的单词和课程词汇"
+ ],
+ "tdProduce": [
+  "Produce",
+  "Producir",
+  "Produire",
+  "Produzieren",
+  "Produrre",
+  "Produzir",
+  "Говорить и писать",
+  "输出"
+ ],
+ "tdStart": [
+  "Start",
+  "Empezar",
+  "Commencer",
+  "Starten",
+  "Inizia",
+  "Começar",
+  "Начать",
+  "开始"
+ ],
+ "tdAllRead": [
+  "You've read everything at your level!",
+  "¡Leíste todo lo de tu nivel!",
+  "Vous avez tout lu à votre niveau !",
+  "Sie haben alles auf Ihrem Niveau gelesen!",
+  "Hai letto tutto il tuo livello!",
+  "Você leu tudo do seu nível!",
+  "Вы прочитали всё на своём уровне!",
+  "你已读完本级别的全部内容！"
+ ],
+ "tdGrammar": [
+  "Grammar from your last reading",
+  "Gramática de tu última lectura",
+  "Grammaire de votre dernière lecture",
+  "Grammatik Ihres letzten Lesetexts",
+  "Grammatica della tua ultima lettura",
+  "Gramática da sua última leitura",
+  "Грамматика последнего текста",
+  "你上次阅读相关的语法"
+ ],
+ "tdProgress": [
+  "Your progress",
+  "Tu progreso",
+  "Votre progression",
+  "Ihr Fortschritt",
+  "I tuoi progressi",
+  "Seu progresso",
+  "Ваш прогресс",
+  "你的进度"
+ ],
+ "tdWordsRead": [
+  "words read",
+  "palabras leídas",
+  "mots lus",
+  "gelesene Wörter",
+  "parole lette",
+  "palavras lidas",
+  "слов прочитано",
+  "已读词数"
+ ],
+ "tdBooks": [
+  "books finished",
+  "libros terminados",
+  "livres terminés",
+  "Bücher beendet",
+  "libri finiti",
+  "livros terminados",
+  "книг прочитано",
+  "读完的书"
+ ],
+ "tdWpm": [
+  "words per minute",
+  "palabras por minuto",
+  "mots par minute",
+  "Wörter pro Minute",
+  "parole al minuto",
+  "palavras por minuto",
+  "слов в минуту",
+  "每分钟词数"
+ ],
+ "tdLearned": [
+  "words learned",
+  "palabras aprendidas",
+  "mots appris",
+  "gelernte Wörter",
+  "parole imparate",
+  "palavras aprendidas",
+  "слов выучено",
+  "已掌握单词"
+ ],
+ "tdRetellLede": [
+  "Tell what you read, out loud and without looking: three rounds, each one shorter.",
+  "Cuenta lo que leíste, en voz alta y sin mirar: tres vueltas, cada una más corta.",
+  "Racontez ce que vous avez lu, à voix haute et sans regarder : trois tours, chacun plus court.",
+  "Erzählen Sie laut und ohne nachzusehen, was Sie gelesen haben: drei Runden, jede kürzer.",
+  "Racconta ad alta voce e senza guardare quello che hai letto: tre giri, ognuno più breve.",
+  "Conte o que você leu, em voz alta e sem olhar: três rodadas, cada uma mais curta.",
+  "Перескажите прочитанное вслух, не глядя: три раунда, каждый короче.",
+  "不看原文，大声复述你读过的内容：三轮，一轮比一轮短。"
+ ],
+ "wordsLede": [
+  "Words you saved while reading and the vocabulary of your lessons. Review them by writing them: each one comes back after 1, 3, 7, 14, 30 and 60 days.",
+  "Las palabras que guardaste al leer y el vocabulario de tus lecciones. Repásalas escribiéndolas: cada una vuelve a los 1, 3, 7, 14, 30 y 60 días.",
+  "Les mots enregistrés pendant la lecture et le vocabulaire de vos leçons. Révisez-les en les écrivant : chacun revient après 1, 3, 7, 14, 30 et 60 jours.",
+  "Beim Lesen gespeicherte Wörter und der Wortschatz Ihrer Lektionen. Wiederholen Sie sie schriftlich: Jedes kommt nach 1, 3, 7, 14, 30 und 60 Tagen wieder.",
+  "Le parole salvate leggendo e il lessico delle tue lezioni. Ripassale scrivendole: ognuna ritorna dopo 1, 3, 7, 14, 30 e 60 giorni.",
+  "As palavras que você salvou ao ler e o vocabulário das suas lições. Revise-as escrevendo: cada uma volta após 1, 3, 7, 14, 30 e 60 dias.",
+  "Слова, сохранённые при чтении, и лексика из уроков. Повторяйте их письменно: каждое возвращается через 1, 3, 7, 14, 30 и 60 дней.",
+  "阅读时保存的单词和课程词汇。通过书写来复习：每个单词会在 1、3、7、14、30 和 60 天后再次出现。"
+ ],
+ "myRec": [
+  "My recording",
+  "Mi grabación",
+  "Mon enregistrement",
+  "Meine Aufnahme",
+  "La mia registrazione",
+  "Minha gravação",
+  "Моя запись",
+  "我的录音"
+ ],
+ "grK": [
+  "Grammar · B1–B2",
+  "Gramática · B1–B2",
+  "Grammaire · B1–B2",
+  "Grammatik · B1–B2",
+  "Grammatica · B1–B2",
+  "Gramática · B1–B2",
+  "Грамматика · B1–B2",
+  "语法 · B1–B2"
+ ],
+ "grTitle": [
+  "Grammar reference",
+  "Consulta de gramática",
+  "Grammaire de référence",
+  "Grammatik zum Nachschlagen",
+  "Grammatica di consultazione",
+  "Consulta de gramática",
+  "Справочник по грамматике",
+  "语法参考"
+ ],
+ "grLede": [
+  "All units are open: study the grammar you need when it comes up in a reading. Each unit has a recommended reading and a dictogloss.",
+  "Todas las unidades están abiertas: estudia la gramática que necesites cuando aparezca en una lectura. Cada unidad tiene una lectura recomendada y un dictogloss.",
+  "Toutes les unités sont ouvertes : étudiez la grammaire dont vous avez besoin quand elle apparaît dans une lecture. Chaque unité a une lecture conseillée et un dictogloss.",
+  "Alle Einheiten sind offen: Lernen Sie die Grammatik, die Sie brauchen, wenn sie in einem Text vorkommt. Jede Einheit hat einen empfohlenen Lesetext und ein Dictogloss.",
+  "Tutte le unità sono aperte: studia la grammatica che ti serve quando compare in una lettura. Ogni unità ha una lettura consigliata e un dictogloss.",
+  "Todas as unidades estão abertas: estude a gramática de que precisar quando ela aparecer em uma leitura. Cada unidade tem uma leitura recomendada e um dictogloss.",
+  "Все разделы открыты: изучайте нужную грамматику, когда она встречается в тексте. В каждом разделе есть рекомендуемый текст и диктоглосс.",
+  "所有单元都已开放：在阅读中遇到需要的语法时再来学习。每个单元都有推荐阅读和听写重构练习。"
+ ],
+ "grUnitsDone": [
+  "{d} of {t} lessons · {u} units",
+  "{d} de {t} lecciones · {u} unidades",
+  "{d} leçons sur {t} · {u} unités",
+  "{d} von {t} Lektionen · {u} Einheiten",
+  "{d} di {t} lezioni · {u} unità",
+  "{d} de {t} lições · {u} unidades",
+  "{d} из {t} уроков · {u} разделов",
+  "{t} 节课中已完成 {d} 节 · {u} 个单元"
+ ],
+ "grReading": [
+  "Recommended reading",
+  "Lectura recomendada",
+  "Lecture conseillée",
+  "Empfohlener Lesetext",
+  "Lettura consigliata",
+  "Leitura recomendada",
+  "Рекомендуемый текст",
+  "推荐阅读"
+ ],
+ "grExamLede": [
+  "Self-assessment: {n} questions on the whole level. When you get one wrong, it tells you what to review.",
+  "Autoevaluación: {n} preguntas de todo el nivel. Cuando fallas una, te dice qué repasar.",
+  "Autoévaluation : {n} questions sur tout le niveau. En cas d’erreur, elle indique quoi revoir.",
+  "Selbsttest: {n} Fragen zum ganzen Niveau. Bei einem Fehler zeigt er, was Sie wiederholen sollten.",
+  "Autovalutazione: {n} domande su tutto il livello. Quando sbagli, ti dice cosa ripassare.",
+  "Autoavaliação: {n} perguntas sobre todo o nível. Quando você erra, ela diz o que revisar.",
+  "Самопроверка: {n} вопросов по всему уровню. При ошибке подскажет, что повторить.",
+  "自我评估：覆盖整个级别的 {n} 道题。答错时会告诉你该复习什么。"
+ ],
+ "plBelowB1": [
+  "You did not reach {p} % in the B1 block. This app is for intermediate learners: we recommend starting with levels A1–A2 on the website and coming back when you finish them.",
+  "No llegaste al {p} % en el bloque B1. Esta app es para nivel intermedio: te recomendamos empezar por los niveles A1–A2 en la web y volver cuando los termines.",
+  "Vous n’avez pas atteint {p} % dans le bloc B1. Cette application est pour le niveau intermédiaire : nous vous conseillons de commencer par les niveaux A1–A2 sur le site et de revenir ensuite.",
+  "Sie haben im B1-Block keine {p} % erreicht. Diese App ist für die Mittelstufe: Beginnen Sie am besten mit den Niveaus A1–A2 auf der Website und kommen Sie danach zurück.",
+  "Non hai raggiunto il {p} % nel blocco B1. Questa app è per il livello intermedio: ti consigliamo di iniziare dai livelli A1–A2 sul sito e di tornare quando li avrai finiti.",
+  "Você não chegou a {p} % no bloco B1. Este app é para nível intermediário: recomendamos começar pelos níveis A1–A2 no site e voltar quando terminar.",
+  "Вы не набрали {p} % в блоке B1. Это приложение для среднего уровня: советуем начать с уровней A1–A2 на сайте и вернуться после них.",
+  "你在 B1 部分没有达到 {p}%。本应用面向中级学习者：建议先在网站上学习 A1–A2，完成后再回来。"
+ ],
+ "cdBtn": [
+  "What I can do",
+  "Lo que puedo hacer",
+  "Ce que je sais faire",
+  "Was ich kann",
+  "Cosa so fare",
+  "O que eu sei fazer",
+  "Что я умею",
+  "我能做到的"
+ ],
+ "cdK": [
+  "Self-assessment",
+  "Autoevaluación",
+  "Autoévaluation",
+  "Selbsteinschätzung",
+  "Autovalutazione",
+  "Autoavaliação",
+  "Самооценка",
+  "自我评估"
+ ],
+ "cdTitle": [
+  "What I can do in English",
+  "Lo que puedo hacer en inglés",
+  "Ce que je sais faire en anglais",
+  "Was ich auf Englisch kann",
+  "Cosa so fare in inglese",
+  "O que eu sei fazer em inglês",
+  "Что я умею на английском",
+  "我能用英语做到的"
+ ],
+ "cdLede": [
+  "Tick what you can already do. What is left are your goals for the next weeks.",
+  "Marca lo que ya puedes hacer. Lo que falta son tus metas para las próximas semanas.",
+  "Cochez ce que vous savez déjà faire. Le reste, ce sont vos objectifs pour les semaines à venir.",
+  "Haken Sie ab, was Sie schon können. Der Rest sind Ihre Ziele für die nächsten Wochen.",
+  "Spunta quello che sai già fare. Il resto sono i tuoi obiettivi per le prossime settimane.",
+  "Marque o que você já consegue fazer. O que falta são suas metas para as próximas semanas.",
+  "Отметьте то, что уже умеете. Остальное — ваши цели на ближайшие недели.",
+  "勾选你已经能做到的。剩下的就是你接下来几周的目标。"
+ ],
+ "cdSource": [
+  "Based on the Common European Framework of Reference for Languages (Council of Europe).",
+  "Basado en el Marco Común Europeo de Referencia para las Lenguas (Consejo de Europa).",
+  "D’après le Cadre européen commun de référence pour les langues (Conseil de l’Europe).",
+  "Nach dem Gemeinsamen Europäischen Referenzrahmen für Sprachen (Europarat).",
+  "Basato sul Quadro comune europeo di riferimento per le lingue (Consiglio d’Europa).",
+  "Baseado no Quadro Europeu Comum de Referência para as Línguas (Conselho da Europa).",
+  "На основе Общеевропейских компетенций владения иностранным языком (Совет Европы).",
+  "依据《欧洲语言共同参考框架》（欧洲委员会）。"
+ ],
+ "cdNext": [
+  "You ticked all of B1: look at the B2 list for your next goals.",
+  "Marcaste todo B1: mira la lista de B2 para tus próximas metas.",
+  "Vous avez tout coché en B1 : regardez la liste B2 pour vos prochains objectifs.",
+  "Sie haben alles bei B1 abgehakt: Sehen Sie sich die B2-Liste für Ihre nächsten Ziele an.",
+  "Hai spuntato tutto il B1: guarda la lista B2 per i prossimi obiettivi.",
+  "Você marcou tudo do B1: veja a lista do B2 para suas próximas metas.",
+  "Вы отметили всё по B1: посмотрите список B2 для следующих целей.",
+  "你已勾选 B1 全部内容：去看看 B2 列表，确定下一步目标。"
+ ],
+ "cdB1_1": [
+  "I can understand the main points of clear texts about familiar topics such as work, studies or free time.",
+  "Puedo entender las ideas principales de textos claros sobre temas conocidos, como el trabajo, los estudios o el tiempo libre.",
+  "Je peux comprendre les points essentiels de textes clairs sur des sujets familiers comme le travail, les études ou les loisirs.",
+  "Ich kann die Hauptpunkte klarer Texte über vertraute Themen wie Arbeit, Studium oder Freizeit verstehen.",
+  "Posso capire i punti principali di testi chiari su argomenti familiari come il lavoro, lo studio o il tempo libero.",
+  "Consigo entender as ideias principais de textos claros sobre temas conhecidos, como trabalho, estudos ou lazer.",
+  "Я понимаю основные мысли понятных текстов на знакомые темы: работа, учёба, свободное время.",
+  "我能看懂关于工作、学习或休闲等熟悉话题的清晰文章的要点。"
+ ],
+ "cdB1_2": [
+  "I can follow the main point of radio or TV programmes about current topics when people speak fairly slowly and clearly.",
+  "Puedo seguir la idea principal de programas de radio o televisión sobre temas actuales cuando se habla de forma bastante lenta y clara.",
+  "Je peux suivre l’essentiel d’émissions de radio ou de télévision sur l’actualité quand on parle assez lentement et distinctement.",
+  "Ich kann die Hauptaussage von Radio- oder Fernsehsendungen zu aktuellen Themen verstehen, wenn relativ langsam und deutlich gesprochen wird.",
+  "Posso seguire il punto principale di programmi radio o TV su temi attuali quando si parla in modo piuttosto lento e chiaro.",
+  "Consigo acompanhar a ideia principal de programas de rádio ou TV sobre temas atuais quando se fala de forma bastante lenta e clara.",
+  "Я понимаю главное в радио- и телепередачах на актуальные темы, если говорят довольно медленно и чётко.",
+  "当说话者语速较慢、发音清楚时，我能听懂有关时事的广播或电视节目的要点。"
+ ],
+ "cdB1_3": [
+  "I can deal with most situations that come up when travelling in an English-speaking country.",
+  "Puedo resolver la mayoría de las situaciones que surgen al viajar a un país de habla inglesa.",
+  "Je peux faire face à la plupart des situations rencontrées en voyage dans un pays anglophone.",
+  "Ich kann die meisten Situationen bewältigen, die auf Reisen in einem englischsprachigen Land vorkommen.",
+  "Posso gestire la maggior parte delle situazioni che capitano viaggiando in un paese anglofono.",
+  "Consigo lidar com a maioria das situações que surgem ao viajar para um país de língua inglesa.",
+  "Я справляюсь с большинством ситуаций, которые возникают в поездке по англоязычной стране.",
+  "在英语国家旅行时，我能应对大多数常见情况。"
+ ],
+ "cdB1_4": [
+  "I can join a conversation on familiar topics without preparing it.",
+  "Puedo participar sin preparación en una conversación sobre temas conocidos.",
+  "Je peux participer sans préparation à une conversation sur des sujets familiers.",
+  "Ich kann ohne Vorbereitung an Gesprächen über vertraute Themen teilnehmen.",
+  "Posso partecipare senza preparazione a una conversazione su argomenti familiari.",
+  "Consigo participar sem preparação de uma conversa sobre temas conhecidos.",
+  "Я могу без подготовки участвовать в разговоре на знакомые темы.",
+  "我能不经准备地参与熟悉话题的对话。"
+ ],
+ "cdB1_5": [
+  "I can describe experiences, events, hopes and plans.",
+  "Puedo describir experiencias, hechos, deseos y planes.",
+  "Je peux décrire des expériences, des événements, des espoirs et des projets.",
+  "Ich kann Erfahrungen, Ereignisse, Wünsche und Pläne beschreiben.",
+  "Posso descrivere esperienze, avvenimenti, speranze e progetti.",
+  "Consigo descrever experiências, acontecimentos, desejos e planos.",
+  "Я могу описывать опыт, события, мечты и планы.",
+  "我能描述经历、事件、愿望和计划。"
+ ],
+ "cdB1_6": [
+  "I can briefly give reasons and explanations for my opinions and plans.",
+  "Puedo dar brevemente razones y explicaciones de mis opiniones y planes.",
+  "Je peux donner brièvement les raisons et explications de mes opinions et projets.",
+  "Ich kann meine Meinungen und Pläne kurz begründen und erklären.",
+  "Posso spiegare e motivare brevemente le mie opinioni e i miei progetti.",
+  "Consigo dar brevemente razões e explicações para minhas opiniões e planos.",
+  "Я могу кратко объяснить и обосновать свои мнения и планы.",
+  "我能简要说明自己观点和计划的理由。"
+ ],
+ "cdB1_7": [
+  "I can tell a story or the plot of a book or film and say what I thought of it.",
+  "Puedo contar una historia o el argumento de un libro o una película y decir qué me pareció.",
+  "Je peux raconter une histoire ou l’intrigue d’un livre ou d’un film et dire ce que j’en ai pensé.",
+  "Ich kann eine Geschichte oder die Handlung eines Buches oder Films erzählen und sagen, wie ich sie fand.",
+  "Posso raccontare una storia o la trama di un libro o di un film e dire cosa ne penso.",
+  "Consigo contar uma história ou o enredo de um livro ou filme e dizer o que achei.",
+  "Я могу пересказать историю или сюжет книги либо фильма и сказать, что о нём думаю.",
+  "我能讲述一个故事或一本书、一部电影的情节，并说出我的看法。"
+ ],
+ "cdB1_8": [
+  "I can write simple connected texts on familiar topics, such as an email telling someone about my experiences.",
+  "Puedo escribir textos sencillos y bien enlazados sobre temas conocidos, como un correo en el que cuento mis experiencias.",
+  "Je peux écrire des textes simples et cohérents sur des sujets familiers, comme un e-mail où je raconte mes expériences.",
+  "Ich kann einfache zusammenhängende Texte über vertraute Themen schreiben, etwa eine E-Mail über meine Erlebnisse.",
+  "Posso scrivere testi semplici e coerenti su argomenti familiari, come un’e-mail in cui racconto le mie esperienze.",
+  "Consigo escrever textos simples e bem ligados sobre temas conhecidos, como um e-mail contando minhas experiências.",
+  "Я могу писать простые связные тексты на знакомые темы, например письмо о своих впечатлениях.",
+  "我能就熟悉的话题写简单连贯的文字，比如一封讲述自己经历的邮件。"
+ ],
+ "cdB2_1": [
+  "I can understand the main ideas of complex texts on concrete and abstract topics, including discussions in my own field.",
+  "Puedo entender las ideas principales de textos complejos sobre temas concretos y abstractos, incluidas discusiones de mi especialidad.",
+  "Je peux comprendre les idées principales de textes complexes sur des sujets concrets ou abstraits, y compris des discussions dans mon domaine.",
+  "Ich kann die Hauptinhalte komplexer Texte zu konkreten und abstrakten Themen verstehen, auch Fachdiskussionen in meinem Bereich.",
+  "Posso capire le idee principali di testi complessi su argomenti concreti e astratti, comprese discussioni del mio settore.",
+  "Consigo entender as ideias principais de textos complexos sobre temas concretos e abstratos, inclusive discussões da minha área.",
+  "Я понимаю основные идеи сложных текстов на конкретные и абстрактные темы, включая обсуждения в моей области.",
+  "我能理解具体或抽象话题的复杂文章的主要观点，包括我专业领域的讨论。"
+ ],
+ "cdB2_2": [
+  "I can understand most TV news and current affairs programmes, and most films in standard English.",
+  "Puedo entender la mayoría de los noticieros y programas de actualidad, y la mayoría de las películas en inglés estándar.",
+  "Je peux comprendre la plupart des journaux télévisés et des émissions d’actualité, et la plupart des films en anglais standard.",
+  "Ich kann die meisten Fernsehnachrichten und aktuellen Sendungen sowie die meisten Filme in Standardenglisch verstehen.",
+  "Posso capire la maggior parte dei telegiornali e dei programmi di attualità, e la maggior parte dei film in inglese standard.",
+  "Consigo entender a maioria dos telejornais e programas de atualidades, e a maioria dos filmes em inglês padrão.",
+  "Я понимаю большинство теленовостей и передач о текущих событиях, а также большинство фильмов на стандартном английском.",
+  "我能看懂大多数电视新闻和时事节目，以及大多数使用标准英语的电影。"
+ ],
+ "cdB2_3": [
+  "I can read articles and reports on current problems in which the writers take a particular point of view.",
+  "Puedo leer artículos e informes sobre problemas actuales en los que el autor defiende un punto de vista.",
+  "Je peux lire des articles et des rapports sur des problèmes actuels dans lesquels l’auteur adopte un point de vue.",
+  "Ich kann Artikel und Berichte über aktuelle Probleme lesen, in denen die Verfasser einen bestimmten Standpunkt vertreten.",
+  "Posso leggere articoli e relazioni su problemi attuali in cui l’autore sostiene un punto di vista.",
+  "Consigo ler artigos e relatórios sobre problemas atuais em que o autor defende um ponto de vista.",
+  "Я могу читать статьи и доклады о современных проблемах, в которых автор отстаивает свою точку зрения.",
+  "我能读懂作者持有特定观点的、关于当前问题的文章和报告。"
+ ],
+ "cdB2_4": [
+  "I can talk with native speakers fluently and spontaneously enough for the conversation to flow without strain on either side.",
+  "Puedo hablar con hablantes nativos con la fluidez y espontaneidad suficientes para que la conversación fluya sin esfuerzo para nadie.",
+  "Je peux parler avec des locuteurs natifs avec assez d’aisance et de spontanéité pour que la conversation se déroule sans effort de part et d’autre.",
+  "Ich kann mich so flüssig und spontan mit Muttersprachlern unterhalten, dass ein Gespräch ohne große Anstrengung auf beiden Seiten möglich ist.",
+  "Posso parlare con madrelingua con abbastanza scioltezza e spontaneità perché la conversazione scorra senza sforzo per nessuno.",
+  "Consigo conversar com falantes nativos com fluência e espontaneidade suficientes para que a conversa flua sem esforço de nenhum dos lados.",
+  "Я могу говорить с носителями языка достаточно свободно и спонтанно, чтобы разговор шёл без напряжения для обеих сторон.",
+  "我能与母语者流利、自然地交谈，双方都不觉得吃力。"
+ ],
+ "cdB2_5": [
+  "I can take an active part in discussions, explaining and defending my views.",
+  "Puedo participar activamente en debates, explicando y defendiendo mis opiniones.",
+  "Je peux participer activement à une discussion en expliquant et en défendant mes opinions.",
+  "Ich kann mich aktiv an Diskussionen beteiligen und meine Ansichten begründen und verteidigen.",
+  "Posso partecipare attivamente a una discussione, spiegando e difendendo le mie opinioni.",
+  "Consigo participar ativamente de debates, explicando e defendendo minhas opiniões.",
+  "Я могу активно участвовать в обсуждении, объясняя и отстаивая свою позицию.",
+  "我能积极参与讨论，解释并捍卫自己的观点。"
+ ],
+ "cdB2_6": [
+  "I can give clear, detailed descriptions on a wide range of subjects related to my interests.",
+  "Puedo hacer descripciones claras y detalladas sobre muchos temas relacionados con mis intereses.",
+  "Je peux faire des descriptions claires et détaillées sur de nombreux sujets liés à mes centres d’intérêt.",
+  "Ich kann zu vielen Themen aus meinen Interessengebieten klare und detaillierte Beschreibungen geben.",
+  "Posso fare descrizioni chiare e dettagliate su molti argomenti legati ai miei interessi.",
+  "Consigo fazer descrições claras e detalhadas sobre muitos temas ligados aos meus interesses.",
+  "Я могу ясно и подробно описывать многие предметы, связанные с моими интересами.",
+  "我能就与兴趣相关的多种话题做清楚、详细的描述。"
+ ],
+ "cdB2_7": [
+  "I can explain my view on a current issue, giving the advantages and disadvantages of different options.",
+  "Puedo explicar mi opinión sobre un tema de actualidad, con las ventajas y desventajas de distintas opciones.",
+  "Je peux expliquer mon point de vue sur un sujet d’actualité en donnant les avantages et les inconvénients de différentes options.",
+  "Ich kann meinen Standpunkt zu einer aktuellen Frage erläutern und Vor- und Nachteile verschiedener Möglichkeiten angeben.",
+  "Posso spiegare il mio punto di vista su un tema d’attualità, indicando vantaggi e svantaggi delle diverse opzioni.",
+  "Consigo explicar minha opinião sobre um tema atual, com as vantagens e desvantagens de diferentes opções.",
+  "Я могу изложить свою точку зрения на актуальный вопрос, указав плюсы и минусы разных вариантов.",
+  "我能就时事问题阐述自己的观点，并说明不同选择的利弊。"
+ ],
+ "cdB2_8": [
+  "I can write clear, detailed texts, such as an essay or a report, giving reasons for or against a point of view.",
+  "Puedo escribir textos claros y detallados, como un ensayo o un informe, dando razones a favor o en contra de un punto de vista.",
+  "Je peux écrire des textes clairs et détaillés, comme un essai ou un rapport, en donnant des arguments pour ou contre un point de vue.",
+  "Ich kann klare, detaillierte Texte schreiben, etwa einen Aufsatz oder Bericht, und Gründe für oder gegen einen Standpunkt darlegen.",
+  "Posso scrivere testi chiari e dettagliati, come un saggio o una relazione, dando argomenti a favore o contro un punto di vista.",
+  "Consigo escrever textos claros e detalhados, como uma redação ou um relatório, dando argumentos a favor ou contra um ponto de vista.",
+  "Я могу писать ясные подробные тексты, например эссе или доклад, приводя доводы за и против какой-либо точки зрения.",
+  "我能写出清楚、详细的文章，如论说文或报告，阐述支持或反对某一观点的理由。"
+ ],
+ "cardHow": [
+  "Write the English word",
+  "Escribe la palabra en inglés",
+  "Écrivez le mot en anglais",
+  "Schreiben Sie das englische Wort",
+  "Scrivi la parola in inglese",
+  "Escreva a palavra em inglês",
+  "Напишите слово по-английски",
+  "写出英文单词"
+ ],
+ "czH": [
+  "Practise with the text",
+  "Practica con el texto",
+  "Entraînez-vous avec le texte",
+  "Üben mit dem Text",
+  "Esercitati con il testo",
+  "Pratique com o texto",
+  "Практика по тексту",
+  "课文练习"
+ ],
+ "czLede": [
+  "Write the missing word or expression. All the sentences are from the text.",
+  "Escribe la palabra o expresión que falta. Todas las oraciones son del texto.",
+  "Écrivez le mot ou l’expression qui manque. Toutes les phrases viennent du texte.",
+  "Schreiben Sie das fehlende Wort oder den fehlenden Ausdruck. Alle Sätze stammen aus dem Text.",
+  "Scrivi la parola o l’espressione mancante. Tutte le frasi sono del testo.",
+  "Escreva a palavra ou expressão que falta. Todas as frases são do texto.",
+  "Впишите пропущенное слово или выражение. Все предложения взяты из текста.",
+  "填写缺少的单词或短语。所有句子都来自课文。"
+ ],
+ "dgCompare": [
+  "Compare with the original",
+  "Comparar con el original",
+  "Comparer avec l’original",
+  "Mit dem Original vergleichen",
+  "Confronta con l’originale",
+  "Comparar com o original",
+  "Сравнить с оригиналом",
+  "与原文对比"
+ ],
+ "dgLede": [
+  "Listen to the text (twice is ideal; you can also use the slow version) and take notes. Then rebuild it as closely as you can, with correct grammar, and compare it with the original.",
+  "Escucha el texto (lo ideal es dos veces; también puedes usar la versión lenta) y toma notas. Después reconstrúyelo lo más parecido que puedas, con la gramática correcta, y compáralo con el original.",
+  "Écoutez le texte (deux fois, c’est l’idéal ; vous pouvez aussi utiliser la version lente) et prenez des notes. Reconstituez-le ensuite le plus fidèlement possible, avec une grammaire correcte, puis comparez avec l’original.",
+  "Hören Sie den Text (am besten zweimal; es gibt auch eine langsame Version) und machen Sie Notizen. Rekonstruieren Sie ihn dann so genau wie möglich mit korrekter Grammatik und vergleichen Sie mit dem Original.",
+  "Ascolta il testo (l’ideale è due volte; puoi usare anche la versione lenta) e prendi appunti. Poi ricostruiscilo il più fedelmente possibile, con la grammatica corretta, e confrontalo con l’originale.",
+  "Ouça o texto (o ideal é duas vezes; você também pode usar a versão lenta) e tome notas. Depois reconstrua-o o mais parecido possível, com a gramática correta, e compare com o original.",
+  "Прослушайте текст (лучше дважды; можно включить медленную версию) и делайте заметки. Затем восстановите его как можно точнее, с правильной грамматикой, и сравните с оригиналом.",
+  "听这段文字（最好听两遍，也可以用慢速），边听边做笔记。然后尽量准确、语法正确地把它写出来，再与原文对比。"
+ ],
+ "dgLegend": [
+  "Highlighted: the words that are missing or different in your version. Look at them: they show what to notice next time.",
+  "Resaltadas: las palabras que faltan o son distintas en tu versión. Fíjate en ellas: muestran en qué prestar atención la próxima vez.",
+  "Surlignés : les mots qui manquent ou qui diffèrent dans votre version. Regardez-les : ils montrent à quoi faire attention la prochaine fois.",
+  "Markiert: die Wörter, die in Ihrer Version fehlen oder anders sind. Sehen Sie sie sich an: Sie zeigen, worauf Sie nächstes Mal achten sollten.",
+  "Evidenziate: le parole che mancano o sono diverse nella tua versione. Guardale: mostrano a cosa fare attenzione la prossima volta.",
+  "Destacadas: as palavras que faltam ou são diferentes na sua versão. Observe-as: mostram no que prestar atenção da próxima vez.",
+  "Выделены слова, которых нет в вашей версии или которые отличаются. Обратите на них внимание: это подсказка на следующий раз.",
+  "高亮部分：你的版本中缺少或不同的单词。留意它们，下次就知道该注意什么。"
+ ],
+ "dgListen": [
+  "Listen ({n})",
+  "Escuchar ({n})",
+  "Écouter ({n})",
+  "Anhören ({n})",
+  "Ascolta ({n})",
+  "Ouvir ({n})",
+  "Слушать ({n})",
+  "听（{n}）"
+ ],
+ "dgNeed": [
+  "Write your version of the text first.",
+  "Primero escribe tu versión del texto.",
+  "Écrivez d’abord votre version du texte.",
+  "Schreiben Sie zuerst Ihre Version des Textes.",
+  "Prima scrivi la tua versione del testo.",
+  "Primeiro escreva sua versão do texto.",
+  "Сначала напишите свою версию текста.",
+  "请先写下你的版本。"
+ ],
+ "dgPh": [
+  "Your version of the text…",
+  "Tu versión del texto…",
+  "Votre version du texte…",
+  "Ihre Version des Textes…",
+  "La tua versione del testo…",
+  "Sua versão do texto…",
+  "Ваша версия текста…",
+  "你写的版本…"
+ ],
+ "dgScore": [
+  "of the words of the original, in the right order.",
+  "de las palabras del original, en el orden correcto.",
+  "des mots de l’original, dans le bon ordre.",
+  "der Wörter des Originals, in der richtigen Reihenfolge.",
+  "delle parole dell’originale, nell’ordine giusto.",
+  "das palavras do original, na ordem certa.",
+  "слов оригинала, в правильном порядке.",
+  "的原文单词（顺序正确）。"
+ ],
+ "dgT": [
+  "Dictogloss",
+  "Dictogloss",
+  "Dictogloss",
+  "Dictogloss",
+  "Dictogloss",
+  "Dictogloss",
+  "Диктоглосс",
+  "听写重构"
+ ],
+ "fluH": [
+  "Fluency",
+  "Fluidez",
+  "Aisance",
+  "Flüssigkeit",
+  "Scioltezza",
+  "Fluência",
+  "Беглость",
+  "流利度"
+ ],
+ "roundN": [
+  "Round {n}",
+  "Vuelta {n}",
+  "Tour {n}",
+  "Runde {n}",
+  "Giro {n}",
+  "Rodada {n}",
+  "Раунд {n}",
+  "第 {n} 轮"
+ ],
+ "rtDone": [
+  "Well done! Listen to your three recordings: the last one is usually the most fluent.",
+  "¡Bien hecho! Escucha tus tres grabaciones: la última suele ser la más fluida.",
+  "Bravo ! Écoutez vos trois enregistrements : le dernier est souvent le plus fluide.",
+  "Gut gemacht! Hören Sie sich Ihre drei Aufnahmen an: Die letzte ist meist die flüssigste.",
+  "Ben fatto! Ascolta le tue tre registrazioni: l’ultima di solito è la più fluida.",
+  "Muito bem! Ouça suas três gravações: a última costuma ser a mais fluente.",
+  "Отлично! Послушайте три записи: последняя обычно самая беглая.",
+  "做得好！听听你的三段录音：最后一段通常最流利。"
+ ],
+ "rtDoneNoMic": [
+  "Well done! Saying the same thing three times in less time builds fluency.",
+  "¡Bien hecho! Decir lo mismo tres veces en menos tiempo da fluidez.",
+  "Bravo ! Dire la même chose trois fois en moins de temps développe l’aisance.",
+  "Gut gemacht! Dasselbe dreimal in kürzerer Zeit zu sagen fördert die Flüssigkeit.",
+  "Ben fatto! Dire la stessa cosa tre volte in meno tempo sviluppa la scioltezza.",
+  "Muito bem! Dizer o mesmo três vezes em menos tempo desenvolve a fluência.",
+  "Отлично! Повторять одно и то же три раза всё быстрее — так развивается беглость.",
+  "做得好！用越来越短的时间把同样的内容说三遍，能提高流利度。"
+ ],
+ "rtGo": [
+  "Start round {n} ({t})",
+  "Empezar la vuelta {n} ({t})",
+  "Commencer le tour {n} ({t})",
+  "Runde {n} starten ({t})",
+  "Inizia il giro {n} ({t})",
+  "Começar a rodada {n} ({t})",
+  "Начать раунд {n} ({t})",
+  "开始第 {n} 轮（{t}）"
+ ],
+ "rtH": [
+  "Retell it three times",
+  "Cuéntalo tres veces",
+  "Racontez-le trois fois",
+  "Dreimal nacherzählen",
+  "Raccontalo tre volte",
+  "Conte três vezes",
+  "Перескажите три раза",
+  "复述三遍"
+ ],
+ "rtLede": [
+  "Without looking at the text, tell the story or its main ideas out loud. You have 2:00, then 1:30, then 1:00: each round, say the same in less time.",
+  "Sin mirar el texto, cuenta en voz alta la historia o sus ideas principales. Tienes 2:00, luego 1:30 y luego 1:00: en cada vuelta, di lo mismo en menos tiempo.",
+  "Sans regarder le texte, racontez à voix haute l’histoire ou ses idées principales. Vous avez 2:00, puis 1:30, puis 1:00 : à chaque tour, dites la même chose en moins de temps.",
+  "Erzählen Sie, ohne in den Text zu schauen, laut die Geschichte oder die Hauptideen. Sie haben 2:00, dann 1:30, dann 1:00: Sagen Sie in jeder Runde dasselbe in kürzerer Zeit.",
+  "Senza guardare il testo, racconta ad alta voce la storia o le idee principali. Hai 2:00, poi 1:30, poi 1:00: a ogni giro, di’ la stessa cosa in meno tempo.",
+  "Sem olhar o texto, conte em voz alta a história ou as ideias principais. Você tem 2:00, depois 1:30 e depois 1:00: a cada rodada, diga o mesmo em menos tempo.",
+  "Не глядя в текст, расскажите вслух историю или главные мысли. У вас 2:00, затем 1:30, затем 1:00: в каждом раунде скажите то же самое быстрее.",
+  "不看课文，大声讲出故事或主要内容。你有 2:00，然后 1:30，再然后 1:00：每一轮用更短的时间说同样的内容。"
+ ],
+ "rtNoMic": [
+  "Without a microphone you can do it with the timer only.",
+  "Sin micrófono puedes hacerlo solo con el cronómetro.",
+  "Sans micro, vous pouvez le faire avec le chronomètre seulement.",
+  "Ohne Mikrofon geht es auch nur mit dem Timer.",
+  "Senza microfono puoi farlo solo con il timer.",
+  "Sem microfone, você pode fazer só com o cronômetro.",
+  "Без микрофона можно делать только с таймером.",
+  "没有麦克风时，也可以只用计时器练习。"
+ ],
+ "rtRec": [
+  "Recording, round {n}",
+  "Grabación, vuelta {n}",
+  "Enregistrement, tour {n}",
+  "Aufnahme, Runde {n}",
+  "Registrazione, giro {n}",
+  "Gravação, rodada {n}",
+  "Запись, раунд {n}",
+  "第 {n} 轮录音"
+ ],
+ "rtStop": [
+  "Stop",
+  "Detener",
+  "Arrêter",
+  "Stopp",
+  "Ferma",
+  "Parar",
+  "Стоп",
+  "停止"
+ ],
+ "rvBtn": [
+  "Review ({n})",
+  "Repasar ({n})",
+  "Réviser ({n})",
+  "Wiederholen ({n})",
+  "Ripassa ({n})",
+  "Revisar ({n})",
+  "Повторить ({n})",
+  "复习（{n}）"
+ ],
+ "rvH": [
+  "Review my words",
+  "Repasar mis palabras",
+  "Réviser mes mots",
+  "Meine Wörter wiederholen",
+  "Ripassa le mie parole",
+  "Revisar minhas palavras",
+  "Повторить мои слова",
+  "复习我的单词"
+ ],
+ "rvNext": [
+  "Next →",
+  "Siguiente →",
+  "Suivant →",
+  "Weiter →",
+  "Avanti →",
+  "Próxima →",
+  "Далее →",
+  "下一个 →"
+ ],
+ "rvNone": [
+  "Nothing to review today. Come back tomorrow!",
+  "Hoy no hay nada para repasar. ¡Vuelve mañana!",
+  "Rien à réviser aujourd’hui. Revenez demain !",
+  "Heute gibt es nichts zu wiederholen. Kommen Sie morgen wieder!",
+  "Oggi non c’è niente da ripassare. Torna domani!",
+  "Nada para revisar hoje. Volte amanhã!",
+  "Сегодня повторять нечего. Возвращайтесь завтра!",
+  "今天没有需要复习的内容，明天再来吧！"
+ ],
+ "rvPh": [
+  "English word…",
+  "Palabra en inglés…",
+  "Mot anglais…",
+  "Englisches Wort…",
+  "Parola inglese…",
+  "Palavra em inglês…",
+  "Английское слово…",
+  "英文单词…"
+ ],
+ "rvResult": [
+  "Done: {o} of {n} correct.",
+  "Terminado: {o} de {n} correctas.",
+  "Terminé : {o} sur {n} correctes.",
+  "Fertig: {o} von {n} richtig.",
+  "Fatto: {o} su {n} corrette.",
+  "Concluído: {o} de {n} corretas.",
+  "Готово: {o} из {n} верно.",
+  "完成：{n} 个中答对 {o} 个。"
+ ],
+ "rvTypo": [
+  "I knew it (typo)",
+  "La sabía (error de tipeo)",
+  "Je le savais (faute de frappe)",
+  "Ich wusste es (Tippfehler)",
+  "La sapevo (errore di battitura)",
+  "Eu sabia (erro de digitação)",
+  "Я знал(а) (опечатка)",
+  "我会（打错了）"
+ ],
+ "shH": [
+  "Listen and repeat",
+  "Escucha y repite",
+  "Écoutez et répétez",
+  "Hören und nachsprechen",
+  "Ascolta e ripeti",
+  "Ouça e repita",
+  "Слушайте и повторяйте",
+  "跟读"
+ ],
+ "shLede": [
+  "Listen to each sentence and repeat it out loud, copying the rhythm and intonation. Record yourself to compare.",
+  "Escucha cada oración y repítela en voz alta, imitando el ritmo y la entonación. Grábate para compararte.",
+  "Écoutez chaque phrase et répétez-la à voix haute en imitant le rythme et l’intonation. Enregistrez-vous pour comparer.",
+  "Hören Sie jeden Satz und sprechen Sie ihn laut nach; ahmen Sie Rhythmus und Intonation nach. Nehmen Sie sich zum Vergleich auf.",
+  "Ascolta ogni frase e ripetila ad alta voce, imitando ritmo e intonazione. Registrati per confrontarti.",
+  "Ouça cada frase e repita em voz alta, imitando o ritmo e a entonação. Grave-se para comparar.",
+  "Слушайте каждое предложение и повторяйте вслух, копируя ритм и интонацию. Запишите себя, чтобы сравнить.",
+  "听每个句子并大声跟读，模仿节奏和语调。录下自己的声音进行对比。"
+ ],
+ "shListen": [
+  "Listen",
+  "Escuchar",
+  "Écouter",
+  "Anhören",
+  "Ascolta",
+  "Ouvir",
+  "Слушать",
+  "听"
+ ],
+ "shNext": [
+  "Next →",
+  "Siguiente →",
+  "Suivante →",
+  "Weiter →",
+  "Successiva →",
+  "Próxima →",
+  "Далее →",
+  "下一句 →"
+ ],
+ "shNoMic": [
+  "Microphone not available",
+  "Micrófono no disponible",
+  "Micro non disponible",
+  "Mikrofon nicht verfügbar",
+  "Microfono non disponibile",
+  "Microfone indisponível",
+  "Микрофон недоступен",
+  "麦克风不可用"
+ ],
+ "shOf": [
+  "Sentence {i} of {n}",
+  "Oración {i} de {n}",
+  "Phrase {i} sur {n}",
+  "Satz {i} von {n}",
+  "Frase {i} di {n}",
+  "Frase {i} de {n}",
+  "Предложение {i} из {n}",
+  "第 {i} 句，共 {n} 句"
+ ],
+ "shPrev": [
+  "← Previous",
+  "← Anterior",
+  "← Précédente",
+  "← Zurück",
+  "← Precedente",
+  "← Anterior",
+  "← Назад",
+  "← 上一句"
+ ],
+ "shRec": [
+  "Record me",
+  "Grabarme",
+  "M’enregistrer",
+  "Mich aufnehmen",
+  "Registrami",
+  "Gravar-me",
+  "Записать себя",
+  "录我的声音"
+ ],
+ "shSlow": [
+  "Slow",
+  "Lento",
+  "Lent",
+  "Langsam",
+  "Lento",
+  "Lento",
+  "Медленно",
+  "慢速"
+ ],
+ "smCheckH": [
+  "Check your summary:",
+  "Revisa tu resumen:",
+  "Vérifiez votre résumé :",
+  "Prüfen Sie Ihre Zusammenfassung:",
+  "Controlla il tuo riassunto:",
+  "Confira seu resumo:",
+  "Проверьте свой пересказ:",
+  "检查你的概括："
+ ],
+ "smCompare": [
+  "Compare with the model",
+  "Comparar con el modelo",
+  "Comparer avec le modèle",
+  "Mit dem Modell vergleichen",
+  "Confronta con il modello",
+  "Comparar com o modelo",
+  "Сравнить с образцом",
+  "与范文比较"
+ ],
+ "smH": [
+  "Summarise the text",
+  "Resume el texto",
+  "Résumez le texte",
+  "Fassen Sie den Text zusammen",
+  "Riassumi il testo",
+  "Resuma o texto",
+  "Перескажите текст кратко",
+  "概括课文"
+ ],
+ "smLede": [
+  "In {s} sentences, write the main idea and the most important details, in your own words and without looking at the text. Then compare with a model.",
+  "En {s} oraciones, escribe la idea principal y los detalles más importantes, con tus palabras y sin mirar el texto. Después compara con un modelo.",
+  "En {s} phrases, écrivez l’idée principale et les détails les plus importants, avec vos mots et sans regarder le texte. Comparez ensuite avec un modèle.",
+  "Schreiben Sie in {s} Sätzen die Hauptidee und die wichtigsten Details, in eigenen Worten und ohne in den Text zu schauen. Vergleichen Sie dann mit einem Modell.",
+  "In {s} frasi, scrivi l’idea principale e i dettagli più importanti, con parole tue e senza guardare il testo. Poi confronta con un modello.",
+  "Em {s} frases, escreva a ideia principal e os detalhes mais importantes, com suas palavras e sem olhar o texto. Depois compare com um modelo.",
+  "В {s} предложениях напишите главную мысль и самые важные детали своими словами, не глядя в текст. Затем сравните с образцом.",
+  "用 {s} 句话、用自己的话写出主旨和最重要的细节，不要看课文。然后与范文比较。"
+ ],
+ "smModel": [
+  "Model summary",
+  "Resumen modelo",
+  "Résumé modèle",
+  "Musterzusammenfassung",
+  "Riassunto modello",
+  "Resumo modelo",
+  "Образец",
+  "范文"
+ ],
+ "smNeed": [
+  "Write at least {n} words ({w} so far).",
+  "Escribe al menos {n} palabras (llevas {w}).",
+  "Écrivez au moins {n} mots ({w} pour l’instant).",
+  "Schreiben Sie mindestens {n} Wörter (bisher {w}).",
+  "Scrivi almeno {n} parole (finora {w}).",
+  "Escreva pelo menos {n} palavras ({w} até agora).",
+  "Напишите не менее {n} слов (пока {w}).",
+  "至少写 {n} 个词（目前 {w} 个）。"
+ ],
+ "smC1": [
+  "It has the main idea.",
+  "Tiene la idea principal.",
+  "Il contient l’idée principale.",
+  "Sie enthält die Hauptidee.",
+  "Contiene l’idea principale.",
+  "Tem a ideia principal.",
+  "Есть главная мысль.",
+  "包含主旨。"
+ ],
+ "smC2": [
+  "It has the important details, not the small ones.",
+  "Tiene los detalles importantes, no los pequeños.",
+  "Il contient les détails importants, pas les petits.",
+  "Sie enthält die wichtigen Details, nicht die kleinen.",
+  "Contiene i dettagli importanti, non quelli piccoli.",
+  "Tem os detalhes importantes, não os pequenos.",
+  "Есть важные детали, а не мелкие.",
+  "包含重要细节，而非琐碎细节。"
+ ],
+ "smC3": [
+  "It uses my own words, not whole sentences from the text.",
+  "Usa mis palabras, no oraciones enteras del texto.",
+  "Il utilise mes mots, pas des phrases entières du texte.",
+  "Sie verwendet meine eigenen Worte, keine ganzen Sätze aus dem Text.",
+  "Usa parole mie, non frasi intere del testo.",
+  "Usa minhas palavras, não frases inteiras do texto.",
+  "Написано своими словами, без целых предложений из текста.",
+  "用的是自己的话，而不是照抄课文的整句。"
+ ],
+ "smC4": [
+  "The verb tenses are consistent.",
+  "Los tiempos verbales son coherentes.",
+  "Les temps verbaux sont cohérents.",
+  "Die Zeitformen sind einheitlich.",
+  "I tempi verbali sono coerenti.",
+  "Os tempos verbais são coerentes.",
+  "Времена глаголов согласованы.",
+  "动词时态前后一致。"
+ ],
+ "tmFirst": [
+  "first time: {w}",
+  "la primera vez: {w}",
+  "la première fois : {w}",
+  "beim ersten Mal: {w}",
+  "la prima volta: {w}",
+  "na primeira vez: {w}",
+  "в первый раз: {w}",
+  "第一次：{w}"
+ ],
+ "tmH": [
+  "Timed reading",
+  "Lectura cronometrada",
+  "Lecture chronométrée",
+  "Lesen mit Zeitmessung",
+  "Lettura cronometrata",
+  "Leitura cronometrada",
+  "Чтение на время",
+  "计时阅读"
+ ],
+ "tmLede": [
+  "Read the text again at a comfortable speed, without stopping to look up words. Each time you reread it, your speed goes up.",
+  "Vuelve a leer el texto a un ritmo cómodo, sin detenerte a buscar palabras. Cada vez que lo relees, tu velocidad sube.",
+  "Relisez le texte à un rythme confortable, sans vous arrêter pour chercher des mots. À chaque relecture, votre vitesse augmente.",
+  "Lesen Sie den Text in angenehmem Tempo noch einmal, ohne anzuhalten, um Wörter nachzuschlagen. Mit jedem Lesen steigt Ihr Tempo.",
+  "Rileggi il testo a un ritmo comodo, senza fermarti a cercare parole. Ogni volta che lo rileggi, la tua velocità aumenta.",
+  "Leia o texto de novo em um ritmo confortável, sem parar para procurar palavras. A cada releitura, sua velocidade aumenta.",
+  "Перечитайте текст в удобном темпе, не останавливаясь, чтобы искать слова. С каждым разом скорость растёт.",
+  "以舒适的速度再读一遍课文，不要停下来查词。每重读一次，速度都会提高。"
+ ],
+ "tmRes": [
+  "{w} words per minute",
+  "{w} palabras por minuto",
+  "{w} mots par minute",
+  "{w} Wörter pro Minute",
+  "{w} parole al minuto",
+  "{w} palavras por minuto",
+  "{w} слов в минуту",
+  "每分钟 {w} 个词"
+ ],
+ "tmStart": [
+  "Start reading",
+  "Empezar a leer",
+  "Commencer la lecture",
+  "Lesen starten",
+  "Inizia a leggere",
+  "Começar a ler",
+  "Начать чтение",
+  "开始阅读"
+ ],
+ "tmStop": [
+  "I’ve finished",
+  "Terminé",
+  "J’ai fini",
+  "Fertig",
+  "Ho finito",
+  "Terminei",
+  "Я закончил(а)",
+  "读完了"
+ ],
+ "tmTooFast": [
+  "That was too fast to be a real reading. Try again.",
+  "Fue demasiado rápido para ser una lectura real. Inténtalo de nuevo.",
+  "C’était trop rapide pour une vraie lecture. Réessayez.",
+  "Das war zu schnell für echtes Lesen. Versuchen Sie es noch einmal.",
+  "Troppo veloce per essere una vera lettura. Riprova.",
+  "Foi rápido demais para ser uma leitura real. Tente de novo.",
+  "Слишком быстро для настоящего чтения. Попробуйте ещё раз.",
+  "太快了，不像真正的阅读。请再试一次。"
+ ],
+ "copyW": [
+  "Copy",
+  "Copiar",
+  "Copier",
+  "Kopieren",
+  "Copia",
+  "Copiar",
+  "Копировать",
+  "复制"
+ ],
+ "copiedW": [
+  "Copied",
+  "Copiado",
+  "Copié",
+  "Kopiert",
+  "Copiato",
+  "Copiado",
+  "Скопировано",
+  "已复制"
  ]
 }

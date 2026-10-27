@@ -1,8 +1,10 @@
 import '../core/services.dart';
 import '../core/util.dart';
 
-/// Misma lógica que ingles/trilex.js: cualquier cambio en las reglas va en los dos lados.
+/// Misma lógica que ingles/trilex.js, salvo que la app es para B1–B2 y el curso es de consulta:
+/// solo esos niveles, todas las lecciones abiertas y los exámenes siempre disponibles.
 class Course {
+  static const appLevels = {'B1', 'B2'};
   List<Json> levels = [];
   List<Json> ready = [];
   List<Json> flat = [];
@@ -10,13 +12,45 @@ class Course {
   Future<void> load() async {
     final p = await content.obj('path.json');
     levels = jsonList(p['levels']);
-    ready = levels.where((l) => units(l).any((u) => lessonsOf(u).isNotEmpty)).toList();
+    ready = levels.where((l) => appLevels.contains(l['cefr']) && units(l).any((u) => lessonsOf(u).isNotEmpty)).toList();
     flat = [
       for (final lv in ready)
         for (final u in units(lv))
           for (final l in lessonsOf(u)) {...l, 'cefr': lv['cefr']},
     ];
+    try {
+      extras = await content.obj('extras.json');
+    } catch (_) {
+      extras = {};
+    }
     await loadPacks();
+  }
+
+  /// content/en/extras.json: resumen modelo por lectura, lectura y texto de dictogloss por unidad.
+  Json extras = {};
+  String? readingOfUnit(String unitId) => (extras['unit_readings'] as Map?)?[unitId] as String?;
+  String? dictoglossOf(String unitId) => (extras['dictogloss'] as Map?)?[unitId] as String?;
+  String? summaryOf(String textId) => (extras['summaries'] as Map?)?[textId] as String?;
+
+  /// Unidad cuya lectura recomendada es este texto (para sugerir la gramática relacionada).
+  Json? unitForReading(String textId) {
+    final m = extras['unit_readings'] as Map?;
+    if (m == null) return null;
+    for (final lv in ready) {
+      for (final u in units(lv)) {
+        if (m[u['id']] == textId) return {...u, 'cefr': lv['cefr']};
+      }
+    }
+    return null;
+  }
+
+  Json? unitById(String id) {
+    for (final lv in ready) {
+      for (final u in units(lv)) {
+        if (u['id'] == id) return {...u, 'cefr': lv['cefr']};
+      }
+    }
+    return null;
   }
 
   static List<Json> units(Json lv) => jsonList(lv['units']);
@@ -35,26 +69,9 @@ class Course {
   bool isDone(String id) => progress.done[id] != null;
   double scoreOf(String id) => ((progress.done[id] as Map?)?['score'] as num?)?.toDouble() ?? 0;
 
-  bool unlocked(Json l) {
-    final k = flat.indexWhere((x) => x['id'] == l['id']);
-    if (progress.testMode || k <= 0 || free(l['cefr'])) return true;
-    final p = flat[k - 1];
-    return isDone(p['id']) || (p['cefr'] != l['cefr'] && free(p['cefr']));
-  }
-
-  Json? get nextLesson {
-    for (final l in flat) {
-      if (!isDone(l['id']) && unlocked(l)) return l;
-    }
-    return null;
-  }
-
   bool examOpen(Json lv) {
     final exam = lv['exam'] as Map?;
-    if (exam == null || exam['status'] != 'ready') return false;
-    if (progress.testMode || free(lv['cefr'])) return true;
-    final ls = flat.where((l) => l['cefr'] == lv['cefr']).toList();
-    return ls.length == levelTotal(lv) && ls.every((l) => isDone(l['id']));
+    return exam != null && exam['status'] == 'ready';
   }
 
   List<String> get dueItems {

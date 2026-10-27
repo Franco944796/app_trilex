@@ -1,0 +1,93 @@
+# Estado — trilex (app Flutter)
+
+## Objetivo
+App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principiantes (A1–A2) usan la web
+(`../web-idiomas`). Trabajo en curso: rediseñar la app para B1–B2 y sumar contenido intermedio.
+
+## Decisiones tomadas
+- Reglas de trabajo: `../web-idiomas/reglas-de-trabajo.md`.
+- Se sacan A1–A2 de la app. La prueba de nivel solo distingue B1/B2; si da menos, recomienda la web.
+- Curso = consulta: unidades B1–B2 abiertas, por tema; exámenes como autoevaluación.
+- Pestaña «Hoy» como inicio: lectura + repaso de palabras + una actividad para producir, según la meta.
+- Lector con las actividades de la web: escuchar y repetir, completar huecos, resumen guiado,
+  lectura cronometrada, volver a contarlo, repaso espaciado escrito de las palabras guardadas.
+- Corrección solo con modelo + lista de control (sin IA, nada sale del teléfono).
+- Contenido nuevo (aparece también en la web):
+  - 24 lecturas graduadas nuevas: 12 B1 + 12 B2 (glosario, preguntas, tarea, resumen modelo).
+  - 4 libros de dominio público: A Christmas Carol, The Call of the Wild, The Time Machine,
+    The Picture of Dorian Gray (glosario y preguntas por capítulo).
+  - Se escribe como JSON directo en `../web-idiomas/content/en` + un script propio que valida,
+    actualiza `reading/index.json` y `manifest.json` y copia a `assets/content`. El generador
+    original (tools/build.py) no está en esta computadora: si se regenera, conservar esos archivos.
+- Textos de interfaz en los 8 idiomas de la app.
+- Grabación de voz en «escuchar y repetir» y «volver a contarlo» (librerías nuevas + permiso de
+  micrófono; la grabación queda en el teléfono).
+- Navegación de 5 pestañas: Hoy · Leer · Palabras · Gramática · Ajustes.
+- Lector: selección propia (mantener presionado y arrastrar) sobre una lista perezosa; un único texto
+  seleccionable con todo el capítulo se descartó por lento.
+
+## Plan
+1. Etapa 1 (código de la app): navegación nueva, «Hoy», quitar A1–A2, curso como consulta,
+   actividades del lector, repaso escrito, progreso B1–B2, corregir los 3 errores del lector
+   (diccionario por primera palabra de frases, glosario viejo en «Mis palabras», mejor puntaje al
+   reiniciar). Verificar con `flutter analyze`, `flutter test` y `flutter run -d linux`.
+2. Etapa 2 (contenido): script de validación/manifest, 24 lecturas, 4 libros.
+
+## Hecho
+- 2026-10-26 Etapa 1 (código), verificada con `flutter analyze`, `flutter test` (14 pruebas),
+  `flutter build linux --debug` y capturas de pantalla generadas con una prueba de widgets:
+  - Navegación: Hoy · Leer · Palabras · Gramática · Ajustes (`lib/main.dart`).
+  - Hoy (`lib/today/`): plan leer → repasar → producir (dictogloss o volver a contarlo, día por
+    medio), gramática de la última lectura, progreso (palabras leídas, libros, ppm, palabras
+    aprendidas) y autoevaluación «puedo…» B1/B2.
+  - Solo B1–B2 (`Course.appLevels`); curso como consulta, sin bloqueos (`grammar_screen.dart`);
+    prueba de nivel B1/B2 que recomienda la web si no se llega a B1.
+  - Lector: escuchar y repetir con grabación, completar huecos, resumen guiado, lectura
+    cronometrada, volver a contarlo con grabación (`lib/reading/activities.dart`), traducir frases
+    de hasta 4 palabras, y los 3 errores corregidos.
+  - Palabras (`lib/words/`): repaso escrito que junta palabras guardadas y vocabulario de lecciones.
+  - Dictogloss por unidad (`lib/course/dicto_screen.dart`) con los textos de `extras.json`.
+  - Grabación: librerías `record` y `audioplayers` (`lib/core/voice.dart`, `lib/ui/voice_clip.dart`).
+  - `tool/contenido.py`: valida el contenido, rehace manifest.json y copia a assets.
+
+- 2026-10-26 Etapa 2 (contenido), verificada en la web (Firefox) y en la app (analyze, test, build, captura):
+  - 24 lecturas nuevas (12 B1 + 12 B2) con glosario, preguntas, tarea y resumen modelo.
+  - 4 libros: A Christmas Carol (5 cap.), The Call of the Wild (7), The Time Machine (16, el epílogo va
+    con el 16), The Picture of Dorian Gray (20, títulos de capítulo descriptivos). 48 capítulos, 288
+    preguntas; cada dato de las preguntas se comprobó contra el texto.
+  - Diccionario del lector: 558 palabras nuevas en 7 idiomas (las originales no se tocan;
+    `tool/contenido/diccionario_propio.json` lista las agregadas).
+  - Temas nuevos (Aprender idiomas, Deporte, Consumo, Ciencia, Arte) en la web y en la app.
+  - Lecturas recomendadas por unidad actualizadas con las nuevas.
+
+- 2026-10-26 Lector: selección de varias palabras o párrafos y optimización, verificada con `flutter analyze`,
+  `flutter test` (18 pruebas, 4 nuevas en `test/reader_test.dart`), `flutter build linux --debug` y capturas
+  en tema claro y oscuro:
+  - Mantener presionada una palabra y arrastrar, también entre párrafos y con desplazamiento automático en los
+    bordes; al soltar, barra con 4 colores, Nota, Traducir (≤ 4 palabras de un párrafo), Copiar y ✕. Un toque
+    con la selección abierta solo la quita. Se quitó el modo «Elegir un fragmento…».
+  - Lista perezosa (`CustomScrollView`): solo se arman los párrafos cercanos a la pantalla; las secciones de
+    abajo también, y se conservan una vez armadas. Los párrafos que no cambian no se vuelven a armar.
+  - Cronómetro en su propio widget (antes redibujaba todo el lector cada segundo).
+  - La posición del libro se guarda como número de párrafo (las guardadas como fracción se convierten).
+  - JSON grandes decodificados en otro hilo (`compute`) y diccionario precargado al iniciar.
+  - Medido en pruebas (modo depuración, capítulo de ~10 000 palabras): carga 1030 → 550 ms, primer cuadro
+    700 → 270 ms (46 ms al abrir otro capítulo), desplazamiento 23 → 11 ms por cuadro, redibujado 300 → 50 ms.
+
+## En curso
+- Nada.
+
+## Pendiente
+- Probar en un teléfono real: grabación, permisos de micrófono, el plan «Hoy», y la selección y velocidad del
+  lector con `flutter run --profile`.
+- PDF de los 4 libros nuevos: no se generaron (hace falta Chromium/Playwright); la app y la web no muestran
+  el botón de PDF para esos libros.
+- Publicar la web (incluye `content/en/extras.json`, los libros y lecturas nuevos y el `manifest.json`) para
+  que la app instalada descargue el contenido nuevo.
+
+## Archivos clave
+- `lib/main.dart` (navegación), `lib/course/*`, `lib/reading/*`, `lib/core/*`, `assets/i18n`.
+- Contenido: `assets/content/en` (copia del de la web; se sincroniza con `manifest.json`).
+
+## Problemas conocidos
+- (ver al terminar la etapa 1)

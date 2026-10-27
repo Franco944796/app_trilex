@@ -35,6 +35,8 @@ def manifest(s):
         "android.permission.INTERNET",
         "android.permission.POST_NOTIFICATIONS",
         "android.permission.RECEIVE_BOOT_COMPLETED",
+        # «escuchar y repetir» y «volver a contarlo» graban la voz (queda en el teléfono)
+        "android.permission.RECORD_AUDIO",
     ]
     for perm in perms:
         if perm not in s:
@@ -105,6 +107,13 @@ def info_plist(s):
     s = re.sub(
         r"(<key>CFBundleDisplayName</key>\s*<string>)[^<]*(</string>)", r"\1Trilex\2", s, count=1
     )
+    if "NSMicrophoneUsageDescription" not in s:
+        s = s.replace(
+            "<dict>",
+            "<dict>\n\t<key>NSMicrophoneUsageDescription</key>\n"
+            "\t<string>Para grabarte y compararte con el modelo. La grabación queda en el teléfono.</string>",
+            1,
+        )
     return s
 
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -19,6 +20,7 @@ class Content {
   Set<String> _downloaded = {};
   String version = '';
   final _cache = <String, dynamic>{};
+  final _pending = <String, Future<dynamic>>{};
 
   Future<void> init() async {
     final base = await getApplicationSupportDirectory();
@@ -47,6 +49,13 @@ class Content {
   Future<dynamic> json(String path) async {
     final hit = _cache[path];
     if (hit != null) return hit;
+    // si la precarga ya lo está leyendo, se espera esa misma lectura
+    return _pending[path] ??= _read(path).whenComplete(() {
+      _pending.remove(path);
+    });
+  }
+
+  Future<dynamic> _read(String path) async {
     String text;
     final f = File('${_dir.path}/$path');
     if (_downloaded.contains(path) && await f.exists()) {
@@ -54,7 +63,9 @@ class Content {
     } else {
       text = await rootBundle.loadString('assets/content/en/$path');
     }
-    final v = joinLines(jsonDecode(text));
+    // los diccionarios, el vocabulario y los capítulos largos se decodifican en otro hilo:
+    // en el principal trababan la pantalla
+    final v = text.length > 30000 ? await compute(_decode, text) : _decode(text);
     _cache[path] = v;
     return v;
   }
@@ -94,3 +105,5 @@ class Content {
     return todo.length;
   }
 }
+
+dynamic _decode(String text) => joinLines(jsonDecode(text));
