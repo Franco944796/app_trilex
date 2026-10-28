@@ -89,6 +89,11 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
 - 2026-10-27 Lector: la barra de colores de la selección flota junto a donde se suelta (arriba si hay lugar,
   si no abajo) y acompaña al texto al desplazar; ya no muestra la frase entre comillas.
 
+- 2026-10-28 Android: plataforma agregada (`android/`, paquete `com.franco.trilex`, nombre «Trilex»).
+  Permisos de internet, micrófono, notificaciones y arranque; receptores de `flutter_local_notifications`;
+  desugaring. `flutter build apk --release` genera un APK universal firmado con la clave de depuración
+  (sirve para probar, no para Play Store). SDK en `~/Android/Sdk`.
+
 ## En curso
 - Nada.
 
@@ -106,3 +111,6 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
 
 ## Problemas conocidos
 - (ver al terminar la etapa 1)
+- `flutter_timezone` 3.0.1 mezcla JVM 1.8 (Kotlin) y 11 (Java); se toleró con
+  `kotlin.jvm.target.validation.mode=warning` en `android/gradle.properties`. Flutter avisa que una versión
+  futura dejará de compilar `flutter_timezone` y `flutter_tts` si no se actualizan a «Built-in Kotlin».
