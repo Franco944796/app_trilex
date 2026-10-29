@@ -94,6 +94,9 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
   desugaring. `flutter build apk --release` genera un APK universal firmado con la clave de depuración
   (sirve para probar, no para Play Store). SDK en `~/Android/Sdk`.
 
+- 2026-10-28 Contenido sincronizado con la web: opciones de opción múltiple reescritas (exámenes, prueba de nivel y
+  lecciones) para que la correcta no se note por el largo; `flutter analyze` y `flutter test` (28) sin errores.
+
 ## En curso
 - Nada.
 
