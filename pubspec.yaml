@@ -30,6 +30,7 @@ flutter:
 
   assets:
     - assets/i18n/
+    - assets/icon/
     # Carpetas del contenido: las escribe tool/contenido.py (Flutter no incluye subcarpetas solas).
     # contenido: inicio
     - assets/content/en/

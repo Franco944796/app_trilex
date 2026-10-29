@@ -97,6 +97,17 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
 - 2026-10-28 Contenido sincronizado con la web: opciones de opción múltiple reescritas (exámenes, prueba de nivel y
   lecciones) para que la correcta no se note por el largo; `flutter analyze` y `flutter test` (28) sin errores.
 
+- 2026-10-29 Estilo «espacial» como la web (`lib/ui/space.dart`), revisado en capturas (claro y oscuro) y con
+  `flutter analyze`, `flutter test` (28) y `flutter build linux --debug`:
+  - Fondo «aurora» (halos celeste y violeta) en todas las pantallas; se pinta en la transición de cada página
+    para que la anterior no se transparente.
+  - Borde de luz que gira (`GlowBorder`, quieto si el sistema pide menos animaciones): próximo paso de «Hoy»,
+    lectura recomendada (primera sin leer del nivel), libro que se está leyendo, examen listo en Gramática
+    (lecciones del nivel terminadas y examen sin aprobar) e idioma elegido en la bienvenida.
+  - Marca ∴ Trilex en celeste en la bienvenida y en «Hoy».
+  - Ícono de la app (Android y ventana de Linux; iOS al crear la carpeta): `tool/icono/icono.svg` →
+    `python3 tool/icono/generar.py` (también lo corre `tool/configurar_plataformas.py`). Título de la ventana «Trilex».
+
 ## En curso
 - Nada.
 

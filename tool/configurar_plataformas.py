@@ -7,10 +7,12 @@ Se puede ejecutar varias veces: cada cambio se aplica una sola vez.
 - Android: permisos (internet, notificaciones, reinicio), receptores de los recordatorios,
   consultas para la voz (TTS) y los enlaces, y «desugaring» (lo pide flutter_local_notifications).
 - iOS: delegado de notificaciones en AppDelegate.swift y nombre visible.
+- Ícono de la app (tool/icono/generar.py).
 """
 
 import os
 import re
+import subprocess
 import sys
 
 APP_ID = "com.trilex.app"
@@ -137,6 +139,9 @@ template_test = os.path.join(ROOT, "test", "widget_test.dart")
 if os.path.isfile(template_test) and "MyApp" in open(template_test, encoding="utf-8").read():
     os.remove(template_test)
     done.append("test/widget_test.dart (borrado)")
+
+# ícono de la app (Android, iOS y ventana de Linux) a partir de tool/icono/icono.svg
+subprocess.run([sys.executable, os.path.join(ROOT, "tool", "icono", "generar.py")])
 
 print("Archivos ajustados:" if done else "Nada que cambiar (ya estaba configurado).")
 for p in done:

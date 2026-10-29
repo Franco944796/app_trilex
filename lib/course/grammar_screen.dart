@@ -5,6 +5,7 @@ import '../core/content.dart';
 import '../core/services.dart';
 import '../core/util.dart';
 import '../reading/reader_screen.dart';
+import '../ui/space.dart';
 import '../ui/theme.dart';
 import '../ui/widgets.dart';
 import 'course.dart';
@@ -191,15 +192,22 @@ class _GrammarScreenState extends State<GrammarScreen> {
     final txt = ex != null
         ? tr(ex['passed'] == true ? 'passedPct' : 'lastTry', {'p': (((ex['pct'] as num?) ?? 0) * 100).round()})
         : tr('grExamLede', {'n': exam?['items'] ?? 30});
-    return Panel(
-      color: Tx.rustSoft,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Kicker(tr('finalExam', {'l': cefr}), color: Tx.rust),
-        const SizedBox(height: 6),
-        Text(txt),
-        const SizedBox(height: 12),
-        FilledButton(onPressed: () => _go(ExamScreen(cefr: cefr)), child: Text(tr('takeExam'))),
-      ]),
+    // brilla cuando ya se terminaron las lecciones del nivel y falta aprobarlo
+    final lessons = course.flat.where((l) => l['cefr'] == cefr);
+    final ready = ex?['passed'] != true && lessons.isNotEmpty && lessons.every((l) => course.isDone(l['id']));
+    return GlowBorder(
+      on: ready,
+      radius: 14,
+      child: Panel(
+        color: Tx.rustSoft,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Kicker(tr('finalExam', {'l': cefr}), color: Tx.rust),
+          const SizedBox(height: 6),
+          Text(txt),
+          const SizedBox(height: 12),
+          FilledButton(onPressed: () => _go(ExamScreen(cefr: cefr)), child: Text(tr('takeExam'))),
+        ]),
+      ),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../core/content.dart';
 import '../core/services.dart';
 import '../core/util.dart';
+import '../ui/space.dart';
 import '../ui/theme.dart';
 import '../ui/widgets.dart';
 import 'book_screen.dart';
@@ -79,6 +80,8 @@ class _TextsTabState extends State<TextsTab> {
     final texts = jsonList(ix!['texts']).where((t) => appLevel(t['level'])).toList();
     final list = texts.where((t) => t['level'] == level).toList();
     int doneN(String l) => texts.where((t) => t['level'] == l && progress.texts[t['id']] != null).length;
+    // la recomendada: la primera del nivel que todavía no se leyó
+    final next = list.where((t) => progress.texts[t['id']] == null).firstOrNull;
     return PageList(children: [
       PageHeader(kicker: tr('selfK'), title: tr('readTitle'), lede: tr('introTexts')),
       Wrap(spacing: 8, runSpacing: 8, children: [
@@ -90,11 +93,11 @@ class _TextsTabState extends State<TextsTab> {
           ),
       ]),
       const SizedBox(height: 14),
-      for (var i = 0; i < list.length; i++) _card(list[i], i),
+      for (var i = 0; i < list.length; i++) _card(list[i], i, next: list[i] == next),
     ]);
   }
 
-  Widget _card(Json t, int i) {
+  Widget _card(Json t, int i, {bool next = false}) {
     final p = progress.texts[t['id']] as Map?;
     final notes = progress.notes['t:${t['id']}'] as Map?;
     return Padding(
@@ -105,28 +108,32 @@ class _TextsTabState extends State<TextsTab> {
           await Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReaderScreen.text(str(t['id']))));
           if (mounted) setState(() {});
         },
-        child: CardBox(
-          borderColor: p != null ? Tx.doneLine : Tx.line,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Kicker('${t['level']} · ${pad2(i + 1)}', color: Tx.blue),
-            const SizedBox(height: 6),
-            Text(str(t['title']), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Tx.ink)),
-            Text('${i18n.isEs ? '${t['title_es']} · ' : ''}${i18n.topic(str(t['topic']))}', style: TextStyle(fontSize: 13, color: Tx.muted)),
-            const SizedBox(height: 6),
-            Text(
-              '${tr('wordsN', {'n': t['words']})} · ${tr('minN', {'n': t['minutes']})} · ${tr('questionsN', {'n': t['questions']})}',
-              style: TextStyle(fontSize: 13, color: Tx.muted),
-            ),
-            const SizedBox(height: 10),
-            Row(children: [
-              if (p != null)
-                Text('${pct(p['best'] as num)} ${tr('bestScore')}', style: TextStyle(color: Tx.ok, fontWeight: FontWeight.w600))
-              else
-                Text(tr('readGo'), style: TextStyle(color: Tx.blue, fontWeight: FontWeight.w600)),
-              const Spacer(),
-              if (notes != null) _badge(tr('notesN', {'n': (notes['marks'] as List).length})),
+        child: GlowBorder(
+          on: next,
+          child: CardBox(
+            borderColor: p != null ? Tx.doneLine : Tx.line,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Kicker('${t['level']} · ${pad2(i + 1)}', color: Tx.blue),
+              const SizedBox(height: 6),
+              Text(str(t['title']), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Tx.ink)),
+              Text('${i18n.isEs ? '${t['title_es']} · ' : ''}${i18n.topic(str(t['topic']))}',
+                  style: TextStyle(fontSize: 13, color: Tx.muted)),
+              const SizedBox(height: 6),
+              Text(
+                '${tr('wordsN', {'n': t['words']})} · ${tr('minN', {'n': t['minutes']})} · ${tr('questionsN', {'n': t['questions']})}',
+                style: TextStyle(fontSize: 13, color: Tx.muted),
+              ),
+              const SizedBox(height: 10),
+              Row(children: [
+                if (p != null)
+                  Text('${pct(p['best'] as num)} ${tr('bestScore')}', style: TextStyle(color: Tx.ok, fontWeight: FontWeight.w600))
+                else
+                  Text(tr('readGo'), style: TextStyle(color: Tx.blue, fontWeight: FontWeight.w600)),
+                const Spacer(),
+                if (notes != null) _badge(tr('notesN', {'n': (notes['marks'] as List).length})),
+              ]),
             ]),
-          ]),
+          ),
         ),
       ),
     );
@@ -166,54 +173,63 @@ class _BooksTabState extends State<BooksTab> {
     if (ix == null) return const Center(child: CircularProgressIndicator());
     return PageList(children: [
       PageHeader(kicker: tr('selfK'), title: tr('readTitle'), lede: tr('introBooks')),
-      for (final b in jsonList(ix!['books']).where((b) => appLevel(b['level']))) _card(b),
+      for (final b in jsonList(ix!['books']).where((b) => appLevel(b['level']))) _card(b, reading: b['id'] == _readingNow),
     ]);
   }
 
-  Widget _card(Json b) {
+  /// Libro del último capítulo abierto (lo guarda el lector en «lastRead»), para seguir leyendo.
+  String? get _readingNow {
+    final m = RegExp(r'^#/libro/([^/]+)/').firstMatch(str((progress.reading['lastRead'] as Map?)?['href']));
+    return m?.group(1);
+  }
+
+  Widget _card(Json b, {bool reading = false}) {
     final st = progress.books[b['id']] as Map?;
     final n = (b['chapters'] as num).toInt();
     final done = ((st?['c'] as Map?) ?? const {}).length;
     final last = st?['last'];
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: CardBox(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          InkWell(
-            onTap: () async {
-              await Navigator.of(context).push(MaterialPageRoute(builder: (_) => BookScreen(id: str(b['id']))));
-              if (mounted) setState(() {});
-            },
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Kicker('${b['level']} · ${tr('chaptersN', {'n': n})}', color: Tx.blue),
-              const SizedBox(height: 6),
-              Text(str(b['title']), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Tx.ink)),
-              Text('${b['author']} · ${b['year']}', style: TextStyle(fontSize: 13, color: Tx.muted)),
-              const SizedBox(height: 6),
-              Text('${_dur(b)} · ${tr('wordsN', {'n': b['words']})}', style: TextStyle(fontSize: 13, color: Tx.muted)),
-              const SizedBox(height: 10),
-              ProgressLine(n == 0 ? 0 : done / n),
-              const SizedBox(height: 6),
-              Text(
-                done > 0 ? tr('chDone', {'d': done, 'n': n}) + (last != null ? tr('continueAt', {'n': last}) : '') : tr('notStarted'),
-                style: TextStyle(fontSize: 12.5, color: Tx.muted),
-              ),
-            ]),
-          ),
-          Row(children: [
-            TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => BookScreen(id: str(b['id'])))),
-              child: Text(tr('readGo')),
+      child: GlowBorder(
+        on: reading,
+        child: CardBox(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            InkWell(
+              onTap: () async {
+                await Navigator.of(context).push(MaterialPageRoute(builder: (_) => BookScreen(id: str(b['id']))));
+                if (mounted) setState(() {});
+              },
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Kicker('${b['level']} · ${tr('chaptersN', {'n': n})}', color: Tx.blue),
+                const SizedBox(height: 6),
+                Text(str(b['title']), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Tx.ink)),
+                Text('${b['author']} · ${b['year']}', style: TextStyle(fontSize: 13, color: Tx.muted)),
+                const SizedBox(height: 6),
+                Text('${_dur(b)} · ${tr('wordsN', {'n': b['words']})}', style: TextStyle(fontSize: 13, color: Tx.muted)),
+                const SizedBox(height: 10),
+                ProgressLine(n == 0 ? 0 : done / n),
+                const SizedBox(height: 6),
+                Text(
+                  done > 0 ? tr('chDone', {'d': done, 'n': n}) + (last != null ? tr('continueAt', {'n': last}) : '') : tr('notStarted'),
+                  style: TextStyle(fontSize: 12.5, color: Tx.muted),
+                ),
+              ]),
             ),
-            const Spacer(),
-            if (b['pdf_kb'] != null)
+            Row(children: [
               TextButton(
-                onPressed: () => openBookPdf(str(b['id'])),
-                child: Text('${tr('downloadPdf')} · ${pdfSize(b['pdf_kb'] as num)}'),
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => BookScreen(id: str(b['id'])))),
+                child: Text(tr('readGo')),
               ),
+              const Spacer(),
+              if (b['pdf_kb'] != null)
+                TextButton(
+                  onPressed: () => openBookPdf(str(b['id'])),
+                  child: Text('${tr('downloadPdf')} · ${pdfSize(b['pdf_kb'] as num)}'),
+                ),
+            ]),
           ]),
-        ]),
+        ),
       ),
     );
   }

@@ -21,8 +21,7 @@ class PageHeader extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 22),
         decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Tx.ink, width: 2))),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Kicker(kicker, color: Tx.blue),
-          const SizedBox(height: 10),
+          if (kicker.isNotEmpty) ...[Kicker(kicker, color: Tx.blue), const SizedBox(height: 10)],
           Text(title, style: TextStyle(fontSize: 30, height: 1.12, fontWeight: FontWeight.w600, color: Tx.ink)),
           if (sub.isNotEmpty) ...[
             const SizedBox(height: 4),

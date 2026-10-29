@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="a" cx="18%" cy="12%" r="70%">
+      <stop offset="0" stop-color="#8fa9f0" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#8fa9f0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="88%" cy="30%" r="60%">
+      <stop offset="0" stop-color="#b48cff" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#b48cff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect id="fondo" width="1024" height="1024" rx="RADIO" fill="#0d1226"/>
+  <rect width="1024" height="1024" rx="RADIO" fill="url(#a)"/>
+  <rect width="1024" height="1024" rx="RADIO" fill="url(#b)"/>
+  <!-- ∴: mismas proporciones que imgs/favicon.svg de la web -->
+  <g fill="#8fa9f0" filter="url(#glow)">
+    <circle cx="512" cy="300" r="118"/>
+    <circle cx="282" cy="700" r="118"/>
+    <circle cx="742" cy="700" r="118"/>
+  </g>
+</svg>

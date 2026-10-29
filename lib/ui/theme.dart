@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'space.dart';
+
 class TxPalette {
   const TxPalette({
     required this.ink,
@@ -228,8 +230,13 @@ class Tx {
         outlineVariant: c.line,
         error: c.bad,
       ),
-      scaffoldBackgroundColor: c.bg,
+      // las pantallas son transparentes: el fondo «aurora» lo pinta cada página en su transición
+      scaffoldBackgroundColor: Colors.transparent,
       canvasColor: c.bg,
+      pageTransitionsTheme: PageTransitionsTheme(builders: {
+        for (final p in TargetPlatform.values)
+          p: AuroraTransitions(const PageTransitionsTheme().builders[p] ?? const ZoomPageTransitionsBuilder()),
+      }),
     );
     final shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
     OutlineInputBorder border(Color color, [double width = 1]) => OutlineInputBorder(
@@ -239,10 +246,11 @@ class Tx {
     return base.copyWith(
       textTheme: base.textTheme.apply(bodyColor: c.text, displayColor: c.ink),
       appBarTheme: AppBarTheme(
-        backgroundColor: c.bg,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         foregroundColor: c.ink,
         elevation: 0,
-        scrolledUnderElevation: 0.5,
+        scrolledUnderElevation: 0,
         titleTextStyle: TextStyle(fontFamily: sans, fontSize: 17, fontWeight: FontWeight.w600, color: c.ink),
       ),
       filledButtonTheme: FilledButtonThemeData(

@@ -144,3 +144,10 @@ La dirección de la web está en `lib/core/content.dart` (`Content.siteUrl`).
 - Los ejercicios de pronunciación de las lecciones no graban la voz; la grabación está en «escuchar y repetir» y
   «volver a contarlo» del lector.
 - Las hojas para imprimir, el repaso mixto y las preguntas frecuentes quedan solo en la web.
+
+## Ícono de la app
+
+El ícono sale de `tool/icono/icono.svg`. Para regenerarlo (Android, iOS si existe la carpeta y la ventana de Linux),
+con `rsvg-convert` instalado:
+
+    python3 tool/icono/generar.py

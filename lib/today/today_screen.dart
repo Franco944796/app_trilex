@@ -9,6 +9,7 @@ import '../reading/activities.dart';
 import '../reading/reader_screen.dart';
 import '../reading/reading.dart';
 import '../reading/reading_home.dart';
+import '../ui/space.dart';
 import '../ui/theme.dart';
 import '../ui/widgets.dart';
 import '../words/review_screen.dart';
@@ -150,7 +151,11 @@ class _TodayScreenState extends State<TodayScreen> {
     final lastRead = progress.reading['lastRead'] as Map?;
     var related = lastRead == null ? null : course.unitForReading(str(lastRead['href']).replaceFirst('#/texto/', ''));
     if (related != null && !course.unlocked(str(related['cefr']))) related = null;
+    final doneRead = progress.doneToday('read'),
+        doneReview = progress.doneToday('review') || due == 0,
+        doneProduce = progress.doneToday('produce');
     return PageList(children: [
+      const Padding(padding: EdgeInsets.only(bottom: 14), child: Brand(size: 24)),
       PageHeader(kicker: tr('todayK', {'l': myLevel}), title: tr('todayTitle'), lede: tr('todayLede')),
       _stats(),
       const SizedBox(height: 18),
@@ -159,7 +164,8 @@ class _TodayScreenState extends State<TodayScreen> {
         kicker: tr('tdRead'),
         title: read?.title ?? tr('tdAllRead'),
         sub: read?.sub ?? '',
-        done: progress.doneToday('read'),
+        done: doneRead,
+        glow: !doneRead && read != null,
         action: read == null ? null : () => _go(read.open()),
         label: tr('readGo'),
       ),
@@ -168,7 +174,8 @@ class _TodayScreenState extends State<TodayScreen> {
         kicker: tr('tdReview'),
         title: due > 0 ? tr('pendingN', {'n': due}) : tr('rvNone'),
         sub: tr('tdReviewSub'),
-        done: progress.doneToday('review') || due == 0,
+        done: doneReview,
+        glow: doneRead && !doneReview,
         action: due == 0 ? null : () => _go(const WordReviewScreen()),
         label: tr('rvBtn', {'n': due}),
       ),
@@ -177,7 +184,8 @@ class _TodayScreenState extends State<TodayScreen> {
         kicker: tr('tdProduce'),
         title: prod.title,
         sub: prod.sub,
-        done: progress.doneToday('produce'),
+        done: doneProduce,
+        glow: doneRead && doneReview && !doneProduce,
         action: () => _go(prod.open()),
         label: tr('tdStart'),
       ),
@@ -200,7 +208,8 @@ class _TodayScreenState extends State<TodayScreen> {
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Kicker(tr('todayH'), color: Tx.blue),
-              Text('${progress.minutesToday} / ${progress.goal} min', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Tx.ink)),
+              Text('${progress.minutesToday} / ${progress.goal} min',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Tx.ink)),
               const SizedBox(height: 6),
               ProgressLine(progress.goal == 0 ? 0 : progress.minutesToday / progress.goal),
               const SizedBox(height: 6),
@@ -236,35 +245,40 @@ class _TodayScreenState extends State<TodayScreen> {
     required bool done,
     required VoidCallback? action,
     required String label,
+    bool glow = false,
   }) =>
       Padding(
         padding: const EdgeInsets.only(bottom: 12),
-        child: CardBox(
-          borderColor: done ? Tx.doneLine : Tx.line,
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            done
-                ? Container(
-                    width: 24,
-                    height: 24,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(color: Tx.ok, shape: BoxShape.circle),
-                    child: const Text('✓', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700)),
-                  )
-                : NumberDot(n),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Kicker(kicker, color: Tx.blue),
-                const SizedBox(height: 4),
-                Text(title, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Tx.ink)),
-                if (sub.isNotEmpty) Text(sub, style: TextStyle(fontSize: 13, color: Tx.muted)),
-                if (action != null) ...[
-                  const SizedBox(height: 10),
-                  done ? OutlinedButton(onPressed: action, child: Text(label)) : FilledButton(onPressed: action, child: Text(label)),
-                ],
-              ]),
-            ),
-          ]),
+        // el próximo paso del plan lleva el borde de luz
+        child: GlowBorder(
+          on: glow,
+          child: CardBox(
+            borderColor: done ? Tx.doneLine : Tx.line,
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              done
+                  ? Container(
+                      width: 24,
+                      height: 24,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(color: Tx.ok, shape: BoxShape.circle),
+                      child: const Text('✓', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700)),
+                    )
+                  : NumberDot(n),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Kicker(kicker, color: Tx.blue),
+                  const SizedBox(height: 4),
+                  Text(title, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Tx.ink)),
+                  if (sub.isNotEmpty) Text(sub, style: TextStyle(fontSize: 13, color: Tx.muted)),
+                  if (action != null) ...[
+                    const SizedBox(height: 10),
+                    done ? OutlinedButton(onPressed: action, child: Text(label)) : FilledButton(onPressed: action, child: Text(label)),
+                  ],
+                ]),
+              ),
+            ]),
+          ),
         ),
       );
 

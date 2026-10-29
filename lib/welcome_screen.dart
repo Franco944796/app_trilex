@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'core/i18n.dart';
 import 'core/services.dart';
 import 'course/course.dart';
+import 'ui/space.dart';
 import 'ui/theme.dart';
 import 'ui/widgets.dart';
 
@@ -38,7 +39,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: Column(children: [
             Expanded(
               child: PageList(children: [
-                PageHeader(kicker: 'Trilex', title: tr('chooseLang'), lede: tr('chooseLangSub')),
+                const Padding(padding: EdgeInsets.only(bottom: 18), child: Brand(size: 34)),
+                PageHeader(kicker: '', title: tr('chooseLang'), lede: tr('chooseLangSub')),
                 for (final e in I18n.names.entries)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -64,21 +66,25 @@ class _Option extends StatelessWidget {
   final bool selected;
   final VoidCallback onTap;
   @override
-  Widget build(BuildContext context) => Material(
-        color: selected ? Tx.blueSoft : Tx.surface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: selected ? Tx.blue : Tx.line, width: selected ? 2 : 1),
-        ),
-        child: InkWell(
-          customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-            child: Row(children: [
-              Expanded(child: Text(label, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Tx.ink))),
-              if (selected) Icon(Icons.check_circle, color: Tx.blue, size: 22),
-            ]),
+  Widget build(BuildContext context) => GlowBorder(
+        on: selected,
+        radius: 10,
+        child: Material(
+          color: selected ? Tx.blueSoft : Tx.surface,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: selected ? Tx.blue : Tx.line, width: selected ? 2 : 1),
+          ),
+          child: InkWell(
+            customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              child: Row(children: [
+                Expanded(child: Text(label, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Tx.ink))),
+                if (selected) Icon(Icons.check_circle, color: Tx.blue, size: 22),
+              ]),
+            ),
           ),
         ),
       );
