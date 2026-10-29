@@ -1,55 +1,52 @@
 # Trilex (app para Android e iOS)
 
 App en Flutter de Trilex para **autoaprendizaje de inglés en nivel intermedio (B1–B2)**, con el mismo diseño y el
-mismo contenido que la web. Los principiantes (A1–A2) usan la web.
+mismo contenido que la web. Para los niveles principiantes (A1–A2) está la web.
 
-- **Hoy:** plan diario de leer → repasar palabras → producir (dictogloss o volver a contarlo), progreso de lectura
+- **Hoy:** plan diario (leer → repasar palabras → producir con dictogloss o volver a contarlo), progreso de lectura
   y autoevaluación «puedo…» de B1 y B2.
-- **Leer:** lecturas B1–B2 y libros completos, con traducción al tocar una palabra o una frase corta, subrayados con
-  notas, escuchar y repetir (con grabación), completar huecos, resumen guiado, lectura cronometrada y volver a
-  contarlo.
+- **Leer:** lecturas B1–B2 y libros completos. Incluye traducción al tocar una palabra o una frase corta,
+  subrayados con notas, escuchar y repetir (con grabación), completar huecos, resumen guiado, lectura cronometrada
+  y volver a contarlo.
 - **Palabras:** repaso espaciado escrito de las palabras guardadas y del vocabulario de las lecciones.
-- **Gramática:** las unidades B1–B2 como consulta, con lectura recomendada, dictogloss y exámenes de
-  autoevaluación; prueba de nivel B1/B2. B2 se desbloquea al sacar B2 en la prueba o al aprobar el examen B1;
-  si la prueba da menos de B1, los dos niveles quedan cerrados y se recomienda la web.
+- **Gramática:** las unidades B1–B2 como material de consulta, con lectura recomendada, dictogloss y exámenes de
+  autoevaluación, más una prueba de nivel B1/B2. El nivel B2 se desbloquea al obtener B2 en la prueba o al aprobar
+  el examen B1. Si la prueba da un nivel inferior a B1, los dos niveles quedan cerrados y la app recomienda la web.
 - **Recordatorio diario:** un aviso para cumplir la meta de estudio.
-- **Idiomas:** la interfaz está en los 8 idiomas de la web.
-- **Tema claro y oscuro:** automático (sigue al teléfono), claro u oscuro, igual que en la web.
-- **Datos:** el progreso se guarda solo en el teléfono, sin cuentas.
-- **Contenido:** viene dentro de la app y se actualiza solo desde la web cuando hay conexión.
+- **Idiomas:** la interfaz está disponible en los 8 idiomas de la web.
+- **Tema:** automático (sigue la configuración del teléfono), claro u oscuro, igual que en la web.
+- **Datos:** el progreso se guarda solo en el teléfono. No hace falta crear una cuenta.
+- **Contenido:** viene incluido en la app y se actualiza automáticamente desde la web cuando hay conexión.
 
-> Este código no se pudo compilar en el entorno donde se escribió, porque no había acceso para descargar Flutter.
-> Se revisó la sintaxis de todos los archivos. Si al compilar aparece algún error, copiá el mensaje completo y
-> se corrige.
-
-## 1. Lo que hace falta (una sola vez)
+## 1. Requisitos
 
 1. **Flutter** 3.24 o posterior. Guía de instalación: https://docs.flutter.dev/get-started/install
-   Para comprobar que quedó bien, ejecutá en una terminal:
+   Para comprobar que la instalación está bien, ejecutá en una terminal:
 
        flutter doctor
 
 2. **Para Android:** Android Studio, con un emulador o un teléfono Android con la «depuración USB» activada.
-3. **Para iOS:** una Mac con Xcode. Para instalarla en un iPhone propio alcanza con una cuenta de Apple gratuita.
-   Para publicarla en la App Store hace falta la cuenta de Apple Developer (USD 99 por año).
-4. **Python 3**, para el script del paso 2.3.
+3. **Para iOS:** una Mac con Xcode. Para instalar la app en un iPhone propio alcanza con una cuenta de Apple
+   gratuita. Para publicarla en la App Store hace falta una cuenta de Apple Developer (USD 99 por año).
+4. **Python 3**, para los scripts de la carpeta `tool/`.
 
-## 2. Preparar el proyecto (una sola vez)
+## 2. Preparar el proyecto
 
-En una terminal, dentro de esta carpeta (`trilex/`):
+Esto se hace una sola vez. En una terminal, dentro de la carpeta del proyecto (`trilex/`):
 
     flutter create --org com.trilex --project-name trilex --platforms android,ios .
     python3 tool/configurar_plataformas.py
     flutter pub get
 
-1. `flutter create` agrega las carpetas `android/` e `ios/`, que esta entrega no trae. No toca `lib/` ni `pubspec.yaml`.
-2. Si pregunta algo sobre archivos existentes, respondé que no los reemplace.
-3. `configurar_plataformas.py` deja listos el nombre «Trilex», el identificador `com.trilex.app`, los permisos de
-   internet y notificaciones, y lo que necesitan los recordatorios en Android e iOS.
-   Se puede ejecutar más de una vez sin problema. También borra `test/widget_test.dart`, la prueba de la
-   app de ejemplo que deja `flutter create` (busca un `MyApp` que no existe).
+1. `flutter create` genera las carpetas `android/` e `ios/`, que no se incluyen en el repositorio. No modifica
+   `lib/` ni `pubspec.yaml`.
+2. Si pregunta si querés reemplazar archivos existentes, respondé que no.
+3. `configurar_plataformas.py` configura el nombre «Trilex», el identificador `com.trilex.app`, los permisos de
+   internet y notificaciones, y lo necesario para los recordatorios en Android e iOS. Se puede ejecutar más de una
+   vez sin problema. También borra `test/widget_test.dart`, la prueba de ejemplo que crea `flutter create`, que
+   no funciona con este proyecto.
 
-## 3. Probarla
+## 3. Ejecutar la app
 
 Con el emulador abierto o el teléfono conectado:
 
@@ -60,69 +57,71 @@ cada pantalla). Para ver la velocidad real:
 
     flutter run --profile
 
-Pruebas automáticas de la lógica (corrección de respuestas, mezcla de opciones, formato):
+Para correr las pruebas automáticas de la lógica (corrección de respuestas, mezcla de opciones y formato):
 
     flutter test
 
-Qué conviene probar:
+### Cómo se usa
 
-- **Curso:** abrir una lección y responder los ejercicios. El puntaje se actualiza en la barra de abajo y, al
-  terminar, aparece el resultado y se desbloquea la lección siguiente.
-- **Modo prueba:** al final del mapa hay un interruptor que abre todas las lecciones y los exámenes.
-- **Lectura:** abrir un texto y tocar una palabra para ver su traducción y su definición. Desde esa misma
-  ventana se puede subrayar la palabra o la oración con un color, o escribir una nota.
-  Para subrayar varias palabras o párrafos: mantener presionada una palabra y arrastrar (con mouse, hacer clic
-  y arrastrar; cerca del borde, el texto se desplaza solo); al soltar aparece, junto al dedo o al mouse, una barra con los colores, «Nota», «Traducir» y «Copiar».
-  El botón «Notas» de arriba muestra las burbujas.
-- **Primer inicio:** la app pregunta el idioma de la interfaz; después se cambia en Ajustes.
-- **Ajustes:** cambiar el idioma (toda la app cambia, incluido el significado de las palabras), elegir el
-  tema (Automático / Claro / Oscuro), activar el recordatorio y buscar actualizaciones del contenido.
+- **Primer inicio:** la app pregunta el idioma de la interfaz. Después se puede cambiar en Ajustes.
+- **Lectura:** al tocar una palabra de un texto se ven su traducción y su definición. Desde esa misma ventana se
+  puede subrayar la palabra o la oración con un color, o escribir una nota.
+  - **Subrayar varias palabras o párrafos:** mantené presionada una palabra y arrastrá. Con mouse, hacé clic y
+    arrastrá. Cerca del borde, el texto se desplaza solo.
+  - **Al soltar** aparece, junto al dedo o al mouse, una barra con los colores, «Nota», «Traducir» y «Copiar».
+  - **El botón «Notas»** de arriba muestra las notas guardadas.
+- **Ajustes:**
+  - **Idioma:** cambia toda la app, incluido el significado de las palabras.
+  - **Tema:** Automático / Claro / Oscuro.
+  - **Recordatorio:** activa el aviso diario.
+  - **Contenido:** permite buscar actualizaciones.
 
-### Instalarla en un teléfono Android sin la tienda
+### Instalar en un teléfono Android sin la tienda
 
     flutter build apk --release
 
-El archivo queda en `build/app/outputs/flutter-apk/app-release.apk`. Pasalo al teléfono y abrilo; Android pide
-permiso para instalar apps de origen desconocido.
+El archivo queda en `build/app/outputs/flutter-apk/app-release.apk`. Pasalo al teléfono y abrilo. Android va a
+pedir permiso para instalar apps de origen desconocido.
 
-### iPhone
+### Instalar en un iPhone
 
-Abrí `ios/Runner.xcworkspace` en Xcode, elegí tu equipo en *Signing & Capabilities* y ejecutala en el iPhone
-conectado. Otra opción es usar `flutter run` con el iPhone conectado.
+Abrí `ios/Runner.xcworkspace` en Xcode, elegí tu equipo en *Signing & Capabilities* y ejecutá la app en el iPhone
+conectado. También se puede usar `flutter run` con el iPhone conectado.
 
 ## 4. Publicar en las tiendas
 
 - **Google Play:**
-  1. Generá el paquete con `flutter build appbundle`.
-  2. Antes, configurá la firma: https://docs.flutter.dev/deployment/android
+  1. Configurá la firma de la app: https://docs.flutter.dev/deployment/android
+  2. Generá el paquete con `flutter build appbundle`.
 - **App Store:**
   1. Generá el paquete con `flutter build ipa`.
   2. Subilo con Xcode o Transporter: https://docs.flutter.dev/deployment/ios
 
 ## 5. Actualizar el contenido
 
-- **Sin publicar una versión nueva:** subí la carpeta `content/` de la web a GitHub Pages, como siempre. Ahí va
-  `content/en/manifest.json`, que genera `build.py`. Al abrirse con conexión, la app compara ese índice con el
-  suyo y descarga solo los archivos que cambiaron. También se puede forzar desde *Ajustes → Buscar
-  actualizaciones*.
-- **Para incluir el contenido nuevo dentro de la app**, antes de compilar una versión nueva ejecutá desde esta
-  carpeta:
+- **Sin publicar una versión nueva de la app:** publicá la carpeta `content/` de la web en GitHub Pages. Esa
+  carpeta incluye `content/en/manifest.json`, que genera `build.py`. Cuando la app se abre con conexión, compara
+  ese índice con el suyo y descarga solo los archivos que cambiaron. También se puede forzar desde
+  *Ajustes → Buscar actualizaciones*.
+- **Para incluir el contenido nuevo dentro de la app**, ejecutá desde la carpeta del proyecto antes de compilar una
+  versión nueva:
 
-      python3 tool/contenido/generar.py   # lecturas y libros B1–B2 nuevos (fuentes en tool/contenido/)
+      python3 tool/contenido/generar.py   # genera las lecturas y los libros B1–B2 nuevos (fuentes en tool/contenido/)
       python3 tool/contenido.py           # valida, rehace manifest.json y copia a assets/content/en
 
-  `tool/contenido.py` reemplaza a `app_sync.py` (el generador original no está en este equipo): copia el contenido
-  de `../web-idiomas/content/en`, rehace el manifest y actualiza la lista de carpetas de `pubspec.yaml`. Los textos
-  de la app que no vienen de la web están en `assets/i18n/app.json`.
+  `tool/contenido.py` copia el contenido de `../web-idiomas/content/en`, así que el repositorio de la web tiene que
+  estar en una carpeta `web-idiomas` junto a esta. Además rehace el manifest y actualiza la lista de carpetas de
+  `pubspec.yaml`.
 
-La dirección de la web está en `lib/core/content.dart` (`Content.siteUrl`).
+Los textos propios de la app, que no vienen de la web, están en `assets/i18n/app.json`. La dirección de la web
+está en `lib/core/content.dart` (`Content.siteUrl`).
 
 ## Estructura
 
     lib/
       main.dart              arranque y navegación (Hoy · Leer · Palabras · Gramática · Ajustes)
       core/                  contenido y actualizaciones, idiomas, tema, progreso, audio, recordatorios
-      ui/                    colores (tema claro y oscuro) y tipografía, piezas del diseño, markdown de las explicaciones
+      ui/                    colores (tema claro y oscuro), tipografía, piezas del diseño, markdown de las explicaciones
       today/                 «Hoy» (plan diario y progreso) y autoevaluación «puedo…»
       course/                gramática (consulta), lección, ejercicios, práctica, examen, prueba de nivel,
                              vocabulario y dictogloss
@@ -134,20 +133,22 @@ La dirección de la web está en `lib/core/content.dart` (`Content.siteUrl`).
       i18n/ui.json           textos de la interfaz de la web (generado)
       i18n/app.json          textos propios de la app
       fonts/                 IBM Plex (licencia SIL OFL, ver OFL.txt)
-    tool/configurar_plataformas.py
-    tool/contenido.py        valida y sincroniza el contenido de la web
-    tool/contenido/          fuentes del contenido B1–B2 nuevo (lecturas, libros, diccionario) y generar.py
+    tool/configurar_plataformas.py   configura Android e iOS después de flutter create
+    tool/contenido.py                valida y sincroniza el contenido de la web
+    tool/contenido/                  fuentes del contenido B1–B2 nuevo (lecturas, libros, diccionario) y generar.py
+    tool/icono/                      ícono de la app (icono.svg) y generar.py
 
-**Diferencias con la web:**
+## Diferencias con la web
 
-- La app es solo para B1–B2 y la gramática es de consulta (todo abierto); la web tiene el curso completo A1–B2.
-- Los ejercicios de pronunciación de las lecciones no graban la voz; la grabación está en «escuchar y repetir» y
+- La app es solo para B1–B2 y la gramática es de consulta (todo abierto). La web tiene el curso completo A1–B2.
+- Los ejercicios de pronunciación de las lecciones no graban la voz. La grabación está en «escuchar y repetir» y
   «volver a contarlo» del lector.
-- Las hojas para imprimir, el repaso mixto y las preguntas frecuentes quedan solo en la web.
+- Las hojas para imprimir, el repaso mixto y las preguntas frecuentes están solo en la web.
 
 ## Ícono de la app
 
-El ícono sale de `tool/icono/icono.svg`. Para regenerarlo (Android, iOS si existe la carpeta y la ventana de Linux),
-con `rsvg-convert` instalado:
+El ícono se genera a partir de `tool/icono/icono.svg`. Para regenerarlo hace falta tener `rsvg-convert` instalado:
 
     python3 tool/icono/generar.py
+
+Genera los íconos de Android y, si existen sus carpetas, también los de iOS y Linux.
