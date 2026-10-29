@@ -94,6 +94,11 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
   desugaring. `flutter build apk --release` genera un APK universal firmado con la clave de depuración
   (sirve para probar, no para Play Store). SDK en `~/Android/Sdk`.
 
+- 2026-10-29 Notas del lector: botón «Listo» (`noteDone` en `app.json`) debajo de cada nota mientras se escribe
+  (`_NoteField` en `reader_screen.dart`). Ícono: ∴ con conexiones y paquetes de luz; en Android 8+ es adaptable
+  (fondo, frente y monocromo, `mipmap-anydpi-v26`) y llena el círculo o la forma del launcher. Lo genera
+  `tool/icono/generar.py`. El favicon de la web sigue siendo el ∴ solo (mismas proporciones).
+
 - 2026-10-28 Contenido sincronizado con la web: opciones de opción múltiple reescritas (exámenes, prueba de nivel y
   lecciones) para que la correcta no se note por el largo; `flutter analyze` y `flutter test` (28) sin errores.
 

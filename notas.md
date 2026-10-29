@@ -1,0 +1,3 @@
+Implementar (ideas que anoto, cuando leas esto pregunta si las implementas):
+- [x] (hecho 2026-10-29: botón «Listo» debajo de la nota mientras se escribe) En notas al momento de terminar, no hay un "boton" que diga aceptar, se debe tocar otro lado de la pantalla (modificar para que sea mas amigable)
+- [x] (hecho 2026-10-29: ícono adaptable que llena la forma, con conexiones y paquetes entre los 3 nodos, y versión monocroma) Modifica el logo de la aplicacion (una vez instalada) para tener en cuenta que en algunos dispositivos se utiliza una "burbuja" circular alrededor de la app, haz que el icono se adapte para abarcar la totalidad de este y que no quede un relleno blanco alrededor.

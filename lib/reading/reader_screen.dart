@@ -1344,7 +1344,6 @@ class _NotesSheet extends StatefulWidget {
 class _NotesSheetState extends State<_NotesSheet> {
   late final general = TextEditingController(text: str(widget.notes['general']));
   final fields = <String, TextEditingController>{};
-  final focusNode = FocusNode();
 
   @override
   void dispose() {
@@ -1352,7 +1351,6 @@ class _NotesSheetState extends State<_NotesSheet> {
     for (final c in fields.values) {
       c.dispose();
     }
-    focusNode.dispose();
     super.dispose();
   }
 
@@ -1375,7 +1373,7 @@ class _NotesSheetState extends State<_NotesSheet> {
         const SizedBox(height: 12),
         Text(tr('notesGeneral'), style: TextStyle(fontSize: 13, color: Tx.muted)),
         const SizedBox(height: 4),
-        TextField(
+        _NoteField(
           controller: general,
           minLines: 2,
           maxLines: 6,
@@ -1404,7 +1402,7 @@ class _NotesSheetState extends State<_NotesSheet> {
           child: Text('«${str(m['quote'])}»', style: TextStyle(fontFamily: Tx.serif, fontStyle: FontStyle.italic, color: Tx.ink)),
         ),
         const SizedBox(height: 8),
-        TextField(
+        _NoteField(
           controller: c,
           autofocus: widget.focus == id,
           minLines: 1,
@@ -1447,6 +1445,67 @@ class _NotesSheetState extends State<_NotesSheet> {
       ]),
     );
   }
+}
+
+/// Campo de nota multilínea: Enter agrega un renglón, así que sin este botón la única forma de terminar
+/// era tocar fuera del campo.
+class _NoteField extends StatefulWidget {
+  const _NoteField({
+    required this.controller,
+    required this.decoration,
+    required this.onChanged,
+    required this.minLines,
+    required this.maxLines,
+    this.autofocus = false,
+  });
+  final TextEditingController controller;
+  final InputDecoration decoration;
+  final ValueChanged<String> onChanged;
+  final int minLines, maxLines;
+  final bool autofocus;
+  @override
+  State<_NoteField> createState() => _NoteFieldState();
+}
+
+class _NoteFieldState extends State<_NoteField> {
+  final focus = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    focus.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    focus.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        TextField(
+          controller: widget.controller,
+          focusNode: focus,
+          autofocus: widget.autofocus,
+          minLines: widget.minLines,
+          maxLines: widget.maxLines,
+          decoration: widget.decoration,
+          onChanged: widget.onChanged,
+        ),
+        if (focus.hasFocus)
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: FilledButton.icon(
+                onPressed: focus.unfocus,
+                icon: const Icon(Icons.check, size: 18),
+                label: Text(tr('noteDone')),
+              ),
+            ),
+          ),
+      ]);
 }
 
 class _Quiz extends StatefulWidget {

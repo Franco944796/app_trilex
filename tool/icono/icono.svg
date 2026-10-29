@@ -8,18 +8,54 @@
       <stop offset="0" stop-color="#b48cff" stop-opacity=".35"/>
       <stop offset="1" stop-color="#b48cff" stop-opacity="0"/>
     </radialGradient>
+    <!-- Estelas de los paquetes: van de transparente (atrás) a brillante (el paquete), en el sentido A→B→C→A. -->
+    <linearGradient id="tAB" gradientUnits="userSpaceOnUse" x1="438" y1="428" x2="369" y2="548">
+      <stop offset="0" stop-color="#dfe7ff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#dfe7ff"/>
+    </linearGradient>
+    <linearGradient id="tBC" gradientUnits="userSpaceOnUse" x1="411" y1="700" x2="549" y2="700">
+      <stop offset="0" stop-color="#dfe7ff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#dfe7ff"/>
+    </linearGradient>
+    <linearGradient id="tCA" gradientUnits="userSpaceOnUse" x1="673" y1="580" x2="604" y2="460">
+      <stop offset="0" stop-color="#dfe7ff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#dfe7ff"/>
+    </linearGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="22" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
+    <filter id="glowChico" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
-  <rect id="fondo" width="1024" height="1024" rx="RADIO" fill="#0d1226"/>
-  <rect width="1024" height="1024" rx="RADIO" fill="url(#a)"/>
-  <rect width="1024" height="1024" rx="RADIO" fill="url(#b)"/>
-  <!-- ∴: mismas proporciones que imgs/favicon.svg de la web -->
-  <g fill="#8fa9f0" filter="url(#glow)">
-    <circle cx="512" cy="300" r="118"/>
-    <circle cx="282" cy="700" r="118"/>
-    <circle cx="742" cy="700" r="118"/>
+  <!-- generar.py arma las capas del ícono adaptable de Android separando los grupos fondo y motivo
+       (busca sus etiquetas de apertura) y reemplaza ESCALA y RADIO. -->
+  <g id="fondo">
+    <rect width="1024" height="1024" rx="RADIO" fill="#0d1226"/>
+    <rect width="1024" height="1024" rx="RADIO" fill="url(#a)"/>
+    <rect width="1024" height="1024" rx="RADIO" fill="url(#b)"/>
+  </g>
+  <g id="motivo" transform="ESCALA">
+    <g fill="none" stroke-linecap="round">
+      <path d="M512 300 L282 700 L742 700 Z" stroke="#8fa9f0" stroke-opacity=".4" stroke-width="16"/>
+      <g stroke-width="18" filter="url(#glowChico)">
+        <path d="M438 428 L369 548" stroke="url(#tAB)"/>
+        <path d="M411 700 L549 700" stroke="url(#tBC)"/>
+        <path d="M673 580 L604 460" stroke="url(#tCA)"/>
+      </g>
+    </g>
+    <g fill="#eef2ff" filter="url(#glowChico)">
+      <circle cx="369" cy="548" r="24"/>
+      <circle cx="549" cy="700" r="24"/>
+      <circle cx="604" cy="460" r="24"/>
+    </g>
+    <!-- ∴: mismas proporciones que imgs/favicon.svg de la web -->
+    <g fill="#8fa9f0" filter="url(#glow)">
+      <circle cx="512" cy="300" r="118"/>
+      <circle cx="282" cy="700" r="118"/>
+      <circle cx="742" cy="700" r="118"/>
+    </g>
   </g>
 </svg>

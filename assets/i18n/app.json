@@ -1408,5 +1408,15 @@
   "O B2 é liberado ao passar no exame B1 (no fim do nível B1) ou ao tirar B2 no teste de nível.",
   "B2 откроется, когда вы сдадите экзамен B1 (в конце уровня B1) или получите B2 в тесте на уровень.",
   "通过 B1 考试（在 B1 级别末尾）或在分级测试中达到 B2，即可解锁 B2。"
+ ],
+ "noteDone": [
+  "Done",
+  "Listo",
+  "Terminé",
+  "Fertig",
+  "Fatto",
+  "Pronto",
+  "Готово",
+  "完成"
  ]
 }
