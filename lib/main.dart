@@ -16,6 +16,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   await i18n.load(prefs);
+  agreement.load(prefs);
   themePref.load(prefs);
   await progress.load(prefs);
   await content.init();
@@ -44,7 +45,7 @@ class TrilexApp extends StatefulWidget {
 }
 
 class _TrilexAppState extends State<TrilexApp> with WidgetsBindingObserver {
-  bool welcome = !i18n.chosen;
+  bool welcome = !i18n.chosen || !agreement.accepted;
 
   @override
   void initState() {

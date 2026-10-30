@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'core/i18n.dart';
 import 'core/services.dart';
 import 'course/course.dart';
+import 'ui/markdown.dart';
 import 'ui/space.dart';
 import 'ui/theme.dart';
 import 'ui/widgets.dart';
 
-/// Primera pantalla de la app: elegir el idioma de la interfaz. Después se cambia en Ajustes.
+/// Primera pantalla de la app: elegir el idioma de la interfaz (después se cambia en Ajustes) y aceptar el acuerdo
+/// de licencia. Si el idioma ya estaba elegido, se muestra solo el acuerdo.
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key, required this.onDone});
   final VoidCallback onDone;
@@ -17,6 +20,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool busy = false;
+  bool license = i18n.chosen;
 
   // se aplica al tocar, así la pantalla misma ya se ve en el idioma elegido
   Future<void> _pick(String l) async {
@@ -30,11 +34,44 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   Future<void> _start() async {
     await i18n.setLang(i18n.lang);
+    if (agreement.accepted) {
+      widget.onDone();
+    } else {
+      setState(() => license = true);
+    }
+  }
+
+  Future<void> _accept() async {
+    await agreement.accept();
     widget.onDone();
   }
 
+  Widget _license() => Scaffold(
+        body: SafeArea(
+          child: Column(children: [
+            Expanded(
+              child: PageList(children: [
+                const Padding(padding: EdgeInsets.only(bottom: 18), child: Brand(size: 34)),
+                PageHeader(kicker: '', title: tr('licenseH'), lede: tr('licenseLede')),
+                MiniMarkdown(tr('licenseBody')),
+              ]),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+              child: Row(children: [
+                Expanded(child: OutlinedButton(onPressed: SystemNavigator.pop, child: Text(tr('licenseDecline')))),
+                const SizedBox(width: 10),
+                Expanded(child: FilledButton(onPressed: _accept, child: Text(tr('licenseAccept')))),
+              ]),
+            ),
+          ]),
+        ),
+      );
+
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => license ? _license() : _languages();
+
+  Widget _languages() => Scaffold(
         body: SafeArea(
           child: Column(children: [
             Expanded(

@@ -1,3 +1,4 @@
+import 'agreement.dart';
 import 'content.dart';
 import 'i18n.dart';
 import 'progress.dart';
@@ -7,6 +8,7 @@ import 'theme_pref.dart';
 import 'voice.dart';
 
 final i18n = I18n();
+final agreement = Agreement();
 final content = Content();
 final progress = Progress();
 final speech = Speech();

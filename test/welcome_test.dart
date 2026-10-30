@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trilex/core/agreement.dart';
 import 'package:trilex/core/services.dart';
 import 'package:trilex/course/course.dart';
 import 'package:trilex/main.dart';
@@ -20,6 +21,7 @@ Future<SharedPreferences> _setUp(WidgetTester tester, Map<String, Object> values
   final prefs = (await tester.runAsync(() async {
     final p = await SharedPreferences.getInstance();
     await i18n.load(p);
+    agreement.load(p);
     themePref.load(p);
     await progress.load(p);
     await content.init();
@@ -49,8 +51,13 @@ void main() {
 
     await tester.tap(find.text('Starten'));
     await _settle(tester);
-    expect(find.byType(WelcomeScreen), findsNothing);
+    expect(find.text('Lizenzvereinbarung'), findsOneWidget);
     expect(prefs.getString('selectedLanguage'), 'de');
+
+    await tester.tap(find.text('Ich akzeptiere'));
+    await _settle(tester);
+    expect(find.byType(WelcomeScreen), findsNothing);
+    expect(prefs.getInt(Agreement.key), Agreement.version);
   });
 
   testWidgets('el idioma detectado también queda guardado si se toca «Empezar» sin cambiarlo', (tester) async {
@@ -59,12 +66,26 @@ void main() {
     await _settle(tester);
     await tester.tap(find.byType(FilledButton));
     await _settle(tester);
-    expect(find.byType(WelcomeScreen), findsNothing);
     expect(prefs.getString('selectedLanguage'), i18n.lang);
   });
 
-  testWidgets('con un idioma ya elegido no se pregunta', (tester) async {
+  testWidgets('con el idioma elegido pero sin aceptar la licencia, se muestra solo el acuerdo', (tester) async {
     await _setUp(tester, {'selectedLanguage': 'es'});
+    await tester.pumpWidget(const TrilexApp());
+    await _settle(tester);
+    expect(find.text('Acuerdo de licencia'), findsOneWidget);
+    expect(find.text('🇩🇪 Deutsch'), findsNothing);
+  });
+
+  testWidgets('una versión anterior del acuerdo aceptada no alcanza', (tester) async {
+    await _setUp(tester, {'selectedLanguage': 'es', Agreement.key: Agreement.version - 1});
+    await tester.pumpWidget(const TrilexApp());
+    await _settle(tester);
+    expect(find.text('Acuerdo de licencia'), findsOneWidget);
+  });
+
+  testWidgets('con el idioma elegido y la licencia aceptada no se pregunta nada', (tester) async {
+    await _setUp(tester, {'selectedLanguage': 'es', Agreement.key: Agreement.version});
     await tester.pumpWidget(const TrilexApp());
     await _settle(tester);
     expect(find.byType(WelcomeScreen), findsNothing);

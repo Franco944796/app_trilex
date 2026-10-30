@@ -5,6 +5,7 @@ import 'core/content.dart';
 import 'core/i18n.dart';
 import 'core/services.dart';
 import 'course/course.dart';
+import 'license_screen.dart';
 import 'ui/theme.dart';
 import 'ui/widgets.dart';
 
@@ -188,6 +189,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
           style: TextButton.styleFrom(padding: EdgeInsets.zero),
           onPressed: () => launchUrl(Uri.parse(Content.siteUrl), mode: LaunchMode.externalApplication),
           child: Text(tr('openWeb')),
+        ),
+        TextButton(
+          style: TextButton.styleFrom(padding: EdgeInsets.zero),
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const LicenseScreen())),
+          child: Text(tr('licenseView')),
         ),
       ]),
     ]);

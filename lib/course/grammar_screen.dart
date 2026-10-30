@@ -56,6 +56,8 @@ class _GrammarScreenState extends State<GrammarScreen> {
     final locked = !course.unlocked(cefr);
     final ls = course.flat.where((l) => l['cefr'] == cefr).toList();
     final nd = ls.where((l) => course.isDone(l['id'])).length;
+    // el camino: brilla la primera lección sin hacer del nivel
+    final next = ls.where((l) => !course.isDone(l['id'])).firstOrNull?['id'];
     final head = InkWell(
       onTap: () => setState(() => _open = open ? '' : cefr),
       child: Padding(
@@ -89,7 +91,7 @@ class _GrammarScreenState extends State<GrammarScreen> {
           _locked(cefr),
           const SizedBox(height: 16),
         ] else if (open) ...[
-          for (final u in Course.units(lv).where((u) => Course.lessonsOf(u).isNotEmpty)) _unit(u),
+          for (final u in Course.units(lv).where((u) => Course.lessonsOf(u).isNotEmpty)) _unit(u, next),
           _exam(lv),
           const SizedBox(height: 16),
         ],
@@ -117,7 +119,7 @@ class _GrammarScreenState extends State<GrammarScreen> {
     );
   }
 
-  Widget _unit(Json u) {
+  Widget _unit(Json u, Object? next) {
     final ls = [for (final l in Course.lessonsOf(u)) course.lessonById(l['id'])!];
     final ud = ls.where((l) => course.isDone(l['id'])).length;
     final reading = course.readingOfUnit(str(u['id']));
@@ -135,7 +137,7 @@ class _GrammarScreenState extends State<GrammarScreen> {
           Text(str(u['title_target']), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Tx.ink)),
           Text(course.subTitle(u['id'], str(u['title_es']), str(u['title_target'])), style: TextStyle(fontSize: 13, color: Tx.muted)),
           const SizedBox(height: 8),
-          for (final l in ls) _row(l),
+          for (final l in ls) _row(l, next: l['id'] == next),
           const Divider(height: 18),
           Wrap(spacing: 4, runSpacing: 0, children: [
             if (reading != null)
@@ -154,15 +156,15 @@ class _GrammarScreenState extends State<GrammarScreen> {
     );
   }
 
-  Widget _row(Json l) {
+  Widget _row(Json l, {bool next = false}) {
     final done = course.isDone(l['id']);
     final cp = l['kind'] == 'checkpoint';
     final sub = course.subTitle(l['id'], str(l['title_es']), str(l['title_target']));
-    return InkWell(
+    final row = InkWell(
       onTap: () => _go(LessonScreen(lesson: l)),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
-        decoration: BoxDecoration(border: Border(top: BorderSide(color: Tx.line))),
+        decoration: BoxDecoration(border: next ? null : Border(top: BorderSide(color: Tx.line))),
         child: Row(children: [
           SizedBox(
             width: 30,
@@ -181,6 +183,11 @@ class _GrammarScreenState extends State<GrammarScreen> {
               : Text(tr('openArrow'), style: TextStyle(color: Tx.blue, fontWeight: FontWeight.w600, fontSize: 13)),
         ]),
       ),
+    );
+    if (!next) return row;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: GlowBorder(radius: 8, child: row),
     );
   }
 

@@ -5,7 +5,7 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
 (`../web-idiomas`). Trabajo en curso: rediseñar la app para B1–B2 y sumar contenido intermedio.
 
 ## Decisiones tomadas
-- Reglas de trabajo: `../web-idiomas/reglas-de-trabajo.md`.
+- Reglas de trabajo: `../reglas-de-trabajo.md` (se cargan solas por `../CLAUDE.md`).
 - Se sacan A1–A2 de la app. La prueba de nivel solo distingue B1/B2; si da menos, recomienda la web.
 - Curso = consulta, por tema; exámenes como autoevaluación. Niveles (2026-10-27): B1 abierto salvo que la
   prueba de nivel dé menos de B1 (entonces B1 y B2 cerrados y se recomienda la web); B2 se abre al sacar B2
@@ -112,6 +112,17 @@ App de autoaprendizaje de inglés para nivel intermedio (B1–B2). Los principia
   - Marca ∴ Trilex en celeste en la bienvenida y en «Hoy».
   - Ícono de la app (Android y ventana de Linux; iOS al crear la carpeta): `tool/icono/icono.svg` →
     `python3 tool/icono/generar.py` (también lo corre `tool/configurar_plataformas.py`). Título de la ventana «Trilex».
+
+- 2026-10-29 Acuerdo de licencia (solo uso personal y leer el código; prohibido copiar, modificar, redistribuir o
+  descompilar sin permiso; titular Trilex, permisos a sudoanonimo@gmail.com; ley argentina). Se muestra al abrir la
+  app por primera vez, después de elegir el idioma (Android no deja agregar pantallas al instalador): «Acepto» /
+  «No acepto» (cierra la app). También en Ajustes → Acerca de. `lib/core/agreement.dart` (subir `version` si cambia
+  el texto), `lib/license_screen.dart`, `lib/welcome_screen.dart`, textos `license*` en `assets/i18n/app.json`
+  (8 idiomas), `LICENSE` (español + inglés) y README. Verificado: analyze, 30 pruebas (4 nuevas en
+  `test/welcome_test.dart`) y capturas (claro, oscuro).
+- 2026-10-30 Camino claro: en Gramática brilla (`GlowBorder`) la primera lección sin hacer de cada nivel abierto
+  (`grammar_screen.dart`); Leer ya resaltaba la lectura siguiente. Prueba nueva en `test/levels_test.dart`
+  (31 en total), analyze sin errores y captura revisada.
 
 ## En curso
 - Nada.

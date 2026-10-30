@@ -9,16 +9,18 @@ import 'package:trilex/core/progress.dart';
 import 'package:trilex/core/services.dart';
 import 'package:trilex/course/course.dart';
 import 'package:trilex/course/grammar_screen.dart';
+import 'package:trilex/ui/space.dart';
 import 'package:trilex/ui/theme.dart';
 
 /// Carga el progreso con [placement] (null = sin prueba) y, si [examB1], el examen B1 aprobado.
-Future<void> _setUp(WidgetTester tester, {List<String>? placement, bool examB1 = false}) async {
+Future<void> _setUp(WidgetTester tester, {List<String>? placement, bool examB1 = false, Map<String, Object>? done}) async {
   tester.view.physicalSize = const Size(412 * 2.6, 915 * 2.6);
   tester.view.devicePixelRatio = 2.6;
   addTearDown(tester.view.reset);
   final c = <String, dynamic>{
     if (placement != null) 'placement': {'level': placement.isEmpty ? 'A2' : placement.last, 'passed': placement},
     if (examB1) 'exams': {'B1': {'pct': 0.8, 'passed': true}},
+    if (done != null) 'done': done,
   };
   SharedPreferences.setMockInitialValues({'selectedLanguage': 'es', Progress.courseKey: jsonEncode(c)});
   tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
@@ -80,5 +82,16 @@ void main() {
     await tester.pump();
     expect(find.text(tr('grLockB1')), findsOneWidget, reason: 'B1 se abre de entrada y muestra el aviso');
     expect(find.text(tr('openWeb')), findsOneWidget);
+  });
+
+  testWidgets('Gramática: brilla solo la primera lección sin hacer del nivel', (tester) async {
+    await _setUp(tester, placement: ['B1']);
+    final b1 = course.flat.where((l) => l['cefr'] == 'B1').toList();
+    await _setUp(tester, placement: ['B1'], done: {for (final l in b1.take(2)) l['id'] as String: {'score': 0.9}});
+    await tester.pumpWidget(MaterialApp(theme: Tx.theme(), home: const Scaffold(body: GrammarScreen())));
+    await tester.pump();
+    final on = find.byWidgetPredicate((w) => w is GlowBorder && w.on);
+    expect(on, findsOneWidget);
+    expect(find.descendant(of: on, matching: find.text(b1[2]['title_target'] as String)), findsOneWidget);
   });
 }

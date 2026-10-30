@@ -18,6 +18,13 @@ mismo contenido que la web. Para los niveles principiantes (A1–A2) está la we
 - **Datos:** el progreso se guarda solo en el teléfono. No hace falta crear una cuenta.
 - **Contenido:** viene incluido en la app y se actualiza automáticamente desde la web cuando hay conexión.
 
+## Licencia
+
+El código es público solo para leerlo: **no es software libre**. Copiarlo, modificarlo, redistribuirlo o usarlo en
+otros proyectos requiere permiso escrito. Ver [LICENSE](LICENSE). La app muestra el mismo acuerdo la primera vez
+que se abre y no deja seguir sin aceptarlo (`lib/core/agreement.dart`); si cambia el texto, subir
+`Agreement.version` para que se vuelva a pedir.
+
 ## 1. Requisitos
 
 1. **Flutter** 3.24 o posterior. Guía de instalación: https://docs.flutter.dev/get-started/install
